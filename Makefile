@@ -2,6 +2,7 @@
 
 MAINTEX = main
 CHAPTER = chapters/
+TITLEPAGES = titlepages/
 BUILDPATH = _build/
 BUILDNAME = Thesis
 
@@ -15,6 +16,7 @@ pdf:
 	open $(BUILDPATH)$(BUILDNAME).pdf
 
 clean:
-	rm $(CHAPTER)*.aux
-	rm $(MAINTEX).aux $(MAINTEX).toc $(MAINTEX).log $(MAINTEX).out
-	rm $(MAINTEX).lof $(MAINTEX).bbl $(MAINTEX).blg
+	rm -f $(CHAPTER)*.aux
+	rm -f $(TITLEPAGES)*.aux
+	rm -f $(MAINTEX).aux $(MAINTEX).toc $(MAINTEX).log $(MAINTEX).out
+	rm -f $(MAINTEX).lof $(MAINTEX).bbl $(MAINTEX).blg

@@ -76,17 +76,38 @@
 \usepackage{paralist}  % Individualisierte Aufzählungen
 
 
+% Definition von globalen Konstanten
+% ----------------------------------
+\newcommand{\thema}{$[$Thema der Bachelorarbeit$]$}
+\newcommand{\schlagworte}{$[$Platz, f\"ur, spezifische, Schlagworte, zur, Ausarbeitung $]$}
+\newcommand{\zusammenfassung}{$[$Text der Zusammenfassung etwa 150 Worte. Es soll der 
+	L"osungsweg beschrieben sein.$]$}
+\newcommand{\ausgabedatum}{$[$Datum$]$}
+\newcommand{\abgabedatum}{$[$Datum$]$}
+\newcommand{\autor}{$[$Vor- und Zuname des/der Bachelorkandidaten/in$]$}
+\newcommand{\autorStrasse}{$[$Stra"se$]$}
+\newcommand{\autorPLZ}{$[$PLZ$]$}
+\newcommand{\autorOrt}{$[$Ort$]$}
+\newcommand{\autorGeburtsort}{$[$Geburtsort$]$}
+\newcommand{\autorGeburtsdatum}{$[$Datum$]$}
+\newcommand{\prueferA}{$[$Titel, Vor- und Zuname des 1. Pr"ufers$]$}
+\newcommand{\prueferB}{$[$Titel, Vor- und Zuname des 2. Pr"ufers$]$}
+\newcommand{\firma}{$[$HTWG oder Firmenname$]$}
+\newcommand{\studiengang}{$[$Software-Engineering/Technische Informatik/Wirtschaftsinformatik$]$}
+
+
+
+
 % PDF Eigenschaften
 % -----------------
 \usepackage
 [
 	colorlinks=false,
 	bookmarks = true,
-	pdftitle={Vergleich von interner und externer DSL-Technologie zur Entwicklung
-eines Textsatzsystems zur automatischen Dokumentengenerierung.},
-	pdfauthor={Sven Hodapp},
+	pdftitle={\thema},
+	pdfauthor={\autor},
 	pdfsubject={Bachelor Thesis},
-	pdfkeywords={htwg, fraunhofer, scai, dsl, javascript, document},
+	pdfkeywords={\schlagworte},
 	urlcolor=blue,
 	pdfstartview=FitH
 ]{hyperref}
@@ -105,23 +126,6 @@ eines Textsatzsystems zur automatischen Dokumentengenerierung.},
 
 % Deckblatt
 % ---------
-\newcommand{\thema}{$[$Thema der Bachelorarbeit$]$}
-\newcommand{\schlagworte}{$[$Platz, f\"ur, spezifische, Schlagworte, zur, Ausarbeitung $]$}
-\newcommand{\zusammenfassung}{$[$Text der Zusammenfassung etwa 150 Worte. Es soll der 
-	L"osungsweg beschrieben sein.$]$}
-\newcommand{\ausgabedatum}{$[$Datum$]$}
-\newcommand{\abgabedatum}{$[$Datum$]$}
-\newcommand{\autor}{$[$Vor- und Zuname des/der Bachelorkandidaten/in$]$}
-\newcommand{\autorStrasse}{$[$Stra"se$]$}
-\newcommand{\autorPLZ}{$[$PLZ$]$}
-\newcommand{\autorOrt}{$[$Ort$]$}
-\newcommand{\autorGeburtsort}{$[$Geburtsort$]$}
-\newcommand{\autorGeburtsdatum}{$[$Datum$]$}
-\newcommand{\prueferA}{$[$Titel, Vor- und Zuname des 1. Pr"ufers$]$}
-\newcommand{\prueferB}{$[$Titel, Vor- und Zuname des 2. Pr"ufers$]$}
-\newcommand{\firma}{$[$HTWG oder Firmenname$]$}
-\newcommand{\studiengang}{$[$Software-Engineering/Technische Informatik/Wirtschaftsinformatik$]$}
-
 \include{titlepages/cover}
 \include{titlepages/title}
 \include{titlepages/abstract}

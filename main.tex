@@ -1,0 +1,153 @@
+%
+% Bachelor Thesis
+% Sven Hodapp
+%
+
+
+% -----------
+% 1. Präambel
+% -----------
+
+
+% Allgemeine Einstellungen
+% ------------------------
+\documentclass[
+	pdftex,%              PDFTex verwenden da wir ausschliesslich ein PDF erzeugen.
+	a4paper,%             Wir verwenden A4 Papier.
+	oneside,%             Einseitiger Druck.
+	12pt,%                Grosse Schrift, besser geeignet für A4.
+	halfparskip,%         Halbe Zeile Abstand zwischen Absätzen.
+	%chapterprefix,%       Kapitel mit 'Kapitel' anschreiben.
+	headsepline,%         Linie nach Kopfzeile.
+	footsepline,%         Linie vor Fusszeile.
+	bibtotocnumbered,%    Literaturverzeichnis im Inhaltsverzeichnis nummeriert einfügen.
+	idxtotoc%             Index ins Inhaltsverzeichnis einfügen.
+]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}   % deutsche Silbentrennung
+\selectlanguage{german}   % damit Table Of Contents Inhaltsverzeichnis genannt wird
+
+\usepackage{geometry}   % Seitenränder einstellbar
+\usepackage{textcomp}   % Sonderzeichen, wie Eurosymbol
+
+
+
+% Bilder, Farben, farbige Tabellen
+% --------------------------------
+\usepackage{graphicx, color, colortbl}
+\usepackage{array}       % Erweiterte Tabelleneigenschaften.
+%\usepackage{floatflt}   % Bild kann von Text umflossen werden.
+
+
+
+% Palatino Schrift
+% ----------------
+%\usepackage[T1]{fontenc}
+%\usepackage[osf]{mathpazo}   % osf aktiviert Mediävalziffern/Minuskelziffern
+
+
+
+% Syntax-Highlighting
+% -------------------
+\definecolor{darkgreen}{rgb}{0,0.5,0}  % needs usepackage color
+\usepackage{listings}
+\lstset{
+	language=Python, 
+	basicstyle=\footnotesize\ttfamily, 
+	frame=lines, 
+	numbers=left, 
+	numberstyle=\tiny, 
+	numbersep=5pt, 
+	breaklines=true, 
+	showstringspaces=false, 
+	keywordstyle=\color{blue}, 
+	commentstyle=\color{darkgreen}, 
+	stringstyle=\color{red}
+}
+
+
+
+% Sonstige Pakete
+% ---------------
+%\usepackage{anysize}   % Seitenränder verändern
+%\usepackage{setspace}   % 1.5em Zeilenabstand \begin{onehalfspacing}
+\usepackage{bibgerm}   % Anzeigestil des Literaturverzeichnis (gerabbrv)
+\usepackage{paralist}  % Individualisierte Aufzählungen
+
+
+% PDF Eigenschaften
+% -----------------
+\usepackage
+[
+	colorlinks=false,
+	bookmarks = true,
+	pdftitle={Vergleich von interner und externer DSL-Technologie zur Entwicklung
+eines Textsatzsystems zur automatischen Dokumentengenerierung.},
+	pdfauthor={Sven Hodapp},
+	pdfsubject={Bachelor Thesis},
+	pdfkeywords={htwg, fraunhofer, scai, dsl, javascript, document},
+	urlcolor=blue,
+	pdfstartview=FitH
+]{hyperref}
+
+
+
+
+
+% --------------------
+% 2. Dokumenten Anfang
+% --------------------
+
+\begin{document}
+
+
+
+% Deckblatt
+% ---------
+\newcommand{\thema}{$[$Thema der Bachelorarbeit$]$}
+\newcommand{\schlagworte}{$[$Platz, f\"ur, spezifische, Schlagworte, zur, Ausarbeitung $]$}
+\newcommand{\zusammenfassung}{$[$Text der Zusammenfassung etwa 150 Worte. Es soll der 
+	L"osungsweg beschrieben sein.$]$}
+\newcommand{\ausgabedatum}{$[$Datum$]$}
+\newcommand{\abgabedatum}{$[$Datum$]$}
+\newcommand{\autor}{$[$Vor- und Zuname des/der Bachelorkandidaten/in$]$}
+\newcommand{\autorStrasse}{$[$Stra"se$]$}
+\newcommand{\autorPLZ}{$[$PLZ$]$}
+\newcommand{\autorOrt}{$[$Ort$]$}
+\newcommand{\autorGeburtsort}{$[$Geburtsort$]$}
+\newcommand{\autorGeburtsdatum}{$[$Datum$]$}
+\newcommand{\prueferA}{$[$Titel, Vor- und Zuname des 1. Pr"ufers$]$}
+\newcommand{\prueferB}{$[$Titel, Vor- und Zuname des 2. Pr"ufers$]$}
+\newcommand{\firma}{$[$HTWG oder Firmenname$]$}
+\newcommand{\studiengang}{$[$Software-Engineering/Technische Informatik/Wirtschaftsinformatik$]$}
+
+\include{titlepages/cover}
+\include{titlepages/title}
+\include{titlepages/abstract}
+\include{titlepages/affidavit}
+
+
+
+% Inhaltsverzeichnis anzeigen
+% ---------------------------
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+
+
+
+% ---------
+% 3. Inhalt
+% ---------
+
+\include{chapters/vorwort}
+
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\bibliographystyle{geralpha}
+\bibliography{bib/references}
+
+\end{document}
+
+

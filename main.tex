@@ -142,9 +142,6 @@
 % Inhaltsverzeichnis anzeigen
 % ---------------------------
 \tableofcontents
-%\listoffigures
-%\listoftables
-
 
 
 
@@ -152,11 +149,18 @@
 % 3. Inhalt
 % ---------
 
-\include{chapters/vorwort}
+\include{chapters/1-einleitung}
+\include{chapters/2-frontend}
+\include{chapters/3-backend}
+\include{chapters/4-zusammengebracht}
+\include{chapters/5-zusammenfassung}
 
-\addcontentsline{toc}{section}{Literaturverzeichnis}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
 \bibliographystyle{geralpha}
 \bibliography{bib/references}
+
+%\listoffigures
+%\listoftables
 
 \end{document}
 

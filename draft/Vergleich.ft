@@ -1,0 +1,24 @@
+# Vergleich von Domain-Specific Languages
+
+## Kerneigenschaften
+
+Xtext
+
+* Toolset für externe DSLs
+* Grammatik-Definition durch BNF-ähnliche Notation
+* Code Generation mit Xtend
+* Explizite Aufteilung zwischen Grammatik-Regeln und Generator
+* Generator kann direkt jedes Dateiformat erstellen
+* Automatische Bereitstellung als Eclipse-Plugin
+* Java Integration
+
+Scala
+
+* Ausgezeichnete Eingenschaften für interne DSLs
+* Infix Notation
+* UTF-16 Bezeichner
+* Verschwimmende Grenzen zwischen Methoden und Operatoren
+* Implizite Konvertierungen
+* Objektorientierte und funktionale Eigenschaften
+* Interoperabel mit Java bzw. JVM
+* Vererbung, gewisse Vermischung von Generator und Grammatik

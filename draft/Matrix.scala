@@ -38,7 +38,7 @@ row {
   fa -> "Sprach-Infrastruktur"
   ge -> 2
   xt -> "Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin."
-  sc -> "Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools. Breite Unterstützung von vielen Editoren."
+  sc -> "Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL. Breite Unterstützung von vielen Editoren."
 }
 
 row {
@@ -78,15 +78,15 @@ row {
   fa -> "Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)"
   ge -> 2
   xt -> "Es würde von dem Domain User verlangt werden BNF-Notation zu können, Xtend und er wäre auf Eclipse gezwungen."
-  sc -> "Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen."
+  sc -> "Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen, die Bindings zu erstellen."
 }
 
 row {
   nr -> n += 1
   fa -> "Wiederverwendbarkeit bzw. Kombination mit Vorhandenem"
   ge -> 2
-  xt -> "Nur eingeschränkt, Grammatik unterstützt keine Vererbung oder ähnliches."
-  sc -> "Sehr gut, da Library und mit Scalas Typ und Vererbungssystem kann nach gewohnter Manier kombiniert und erweitert werden."
+  xt -> "Nur eingeschränkt, jedoch sind Grammatik Mixins möglich."
+  sc -> "Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach gewohnter Manier kombiniert und erweitert werden."
 }
 
 row {
@@ -101,20 +101,19 @@ row {
 
 row {
   nr -> n += 1
-  fa -> "Generator"
+  fa -> "Generator: Zielplatform"
   ge -> 2
-  xt -> "Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell generiert werden."
-  sc -> "Es müssen immer Umwege genommen werden, wenn eine fremde Sprache das Ziel ist. Wenn Scala das Ziel ist, muss nichteinmal die Laufzeitumgebung verlassen werden."
+  xt -> "Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell durch eine Template-Engine generiert werden, das Eclipse-Plugin stellt sofort das Generat bereit. Jedoch kann nativer Code nicht direkt auf Xtext laufen, es muss also ggf. noch ein externer Build o.ä. angestossen werden."
+  sc -> "Die DSL selbst kann direkt ein lauffähigkes Programm sein. Andere Ziele, z.B. andere Programmier-Sprachen oder Markup-Sprachen müssen einen Umweg über eine Template-Engine nehmen, allerdings steht hier ein Eclipse-Plugin bereit, welches direkt nach jeder Änderung das Generat bereitstellt; das Verfahren hierzu muss selbst entwickelt werden (das kann ein Vor- oder auch ein Nachteil sein.)"
 }
 
-// wo läuft der code? Scala (intern) -> direkt
 
 row {
   nr -> n += 1
-  fa -> "Zielarchitektur (siehe Buch, welches Generator wo läuft)"
+  fa -> "Generator: Möglichkeiten der Template-Engine"
   ge -> 2
-  xt -> ""
-  sc -> ""
+  xt -> "Xtend eine speziell angepasste DSL-Generator-Template-Engine. Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt, mit denen das Ziel über das Template generiert werden kann."
+  sc -> "1. Freie Wahl, z.B. einface Multiline-Strings, Scala XML oder Scalate; wie aus der internen DSL das Ziel generiert wird, benötigt in der Regel einen Zwischenschritt (Bindings), welcher programmiert werden muss. Scala kann jedoch ggf. das Generat als Unterprogramm ausführen. 2. Die interne DSL ist selbst lauffähig."
 }
 
 row {
@@ -135,9 +134,17 @@ row {
 
 row {
   nr -> n += 1
-  fa -> "Skalierbarkeit"
+  fa -> "Skalierbarkeit, Umbebungs-Einlagerung"
   ge -> 2
   xt -> "Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden."
-  sc -> "Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut Skalierbar."
+  sc -> "Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut skalierbar."
+}
+
+row {
+  nr -> n += 1
+  fa -> "Umbebungs-Einlagerung"
+  ge -> 2
+  xt -> "De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin, welches sich mit dem Projektverlauf automatisch mit anpassen kann. Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern Eclipse eingesetzt werden will."
+  sc -> "Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung innerhalb eines Frameworks möglich, oder einsatz als Bibliothek, Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar. Allerdings ist Xtext in Eclipse besser eingebunden, da speziell angepasst."
 }
 

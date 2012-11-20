@@ -4,7 +4,7 @@
 
 \section{Vergleichsmatrix}
 
-\begin{landscape}
+%\begin{landscape}
 \begin{longtable}{|p{0.5cm}|p{4.5cm}|p{6.5cm}|p{6.5cm}|}
 
   \hline
@@ -15,12 +15,13 @@
   Nr. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
   \endhead
 
+% Xtext man hat die moegliechkeit immerhin eine Lib zu benutzen
   & DSL als Library bzw. Deployment-möglichkeiten
   & Ist eine in sich mehr oder weniger geschlossene Struktur.
   & Interne DSL ist eine ganz normale Scala Library.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & Sprach-Infrastruktur
   & Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.
@@ -28,7 +29,7 @@
     Breite Unterstützung von vielen Editoren.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & Strukturierungsfähigkeit des Codes
   & Muss alles selbst gebaut werden. Vorteil: Es muss nur das nötigste
@@ -37,21 +38,21 @@
     Build-Tools, ...)
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & DSL mit General Purpose mischbar
-  & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen
+  & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.
   & Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & Toolsets (für DSL Gestaltung)
   & Komplette und entsprechend angepasste Eclipse Entwicklungsumgebung.
-  & Die Sprace selbst, sonst keine Hilfen.
+  & Die Sprache selbst, sonst keine Hilfen.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 0 } \\ \hline
 
   & Erweiterbarkeit durch Entwickler
   & Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
@@ -60,16 +61,16 @@
     Testumgebungen etc. selbst eingerichtet werden.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
   & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
   & Es würde von dem Domain User verlangt werden BNF-Notation zu können,
-    Xtend und er wäre auf Eclipse gezwungen.
+    Xtend und er wäre auf Eclipse gezwungen. % da kann sich fast gar keine Community bilden
   & Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen,
     die Bindings zu erstellen.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 0 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
   & Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.
@@ -81,10 +82,11 @@
 
   & Grammatikalische Gestaltung der DSL
   & Komplett frei und flexibel, da in BNF-Regeln definiert.
-  & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden.
+  & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
+    dennoch sehr ausdrucksstarke Möglichkeiten.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 1 } \\ \hline
 
   & Generator: Zielplatform
   & Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell durch eine
@@ -99,7 +101,7 @@
     auch ein Nachteil sein.)
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & Generator: Möglichkeiten der Template-Engine
   & Xtend eine speziell angepasste DSL-Generator-Template-Engine.
@@ -112,7 +114,7 @@
     2. Die interne DSL ist selbst lauffähig.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
   & Entwicklungsaufwand (u.a. Zeit, Einarbeitung)
   & Wenn BNF-Kenntnisse (th. Informatik) vorhanden sind, leichte Einarbeitung.
@@ -122,7 +124,7 @@
     einer Library. Wie man den Generator baut, muss allerdings überlegt werden.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
   & Software-Lebenszyklus und Wartbarkeit
   & Dank IDE und einer schon eingerichteten Testumgebung, also sehr gut.
@@ -130,7 +132,7 @@
     Jedoch ist Handarbeit nötig.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
   & Skalierbarkeit, Umbebungs-Einlagerung
   & Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.
@@ -138,7 +140,7 @@
     skalierbar.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   & Umbebungs-Einlagerung
   & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
@@ -148,10 +150,12 @@
   & Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
     innerhalb eines Frameworks möglich, oder einsatz als Bibliothek,
     Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar.
+    Kann also quasi in eine beliebige Umgebung eingebettet werden
+    wo eine JVM läuft oder auch als Service bereitgestellt werden.
     Allerdings ist Xtext in Eclipse besser eingebunden, da speziell angepasst.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
 \end{longtable}
-\end{landscape}
+%\end{landscape}

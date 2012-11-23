@@ -30,14 +30,14 @@ Somit ist für \emph{dieses} Projekt Scala besser geeignet.
 Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
 
 \begin{landscape}
-\begin{longtable}{|p{0.5cm}|p{4.5cm}|p{6.5cm}|p{6.5cm}|}
+\begin{longtable}{|p{0.8cm}|p{4.4cm}|p{6.4cm}|p{6.4cm}|}
 
   \hline
-  Nr. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline \hline
+  Kap. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline \hline
   \endfirsthead
 
   \hline
-  Nr. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
+  Kap. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
   \endhead
 
 % Xtext man hat die moegliechkeit immerhin eine Lib zu benutzen
@@ -128,6 +128,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
+  \ref{sec-generator}
   & Generator: Möglichkeiten der Template-Engine
   & Xtend eine speziell angepasste DSL-Generator-Template-Engine.
     Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt,
@@ -185,3 +186,55 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
 \end{longtable}
 \newpage
 \end{landscape}
+
+
+\subsection{Generator: Möglichkeiten der Template-Engine}\label{sec-generator}
+
+Xtext hat zwei unterschiedliche Möglichkeiten ein Generat zu erstellen,
+zum einen den \emph{Code Generator mit Xtend}, zum anderen den
+\emph{ModelInferrer mit Xbase}.
+
+Der Code Generator stellt eine Template-Engine bereit, mit der
+ein beliebiges Ziel erstellt werden kann, also z.B. C++, XML oder Java.
+Dies wird dadurch erreicht, dass via Xtend aus Java-Klassen die aus der
+Grammatik von Xtext automatisch generiert wurden ein Template zusammengebaut
+werden kann. Man kann also förmlich die DSL entpacken und in ein Template
+gießen.
+Jedoch muss, je nach Generat, es ggf. kompiliert werden. Der
+Domain-Benutzer hat keinen Zugriff auf z.B. Typ-Prüfung der JVM --
+das Eclipse-Plugin überprüft lediglich die DSL auf ihre
+grammatikalische Korrektheit. Man ist also komplett in der DSL eingesperrt.
+Sehr gut also für nicht-JVM-Ziele, die einen striken Geltungsbereich mit
+klar definierter DSL-Vokablen aufweisen. Kurz: Keine Unterstützung für
+Expressions.
+
+Der ModelInferrer zielt direkt auf die JVM bzw. Java ab und ermöglicht es
+u.a. JVM-Datentypen direkt mit in die DSL einzubetten, mit allen Möglichkeiten
+die Xbase\footnote{Wobei Xbase selbst mit Xtext gebaut wurde.}
+bietet. Es können also dynamisch Java-Klassen erstellt werden und innerhalb
+der DSL Fokus auf das Wesentliche gelegt werden und nur dort General Purpose
+zugelassen werden, wo es auch wirklich benötigt wird.
+Wobei es anzumerken gilt, dass das nicht ganz transparent geschieht,
+es muss ein ModelInferrer geschrieben werden.
+Sehr gut also, wenn das Ziel auf Java abgebildet werden soll und gewollt wird
+dass auf Java-Klassen (wie z.B. java.io.File) aus der DSL heraus
+zugegriffen werden kann. Kurz: Unterstützung für Expressions.
+Die so entstehende Java-Dateien müssen aber auch noch vom Domain-Benutzer
+kompiliert werden.\cite{xtext}
+
+Scala hingegen hat die Qual der Wahl was das Templating angeht. Scala selbst
+bietet in der Standard-Bibliothek schon eine Reihe an Möglichkeiten an,
+z.B. Multiline-Strings oder XML. Jedoch muss sich der Programmierer ersteinmal
+eine Architektur überlegen, wie er von den DSL-Klassen auf die Template-Engine
+kommt. Weiterhin muss er auch festlegen, wie er das Resultat behandelt,
+z.B. wo es gespeichert wird, welche Dateinamen es bekommt etc.
+Allerdings hat man in der automatisierung mehr Werkzeuge in der Hand,
+die insbesondere unabhängig von Eclipse sind. So könnte man sich vorstellen
+nach dem generieren direkt einen Kompelierungsschritt anzuschließen und
+danach das Kompelat auszuführen.
+
+Der große Vorteil einer internen DSL ist jedoch, dass der DSL-Code auch
+direkt als Programm laufen kann -- also komplett ohne Umwege, ohne Generierung.
+
+Der Vorteil hier ist die sehr hohe Freiheit und Flexibilität, aber es ist
+viel Handarbeit nötig -- daher führt Xtext hier \emph{leicht}.

@@ -52,22 +52,51 @@
 
 % Syntax-Highlighting
 % -------------------
-\definecolor{darkgreen}{rgb}{0,0.5,0}  % needs usepackage color
+% Src: http://tihlde.org/~eivindw/latex-listings-for-scala/
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
 \usepackage{listings}
-\lstset{
-	language=Python, 
-	basicstyle=\footnotesize\ttfamily, 
-	frame=lines, 
-	numbers=left, 
-	numberstyle=\tiny, 
-	numbersep=5pt, 
-	breaklines=true, 
-	showstringspaces=false, 
-	keywordstyle=\color{blue}, 
-	commentstyle=\color{darkgreen}, 
-	stringstyle=\color{red}
+
+% "define" Scala
+\lstdefinelanguage{Scala}{
+  morekeywords={abstract,case,catch,class,def,%
+    do,else,extends,false,final,finally,%
+    for,if,implicit,import,match,mixin,%
+    new,null,object,override,package,%
+    private,protected,requires,return,sealed,%
+    super,this,throw,trait,true,try,%
+    type,val,var,while,with,yield},
+  otherkeywords={=>,<-,<\%,<:,>:,\#,@},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[n]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]"""
 }
 
+\lstset{
+  frame=tb,
+  language=Scala,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2,
+  extendedchars=\true,
+  inputencoding=utf8
+}
 
 
 % Sonstige Pakete
@@ -155,7 +184,7 @@
 \include{chapters/2-frontend}
 \include{chapters/3-backend}
 \include{chapters/4-loesungsweg}
-\include{chapters/5-zusammenfassung}
+\include{chapters/5-architektur}
 
 \addcontentsline{toc}{chapter}{Literaturverzeichnis}
 \bibliographystyle{geralpha}

@@ -48,6 +48,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
+  \ref{sec-infrastruktur}
   & Sprach-Infrastruktur
   & Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.
   & Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
@@ -188,11 +189,62 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
 \end{landscape}
 
 
+\subsection{Sprach-Infrastruktur}\label{sec-infrastruktur}
+
+\paragraph{Xtext} wird direkt als fertig eingerichtete Eclipse IDE
+ausgeliefert, die speziell an die Erstellung von externen DSLs angepasst
+ist. Es ist also ein DSL-Erstellungs-Ecosystem out-of-the-box geliefert,
+um es mit vielen Anglezismen zu umschreiben.
+
+Xtext bietet die folgenden Dinge, mit einer exzellenten IDE Unterstützung:
+
+\begin{itemize}
+  \item Grammatik DSL (BNF-ähnlich),
+  \item unterschiedliche Code-Generatoren (siehe. Abschnitt \ref{sec-generator}),
+  \item an DSL-Entwicklung angepasste Testumgebung (z.B. Unittests.)
+\end{itemize}
+
+Zudem sei erwähnt, dass Xtext aus den Grammatik-Regeln automatisch ein
+passendes Eclipse-Plugin generiert, welches die Grammatik vollständig
+unterstützt, wie z.B. Syntax-Hervorhebung, Überprüfung der grammatikalischen
+Korrektheit oder Auto-Vervollständigung.
+
+Weiter werden aus den Grammatik-Regeln Java-Klassen abgeleitet, mit denen
+komfortabel die Code-Generierung vorgenommen werden kann. Der DSL-Programmierer
+muss sich also nicht mit abstrakten Syntaxbäumen oder Ähnlichem herumschlagen.
+
+\paragraph{Scala} bringt als vollwertige \emph{General Purpose Language}
+ein umfangreiches Ökosystem mit, bestehend aus verschiedenen Werkzeugen
+und vielen Bibliotheken, beispielsweise eine mächtige Standard-Bibliothek.
+Hervorzuheben sind:
+
+\begin{itemize}
+  \item Linker und Compiler,
+  \item Built-Tools wie \emph{sbt} mit Abhängigkeits-Management,
+  \item Read-Evaluate-Print-Loop (REPL), interaktive Scala-Sitzung,
+  \item Zugriff auf die Java-Standard-Library,
+  \item Umfangreiche Scala-Standard-Library.
+\end{itemize}
+
+Darüber hinaus hat Scala sehr gute Fähigkeiten zur Erstellung von internen
+DSLs, dies manifestiert sich in folgenden Fähigkeiten:
+
+\begin{itemize}
+  \item Unicode-Zeichen in Identifiern erlaubt,
+  \item Methoden können als Prefix, Infix oder Postfix Operatoren dienen,
+  \item viel syntaktischer Zucker u.a. mit impliziten Erweiterungen,
+  \item Stärken von objektorientierter- und funktionaler-Programmierung
+        geschickt vereint,
+  \item starke statische Typesierung, jedoch ergänzt der Compiler selbstständig
+        sehr viele Typ-Informationen.
+\end{itemize}
+
+
 \subsection{Generator: Möglichkeiten der Template-Engine}\label{sec-generator}
 
-Xtext hat zwei unterschiedliche Möglichkeiten ein Generat zu erstellen,
-zum einen den \emph{Code Generator mit Xtend}, zum anderen den
-\emph{ModelInferrer mit Xbase}.
+\paragraph{Xtext} hat zwei unterschiedliche Möglichkeiten ein
+Generat zu erstellen, zum einen den \emph{Code Generator mit Xtend},
+zum anderen den \emph{ModelInferrer mit Xbase}.
 
 Der Code Generator stellt eine Template-Engine bereit, mit der
 ein beliebiges Ziel erstellt werden kann, also z.B. C++, XML oder Java.
@@ -222,8 +274,9 @@ zugegriffen werden kann. Kurz: Unterstützung für Expressions.
 Die so entstehende Java-Dateien müssen aber auch noch vom Domain-Benutzer
 kompiliert werden.\cite{xtext}
 
-Scala hingegen hat die Qual der Wahl was das Templating angeht. Scala selbst
-bietet in der Standard-Bibliothek schon eine Reihe an Möglichkeiten an,
+\paragraph{Scala} hingegen hat die Qual der Wahl was das Templating angeht.
+Scala selbst bietet in der Standard-Bibliothek schon
+eine Reihe an Möglichkeiten an,
 z.B. Multiline-Strings oder XML. Jedoch muss sich der Programmierer ersteinmal
 eine Architektur überlegen, wie er von den DSL-Klassen auf die Template-Engine
 kommt. Weiterhin muss er auch festlegen, wie er das Resultat behandelt,
@@ -235,6 +288,6 @@ danach das Kompelat auszuführen.
 
 Der große Vorteil einer internen DSL ist jedoch, dass der DSL-Code auch
 direkt als Programm laufen kann -- also komplett ohne Umwege, ohne Generierung.
+Zudem kann man von der sehr hohen Freiheit und Flexibilität profitieren,
+wobei u.U. viel Handarbeit nötig ist.
 
-Der Vorteil hier ist die sehr hohe Freiheit und Flexibilität, aber es ist
-viel Handarbeit nötig -- daher führt Xtext hier \emph{leicht}.

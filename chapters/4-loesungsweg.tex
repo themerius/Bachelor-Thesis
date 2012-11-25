@@ -240,6 +240,32 @@ DSLs, dies manifestiert sich in folgenden Fähigkeiten:
 \end{itemize}
 
 
+\subsection{Strukturierungsfähigkeit}\label{sec-strukturierungsfaehigkeit}
+
+Im Allgemeinen ist mit der Strukturierungsfähigkeit gemeint, wie der
+geschriebene (DSL-)Code logisch und sinnvoll gegliedert werden kann,
+z.B. durch
+
+\begin{itemize}
+  \item Pakete, Module oder Namensräume,
+  \item Klassen oder Objekte,
+  \item Funktionen bzw. Geltungsbereiche,
+  \item eventuell auch Kontrollstrukturen oder Datenstrukturen.
+\end{itemize}
+
+\paragraph{Xtext} ermöglicht es von Grund auf eine Sprache zu entwickeln,
+die komplett auf das Domänen-Problem zugeschnitten ist -- ohne Kompromisse.
+Dadurch dass die Sprache von Grund auf erstellt wird, ist der Entwickler
+auch dazu gezwungen sich Gedanken dazu zu machen, wie der DSL-Code
+der vom Domain-Benutzer geschrieben wird strukturiert werden kann,
+was insbesondere bei größeren DSL-Skripten oder
+Projekten günstig sein kann -- falls gewünscht bzw. gebraucht.
+
+\paragraph{Scala} bietet die o.g. Struktuierungsfähigkeiten generisch an,
+es muss also keinerlei Aufwand getrieben werden, um die interne DSL mit
+diesen Fähigkeiten auzustatten. Soll heißen, all das wird gratis mitgeliefert.
+
+
 \subsection{Generator: Möglichkeiten der Template-Engine}\label{sec-generator}
 
 \paragraph{Xtext} hat zwei unterschiedliche Möglichkeiten ein

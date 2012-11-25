@@ -82,6 +82,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 0 } \\ \hline
 
+  \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Entwickler
   & Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
     Unterstützung durch Eclipse.
@@ -91,6 +92,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
+  \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
   & Es würde von dem Domain User verlangt werden BNF-Notation zu können,
     Xtend und er wäre auf Eclipse gezwungen. % da kann sich fast gar keine Community bilden
@@ -100,6 +102,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 0 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
+  \ref{sec-erweiterbar}
   & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
   & Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.
   & Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach
@@ -155,6 +158,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
+  \ref{sec-erweiterbar}
   & Software-Lebenszyklus und Wartbarkeit
   & Dank IDE und einer schon eingerichteten Testumgebung, also sehr gut.
   & Man hat alle Möglichkeiten, die die Scala-Welt bietet, also sehr gut.
@@ -163,7 +167,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
-  & Skalierbarkeit, Umbebungs-Einlagerung
+  & Skalierbarkeit
   & Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.
   & Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut
     skalierbar.
@@ -171,7 +175,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
-  & Umbebungs-Einlagerung
+  & Einbettbarkeit in beliebige Umgebungen
   & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
     welches sich mit dem Projektverlauf automatisch mit anpassen kann.
     Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern
@@ -309,6 +313,40 @@ DSL mit Scala erstellt. Dort gibt es absolut keine Einschränkungen, es
 kann auf den vollen Funktionsumfang von Scala zugegriffen werden.
 Da die interne DSL quasi nur eine ausdrucksstarke Scala-Bibliothek ist,
 können die Grenzen der DSL mit der GPL verschwimmen.
+
+
+\subsection{Erweiterbarkeit, Wiederverwendbarkeit und Wartbarkeit}
+\label{sec-erweiterbar}
+
+In diesem Projekt ist es sehr wichtig, dass sowohl DSL als auch
+die Geschäftslogik flexibel erweiterbar sein soll bzw. sogar
+einzelne Teile wiederverwenden zu können.
+
+Warum ist das so wichtig? Weil im späteren Lebenszyklus dieser Software
+verschiedenartige Dokumente generierbar sein sollen, wo im Idealfall
+die Domain-Benutzer selber Änderungen an den Bindungen zwischen
+Dokumenten-Template und der DSL vornehmen können. Die Domain-Benutzer
+wollen eventuell das Dokument um neue Arten von Darstellungen (z.B. spezielle
+Tabellen) oder gänzlich neue Möglichkeiten (z.B. ein Chemie-Editor
+innerhalb des resultierenden Dokuments) erweitern.
+Verschiedene Dokumenten-Arten sollen sich leicht hinzufügen lassen,
+z.B. zum einen ein akademischer Bericht, zum anderen ein europäisches Patent.
+
+Eventuell möchte man auch Bestandteile aus z.B. dem Patent-Template in
+einem anderen Template wiederverwenden? Das Ziel ist also eine
+möglichst lebendige Umgebung, mit der Fähigkeit leicht erweiterbar zu sein.
+
+\paragraph{Xtext} hat den Hauptnachteil hier, dadurch dass quasi nur
+Entwickler in der Lage sind die Grammatik zu erweitern oder den
+Generator zu pflegen. Aber die Domain-Benutzer sollen in der Lage sein
+eigene Dokumenten-Templates zu erstellen oder vorhandene zu modifizieren.
+
+\paragraph{Scala} kann hier glänzen dadurch, dass zu jedem Template auch
+direkt ein Bindungs-Code vom (versierten) Domänen-Benutzer erstellt
+werden kann, da die Komplexitäten in tiefere Schichten gezogen werden kann.
+Durch das starke Vererbungssystem welches Scala bietet, können solche
+Template-Erweiterungen ohne viel unschöne Details erstellt werden, da sich
+auf das Wesentliche konzentriert werden kann.
 
 
 \subsection{Generator: Möglichkeiten der Template-Engine}\label{sec-generator}

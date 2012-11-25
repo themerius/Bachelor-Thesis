@@ -57,6 +57,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
+  \ref{sec-strukturierungsfaehigkeit}
   & Strukturierungsfähigkeit des Codes
   & Muss alles selbst gebaut werden. Vorteil: Es muss nur das nötigste
     umgesetzt werden.
@@ -66,6 +67,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
+  \ref{sec-gpl}
   & DSL mit General Purpose mischbar
   & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.
   & Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.
@@ -253,6 +255,11 @@ z.B. durch
   \item eventuell auch Kontrollstrukturen oder Datenstrukturen.
 \end{itemize}
 
+Fehlerbehandlung ist auch ein wichtiger Posten, also ob Ausnahmen
+geworfen werden können. Hier hat Xtext Eclipse als Helfer, der
+z.B. Syntax-Fehler ausfindig machen kann und Scala hat u.a. den Compiler
+oder Ausnahmen die zur Laufzeit geworfen werden können.
+
 \paragraph{Xtext} ermöglicht es von Grund auf eine Sprache zu entwickeln,
 die komplett auf das Domänen-Problem zugeschnitten ist -- ohne Kompromisse.
 Dadurch dass die Sprache von Grund auf erstellt wird, ist der Entwickler
@@ -264,6 +271,44 @@ Projekten günstig sein kann -- falls gewünscht bzw. gebraucht.
 \paragraph{Scala} bietet die o.g. Struktuierungsfähigkeiten generisch an,
 es muss also keinerlei Aufwand getrieben werden, um die interne DSL mit
 diesen Fähigkeiten auzustatten. Soll heißen, all das wird gratis mitgeliefert.
+
+
+\subsection{General Purpose Language}\label{sec-gpl}
+
+Im Gegensatz zu DSLs stehen \emph{General Purpose Languages}, kurz GPLs.
+Das soll heißen, dass mit diesen Sprachen alle Probleme gelöst werden, da
+sie Turing-Vollständig sind.
+
+Jetzt kann es sein, dass es wie in diesem Projekt gewünscht ist, dass
+auch die Möglichkeit geboten wird universellen Programmcode zu schreiben,
+um z.B. auf das Dateisystem zuzugreifen oder eine Grafik mit einer
+externen Bibliothek zu erstellen. Der Domain-Benutzer soll also die
+Möglichkeit haben, die DSL zeitweise zu verlassen um „normalen“ Programmcode
+zu schreiben und danach wieder in die DSL zurückzukehren -- ohne große
+Umstände.
+
+\paragraph{Xtext} bietet die Möglichkeit mittels Xbase GPL-Expressions
+auszuführen -- und das obwohl Xtext externe DSLs erstellt, für die es für
+gewöhnlich eine sehr harte Arbeit darstellt GPL-Elemente einfließen zu lassen.
+Xtext vereinfacht diese harte Arbeit, aber auch hier ist die Implementierung
+nicht ganz kostenfrei, da als Generator nur noch der \emph{ModelInferrer}
+(siehe Abschnitt \ref{sec-generator}) zum Einsatz kommen kann.
+Und auch hier hat man nicht die absolute Freiheit, die man sich wünschen
+würde:
+
+\begin{itemize}
+  \item Falls sich der Geltungsbereich von DSL und GPL-Abschnitt überschneiden
+        soll, kann es zu Komplikationen kommen, z.B. wenn der DSL-Code
+        auf eine Variable aus dem GPL-Abschnitt zugreifen soll (siehe
+        Abschnitt \ref{sec-forwardreference}.)
+  \item Der ModelInferrer kann nur noch Java bzw. die JVM als Ziel haben.
+\end{itemize}
+
+\paragraph{Scala} ist eine GPL und hier in dem Projekt wird eine interne
+DSL mit Scala erstellt. Dort gibt es absolut keine Einschränkungen, es
+kann auf den vollen Funktionsumfang von Scala zugegriffen werden.
+Da die interne DSL quasi nur eine ausdrucksstarke Scala-Bibliothek ist,
+können die Grenzen der DSL mit der GPL verschwimmen.
 
 
 \subsection{Generator: Möglichkeiten der Template-Engine}\label{sec-generator}

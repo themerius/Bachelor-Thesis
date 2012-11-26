@@ -119,6 +119,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 1 } \\ \hline
 
+  \ref{sec-generator}
   & Generator: Zielplatform
   & Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell durch eine
     Template-Engine generiert werden, das Eclipse-Plugin stellt sofort das
@@ -149,11 +150,13 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
   & Entwicklungsaufwand (u.a. Zeit, Einarbeitung)
-  & Wenn BNF-Kenntnisse (th. Informatik) vorhanden sind, leichte Einarbeitung.
+  & Wenn BNF-Kenntnisse (theoretische Informatik) vorhanden sind,
+    relativ leichte Einarbeitung.
     Die Tools nehmen die harte Arbeit ab. Es gibt schon standardisierte
     Vorgehensweisen, z.B. wie der Generator gebaut wird.
   & Wenn Scala-Kenntnisse vorhanden, ist es mehr oder weniger die Entwicklung
-    einer Library. Wie man den Generator baut, muss allerdings überlegt werden.
+    einer Bibliothek.
+    Wie man den Generator baut, muss allerdings überlegt werden.
   \\
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
@@ -167,6 +170,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
+  \ref{sec-scalierEinbett}
   & Skalierbarkeit
   & Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.
   & Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut
@@ -175,6 +179,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
+  \ref{sec-scalierEinbett}
   & Einbettbarkeit in beliebige Umgebungen
   & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
     welches sich mit dem Projektverlauf automatisch mit anpassen kann.
@@ -347,6 +352,53 @@ werden kann, da die Komplexitäten in tiefere Schichten gezogen werden kann.
 Durch das starke Vererbungssystem welches Scala bietet, können solche
 Template-Erweiterungen ohne viel unschöne Details erstellt werden, da sich
 auf das Wesentliche konzentriert werden kann.
+
+
+\subsection{Skalierbarkeit und Einbettbarkeit}\label{sec-scalierEinbett}
+
+\paragraph{Xtext} hat eine vollständige und absolute Abhängigkeit
+zur Eclipse IDE und kann folglich nicht ohne Eclipse auskommen bzw.
+funktionieren. Daher ist man in Sachen Skalierbarkeit bzw. Einbettbarkeit
+an die Einschränkungen bzw. auch Vorteile von Eclipse gebunden.
+
+Eclipse ist eine mächtige IDE, die auf mittlere bis große Softwareprojekte
+ausgelegt ist, und somit eher unter die schwergewichtigen Entwickler-Werkzeuge
+einzuordnen ist. Aber der Vorteil ist, dass selbst riesengroße Projekte
+damit verwaltbar sind und das Projekt quasi nach belieben wachsen kann und
+durch die Refactoring-Fähigkeiten auch leicht wartbar und erweiterbat ist.
+Man könnte also sagen, dass Xtext die Skalierbarkeit von Eclipse erbt.
+
+Das Generat kann je nach eingesetzen Generator (siehe Abschnitt
+\ref{sec-generator}) skalieren, da Xtext quasi beliebige Generate erstellen
+kann, muss für Einzelfall entschieden werden.
+
+Zur Einbettbarkeit in beliebige Umgebungen, ist der Entwickler bzw.
+Domain-Benutzer sehr gebunden und abhängig. Eclipse läuft für gewöhnlich
+nur auf Desktop-Computern mit relativ vielen Ressourcen, die Eclipse auch
+gerne annimmt. Da Eclipse auch die Generatoren anwirft, um aus der DSL
+die Zielarchitektur zu erstellen, ist auch dieser Prozess an Eclipse gebunden.
+
+Die Einbettbarkeit des Generats ist wieder davon abhängig, also u.U.
+sehr gut.
+
+\paragraph{Scala} trägt die Skalierbarkeit schon im Namen als
+„scalable language“ und hat entsprechend Fähigkeiten in alle Richtungen
+zu skalieren. Beispiele: Es ist Möglich Scala-Programme vom kleinen
+Shell-ähnlichen Skript mit 2 Zeilen, bis hin zur Enterprise Software
+mit hunderttausenden Zeilen Code zu schreiben.
+
+Scala hat auch keinerlei Bindung zu einer speziellen IDE, aber es gibt
+u.a. ein geeignetes Eclipse Plugin. Durch diese Bindungslosigkeit, kann
+es auch headless oder auf entferten Rechnern laufen und kann somit auf
+beliebigen Szenarien entwickelt werden.
+Die DSL wird in Form einer normalen Scala-Bibliothek ausgeliefert und
+kann quasi in jede Umgebung eingebracht werden, in die auch eine andere
+Scala-Bibliothek eingebracht werden kann.
+
+Falls die DSL nicht schon selbst das lauffähige Programm darstellt, gilt
+auch hier das selbige wie für das Xtext-Generat: Die Skalierbarkeit und
+Einbettbarkeit ist vom Generat bzw. dessen Fähigkeiten abhängig, also u.U.
+sehr gut.
 
 
 \subsection{Generator: Möglichkeiten der Template-Engine}\label{sec-generator}

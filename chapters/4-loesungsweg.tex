@@ -44,22 +44,23 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   Ref. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
   \endhead
 
-% Xtext man hat die moegliechkeit immerhin eine Lib zu benutzen
-  & DSL als Library bzw. Deployment-möglichkeiten
-  & Ist eine in sich mehr oder weniger geschlossene Struktur.
-  & Interne DSL ist eine ganz normale Scala Library.
+
+  \ref{sec-grammatikGestaltung}
+  & Grammatikalische Gestaltung der DSL
+  & Komplett frei und flexibel, da in BNF-Regeln definiert.
+  & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
+    dennoch sehr ausdrucksstarke Möglichkeiten.
+  \\
+  \cline{3-4}
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 1 } \\ \hline
+
+  \ref{sec-gpl}
+  & DSL mit General Purpose mischbar
+  & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.
+  & Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.
   \\
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
-
-  \ref{sec-infrastruktur}
-  & Sprach-Infrastruktur
-  & Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.
-  & Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
-    Breite Unterstützung von vielen Editoren.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   \ref{sec-strukturierungsfaehigkeit}
   & Strukturierungsfähigkeit des Codes
@@ -70,31 +71,6 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \\
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
-
-  \ref{sec-gpl}
-  & DSL mit General Purpose mischbar
-  & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.
-  & Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
-
-  & Toolsets (für DSL Gestaltung)
-  & Komplette und entsprechend angepasste Eclipse Entwicklungsumgebung.
-  & Die Sprache selbst, sonst keine Hilfen.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 0 } \\ \hline
-
-  \ref{sec-erweiterbar}
-  & Erweiterbarkeit durch Entwickler
-  & Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
-    Unterstützung durch Eclipse.
-  & Der Aufwand liegt bei der Entwicklung einer Library. Jedoch müssen
-    Testumgebungen etc. selbst eingerichtet werden.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
   \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
@@ -107,6 +83,16 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   & & \multicolumn{1}{c|}{ 0 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   \ref{sec-erweiterbar}
+  & Erweiterbarkeit durch Entwickler
+  & Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
+    Unterstützung durch Eclipse.
+  & Der Aufwand liegt bei der Entwicklung einer Library. Jedoch müssen
+    Testumgebungen etc. selbst eingerichtet werden.
+  \\
+  \cline{3-4}
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+
+  \ref{sec-erweiterbar}
   & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
   & Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.
   & Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach
@@ -115,14 +101,30 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
-  \ref{sec-grammatikGestaltung}
-  & Grammatikalische Gestaltung der DSL
-  & Komplett frei und flexibel, da in BNF-Regeln definiert.
-  & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
-    dennoch sehr ausdrucksstarke Möglichkeiten.
+  \ref{sec-infrastruktur}
+  & Sprach-Infrastruktur
+  & Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.
+  & Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
+    Breite Unterstützung von vielen Editoren.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 1 } \\ \hline
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+
+  \ref{sec-scalierEinbett}
+  & Einbettbarkeit in beliebige Umgebungen
+  & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
+    welches sich mit dem Projektverlauf automatisch mit anpassen kann.
+    Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern
+    Eclipse eingesetzt werden will.
+  & Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
+    innerhalb eines Frameworks möglich, oder einsatz als Bibliothek,
+    Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar.
+    Kann also quasi in eine beliebige Umgebung eingebettet werden
+    wo eine JVM läuft oder auch als Service bereitgestellt werden.
+    Allerdings ist Xtext in Eclipse besser eingebunden, da speziell angepasst.
+  \\
+  \cline{3-4}
+  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   \ref{sec-generator}
   & Generator: Zielplatform
@@ -141,7 +143,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
   \ref{sec-generator}
-  & Generator: Möglichkeiten der Template-Engine
+  & Generator: Template-Engine
   & Xtend eine speziell angepasste DSL-Generator-Template-Engine.
     Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt,
     mit denen das Ziel über das Template generiert werden kann.
@@ -175,6 +177,13 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
+  & Tooling (für DSL Gestaltung)
+  & Komplette und entsprechend angepasste Eclipse Entwicklungsumgebung.
+  & Die Sprache selbst, sonst keine Hilfen.
+  \\
+  \cline{3-4}
+  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 0 } \\ \hline
+
   \ref{sec-scalierEinbett}
   & Skalierbarkeit
   & Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.
@@ -184,21 +193,12 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
-  \ref{sec-scalierEinbett}
-  & Einbettbarkeit in beliebige Umgebungen
-  & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
-    welches sich mit dem Projektverlauf automatisch mit anpassen kann.
-    Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern
-    Eclipse eingesetzt werden will.
-  & Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
-    innerhalb eines Frameworks möglich, oder einsatz als Bibliothek,
-    Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar.
-    Kann also quasi in eine beliebige Umgebung eingebettet werden
-    wo eine JVM läuft oder auch als Service bereitgestellt werden.
-    Allerdings ist Xtext in Eclipse besser eingebunden, da speziell angepasst.
+  & DSL als Library bzw. Bereitstellung
+  & Ist eine in sich mehr oder weniger geschlossene Struktur.
+  & Interne DSL ist eine ganz normale Scala Library.
   \\
   \cline{3-4}
-  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
 
 \end{longtable}
 \newpage

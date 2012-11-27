@@ -17,9 +17,13 @@ selbstverständlich für jedes Projekt und dessen Anforderungen individuell
 angepasst werden.
 
 Weiterhin gilt zu beachten, dass die Bewertungen ihrer Natur nach sowohl
-\emph{intuitiv} als auch objektiv gewichtet werden. Jedoch steht am Ende
-eine einigermaßen objektives Maß für die Möglichkeiten die einzelnen Lösungen
-bieten, mit Blick auf das vorliegende Projekt.
+\emph{intuitiv} als auch objektiv gewichtet sind. Jedoch steht am Ende
+ein einigermaßen objektives Maß für die Möglichkeiten die einzelnen Lösungen
+bieten, jedoch mit Blick auf das vorliegende Projekt.
+
+Für \emph{einige} der gelisteten Fähigkeiten gibt es
+tiefergehende Beschreibungen, auf diese
+in der ersten Spalte der Tabelle entsprechend referenziert wird.
 
 Ich habe mich dazu entschieden eine Skala zwischen \emph{0 und 3}, wobei
 0 schlechte Unterstützung/Möglichkeit/Funktion bzw. allgemein für das Projekt
@@ -33,11 +37,11 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
 \begin{longtable}{|p{0.8cm}|p{4.4cm}|p{6.4cm}|p{6.4cm}|}
 
   \hline
-  Kap. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline \hline
+  Ref. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline \hline
   \endfirsthead
 
   \hline
-  Kap. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
+  Ref. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
   \endhead
 
 % Xtext man hat die moegliechkeit immerhin eine Lib zu benutzen
@@ -111,6 +115,7 @@ Die detailierte Beschreibung folgt in den darauffolgenden Abschnitten.
   \cline{3-4}
   & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
 
+  \ref{sec-grammatikGestaltung}
   & Grammatikalische Gestaltung der DSL
   & Komplett frei und flexibel, da in BNF-Regeln definiert.
   & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
@@ -238,17 +243,7 @@ Hervorzuheben sind:
 \end{itemize}
 
 Darüber hinaus hat Scala sehr gute Fähigkeiten zur Erstellung von internen
-DSLs, dies manifestiert sich in folgenden Fähigkeiten:
-
-\begin{itemize}
-  \item Unicode-Zeichen in Identifiern erlaubt,
-  \item Methoden können als Prefix, Infix oder Postfix Operatoren dienen,
-  \item viel syntaktischer Zucker u.a. mit impliziten Erweiterungen,
-  \item Stärken von objektorientierter- und funktionaler-Programmierung
-        geschickt vereint,
-  \item starke statische Typesierung, jedoch ergänzt der Compiler selbstständig
-        sehr viele Typ-Informationen.
-\end{itemize}
+DSLs, siehe Abschnitt \ref{sec-grammatikGestaltung}.
 
 
 \subsection{Strukturierungsfähigkeit}\label{sec-strukturierungsfaehigkeit}
@@ -352,6 +347,39 @@ werden kann, da die Komplexitäten in tiefere Schichten gezogen werden kann.
 Durch das starke Vererbungssystem welches Scala bietet, können solche
 Template-Erweiterungen ohne viel unschöne Details erstellt werden, da sich
 auf das Wesentliche konzentriert werden kann.
+
+
+\subsection{Grammatikalische Gestaltung}\label{sec-grammatikGestaltung}
+
+Die grammatikalische Gestaltung ist eine der wichtigsten Eingenschaften
+für die Ausdrucksstärke einer DSL und die Ausdrucksstärke ist eines
+der wichtigsten Kriteren für die Akzeptanz der Domain-Benutzer.
+
+\paragraph{Xtext} ist ein Framework zur Erstellung von externen DSLs und
+hat somit naturgemäß ausgezeichnete Fähigkeiten zur Gestaltung einer beliebigen
+Grammatik.
+
+Dabei setzt Xtext auf eine selbst entwickelte externe DSL, die sehr große
+Ähnlichkeit mit der \emph{Backus-Naur-Form} hat, mit der kontextfreie
+Grammatiken bzw. Programmiersprachen entworfen werden können.
+
+\paragraph{Scala} hat als eine Programmiersprache von sich aus schon
+sehr gute Fähigkeiten zur Erstellung von internen DSLs, dies
+manifestiert sich in folgenden Fähigkeiten:
+
+\begin{itemize}
+  \item Unicode-Zeichen in Identifiern erlaubt,
+  \item Methoden können als Prefix, Infix oder Postfix Operatoren dienen,
+  \item viel syntaktischer Zucker u.a. mit impliziten Erweiterungen,
+  \item Stärken von objektorientierter- und funktionaler-Programmierung
+        geschickt vereint,
+  \item starke statische Typesierung, jedoch ergänzt der Compiler selbstständig
+        sehr viele Typ-Informationen.
+\end{itemize}
+
+Zudem sei erwähnt, dass es für Scala auch eine Bibliothek gibt mit
+der es möglich ist externe DSLs zu entwerfen. Diese basiert der
+\emph{parser combinator} Technik (Details siehe \cite{dsls}.)
 
 
 \subsection{Skalierbarkeit und Einbettbarkeit}\label{sec-scalierEinbett}

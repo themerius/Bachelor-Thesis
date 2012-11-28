@@ -4,6 +4,11 @@
 	3. Definition Ziel
 	4. Zum Dokument
 
+Aus der Idee resultiert die Problembeschreibung, daraus die Aufgabenstellung
+- Problem: die dsl
+- Problem: die zielarchitektur
+- Problem: wie bekommt man beide zusammengeleimt/klebt/kittet
+
 2. Problembeschreibung (Aufgabenstellung)
 	1. Anforderungen an DSL
 	2. Anforderungen an Generatorlogik
@@ -11,6 +16,9 @@
 
 3. Lösungsalternativen
 	1. Pro Contra über verschiedene Projekte die ähnliche Ziele verfolgen.
+	   Es werden TeX und WYSIWYG herausgegriffen
+	2. TeX - was es kann und was besser wäre
+	3. Word/OpenOffice/Google Docs
 
 4. Lösungsweg
 	1. Vergleich von Domain-Specific Languages
@@ -22,7 +30,7 @@
 5. Architektur
 	1. DSL
 	2. Generator
-	3. Zielarchitektur
+	3. Zielarchitektur  // bisher kein Preprocessing nötig!
 	4. Resultat
 
 6. Einsatzszenarien

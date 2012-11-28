@@ -84,9 +84,158 @@ arabischen Ziffern durchnummeriert.
 
 \section{Domain-Specific Language}\label{sec-dsl}
 
-% TODO wie es zum Vergleich kommt
-% TODO was ist eine DSL? Definition DSL!
+Die \emph{Domain-specific language}, kurz \emph{DSL}, stellt die
+textuelle Schnittstelle zwischen Benutzer und der Zielplatform dar.
+Eine DSL ist eine leichtgewichtige Programmiersprache, die für den
+Einsatz ihres Spezialgebietes, ihre Domäne, zugeschnitten ist.
+
+Dabei unterscheidet man grob zwischen \emph{internen}, \emph{externen}
+und \emph{nicht-textuellen} DSLs.\cite{dsls} Da in diesem Projekt
+nur eine textuell DSLs zum Einsatz kommen soll, konzentrieren wir uns
+auf die internen DSLs bzw. externen DSLs.
+
+\paragraph{Interne DSL}
+\begin{quote}
+Eine interne DSL wird als Bibliothek auf Basis
+einer bereits existierenden Wirtssprache implementiert. Das interne DSL-Skript
+ist eine dünne Fassade über die Abstraktionen der unterliegenden Wirtssprache.
+\end{quote} (von \cite{dsls} Kapitel 1.5.1, Seite 18.)
+
+\paragraph{Externe DSL}
+\begin{quote}
+Eine externe DSL wird von Grund auf entwickelt und hat eine separierte
+Infrastruktur für die lexikalische Analyse, Interpretation, Kompilierung
+und Code Generierung. Eine externe DSL zu entwickeln ist gleichzusetzen mit
+der Implementierung einer neuen Sprache von Grund auf, welche ihre eigene
+Syntax und Semantik hat.
+In den meisten Fällen findet man externe DSLs vor, welche nicht alle
+Komplexitäten einer vollwertigen Sprache benötigt.
+\end{quote} (von \cite{dsls} Kapitel 1.5.2, Seite 18f.)
+
+\paragraph{Ausgewählt und gegenübergestellt werden}
+
+\begin{itemize}
+  \item die Scala-Programmiersprache für interne DSLs,
+  \item das Xtext-Framework für externe DSLs.
+\end{itemize}
+
+Wobei Scala ausgezeichnete Fähigkeiten zur Gestaltung einer
+internen DSL hat, nähere Details siehe \ref{sec-grammatikGestaltung},
+und als objekt-orientierte sowohl auch funktionale Sprache sehr
+vielfältige Möglichkeiten für den Benutzer bietet, egal ob er sich
+gerade innerhalb der DSL gefindet oder „standard Scala“ schreiben
+möchte. Zudem hat Scala eine sehr aktive Community und wir von einem
+Universitätzlehrstuhl unter einer Open Source Lizenz weiterentwickelt
+und durch die Fähigkeit auf der Java Virtual Machine (JVM) zu laufen,
+auch sehr gute Integration mit Java und Java-Bibliotheken mitbringt.
+
+Xtext ist ein Framework welches auf die Entwicklung externer DSLs
+ausgelegt ist und dabei auf die Eclipse IDE Platform aufbaut
+und sehr viel der harten Arbeit abnimmt was die Entwicklung
+externer DSLs nachhaltig vereinfacht.
+Auch Xtext läuft auf der JVM und ist stark mit Java integriert, bringt
+zudem eine eigene, auch mit Xtext entwickelte, Sprache mit, die von der
+Syntax her freundlicher als Java ist, aber sich dennoch nahe an den
+Java-Konzepten aufhält. Diese Sprache heißt Xtend und wird vornehmlich
+intern zur Generator-Programmierung eingesetzt. Ein genauerer Vergleich
+zwischen Scala und Xtext findet sich in Kapitel \ref{sec-vergleichsmatrix}.
+
+\subsection{Anforderungen}
+
+Wie schon erwähnt, dient die DSL als Schnittstelle für den Benutzer,
+und sollte möglicht leicht für diesen zu verstehen sein, so dass
+auch ein Benutzer ohne große Programmierkenntnisse zumindest die
+DSL versteht und schreiben kann. Dies erfordert intuitive Konzepte,
+klare Strukturen und übersichtliche bzw. leichtgewichtige Syntax, welche
+sich auf das Domänen-Problem einer Dokumentengenerierung konzentriert.
+
+\paragraph{Das DSL Idealbild} könnte so aussehen wie die zwei unten
+aufgeführten Pseudo-Codes, auch wenn diese von der
+realen Implementierung abweichen. % TODO Referenz darauf, was daraus geworden ist!
+% TODO Begründung, warum diese Abweichungen nötig sind -> und warum TeX so aussieht.
+
+\begin{lstlisting}[language=TeX]
+Section
+    Ueberschrift
+
+Text
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore
+    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+
+Subsection
+    Unterueberschrift
+
+Text
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore
+    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+
+    Auf Abb. picName.referenceNumber kann man erkennen ...
+
+PythonScript named pyScriptName
+    from matplotlib import pyplot
+    from scaltex import return_to_document
+    pyplot.plot(range(10))
+    pic = pyplot.savefig("pic.png")  // Achtung Vereinfachung!
+    return_to_document(pic)
+
+Figure named picName
+    src = pyScriptName  // oder z.B. auch moeglich "/home/pic.png"
+    descr = Beschreibung des Bildes
+\end{lstlisting}
+
+\begin{lstlisting}[language=TeX]
+%*§*) Ueberschrift
+
++ {
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore
+    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+}
+
+%*§§*) Unterueberschrift
+
++ {
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore
+    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+
+    Auf Abb. picName.referenceNumber kann man erkennen ...
+}
+
++ PythonScript named pyScriptName {
+    from matplotlib import pyplot
+    from scaltex import return_to_document
+    pyplot.plot(range(10))
+    pic = pyplot.savefig("pic.png")  // Achtung Vereinfachung!
+    return_to_document(pic)
+}
+
++ Figure named picName {
+    src = pyScriptName  // oder z.B. auch moeglich /home/pic.png
+    descr = Beschreibung des Bildes
+}
+\end{lstlisting}
+
 
 \section{Verbindung zwischen DSL und Ziel}\label{sec-verbindung}
 
+Aus den Eingaben die der Benutzer über die DSL-Schnittstelle gemacht hat,
+muss nun das Ziel, Webtechnologie zur Darstellung im
+Webbrowser, \emph{generiert} werden.
+
+Dadurch, dass es viele \emph{verschiedene Dokumenten-Templates} geben kann,
+z.B. eines für akademische Berichte und ein anderes für Patente, entsteht das
+Problem dass zwar immer auf das gleiche Ziel (Webtechnologie) abgebildet
+wird, aber dieses unterschiedliche Ausprägungen besitzen kann. Jede
+dieser Ausprägungen kann sich in ihren Eigenschaften, Einsatzzielen
+und Darstellungsmöglichkeiten (z.B. mathematische Formeln in einen
+Dokument-Typ und chemische Formeln im anderen) unterscheiden.
+
+Ideal wäre es wenn insbesondere die Darstellungsmöglichkeiten zwischen
+den einzelnen Dokument-Typen \emph{austauschbar} sind. Außerdem ist
+es wünschenswert, wenn zwischen verschiedenen Dokumenten-Typen gewechselt
+bzw. migriert werden kann, ohne große Veränderungen am DSL-Code vornehmen
+zu müssen.
 

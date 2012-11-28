@@ -1,11 +1,92 @@
 \chapter{Problembeschreibung → Aufgabenstellung}
 
-Übersicht über das Kapitel.
+In diesem Kapitel soll eine umfassende Beschreibung des Problems erfolgen,
+aus welcher sich wiederum die Aufgabenstellung ergibt, welche im
+späteren Verlauf implementiert wird.
 
-\section{Zielarchitektur}
+Den Anfang macht die Zielachitektur, welche primär aus Webtechnologien
+besteht und somit zur Darstellung des Dokumentes dient. Siehe
+Abschnitt \ref{sec-zielarchitektur}.
 
-\section{Domain-Specific Language}
+Die Zielarchitektur soll von einem Benutzer ohne großen Aufwand
+generierbar sein und soll dabei die Möglichkeit haben, bestimmte
+Aufgaben automatisch zu erledigen, wie z.B. das Zusammenstellen
+eines Inhaltsverzeichnisses. Siehe Abschnitt \ref{sec-dsl}.
 
-\section{Verbindung zwischen DSL und Ziel}
+Damit aus der Schnittstelle die dem Benutzer gegebenen ist die Zielarchitektur
+generiert werden kann, muss es eine geeignete Brücke bzw. Verbindung
+geben, diese wird in Abschnitt \ref{sec-verbindung} näher beschrieben.
+
+% TODO Verweise auf die Architektur!
+
+\section{Zielarchitektur}\label{sec-zielarchitektur}
+
+Die primäre Aufgabe der Zielarchitektur ist es ein Dokument in
+einem Webbrowser darzustellen. Das Dokument ist aber keine gewöhnliche
+Webseite, sondern orientiert sich hautsächlich an akademischen
+Dokumenten wie z.B. Fachbüchern. Bücher bestehen auch einzelnen Seiten,
+diese sind in Webseiten in ihrer Ursprünglichen Form nicht vorgesehen,
+eine stellt lange Dokumente stufenlos, also ohne Seiten dar.
+Daher ist eine Aufgabe der Zielarchitektur eine \emph{Abstraktion
+über Seiten} für Webtechnologie zu bieten.
+
+Die eigentliche Problematik ist hierbei, dass der Webbrowser fließenden
+Text nicht selbst auf definierte Seiten umbrechen kann. Für den Browser
+gibt es nur eine Seite die quasi einem langen Textschlauch entspricht,
+wenngleich er durch HTML struktuirert und
+CSS-Eigenschaften gestaltet werden kann.
+
+Damit verbunden ist die Problematik der
+\emph{Zuordnung der einzelnen Dokumenten-Entitäten zu den Seiten},
+dabei kann es dazu kommen dass eine Entität zwischen zwei Seiten
+\emph{überlappt} und diese sollte, wenn möglich, passend aufgeteilt werden.
+
+Dadurch dass die Zielarchitektur sich um die Erstellung der Seiten und
+die Zuteilung der Entitäten kümmern muss, ist es vollkommen natürlich,
+dass sich diese auch der \emph{Nummerierung der Seiten} annehmen muss.
+Davon hängt auch dirket die Funktion, die einzelnen Punkte des
+Inhaltsverzeichnisses mit der entsprechden Seitennummer zu versehen, ab.
+
+Zudem sollte es möglich sein, dass es \emph{verschiedene Arten von Seiten}
+gibt, z.B. Deckblatt, normale vertikale Seite und horizontale Seiten für
+große Tabellen oder Abbildungen. Oder auch dass verschiedene Papierformate
+wie DIN-A4 oder US-Letter zur Auswahl stehen.
+
+Die Einführung von \emph{Dokumenten-Arealen} als eine weitere hilfreiche
+Abstraktion die zur Gliederung eines - insbesondere
+akademischen - Dokuments dient, ist mit Sicherheit nicht verkehrt.
+Damit soll es möglich sein, Dinge wie beispielsweise
+Deckblatt, Inhaltsverzeichnis, eigentliches Dokument
+und Literaturverzeichnis etc. von einander zu separieren für eine
+flexiblere Konfiguration, z.B. um die Areale in der Anordnung zu
+verändern, oder Dinge wie Nummerierungen zu modifizieren, beispielsweise
+wird gerne der Anfang eines Dokuments mit römischen Ziffern durchnummeriert
+und das eigentliche Dokument wird jedoch mit
+arabischen Ziffern durchnummeriert.
+
+% Seitennummerierung
+% Inhaltsverzeichnis, Seite zuordnen
+% Dokumentenareale
+% Vorteile die sich durch die HTML-Nutzung ergeben? Welches Kapitel?
+
+\paragraph{Anforderungen} auf einen Blick zusammengefasst:
+
+\begin{itemize}
+  \item Abstraktion für Seiten,
+  \item Zuordnung der Entitäten auf Seiten,
+  \item Behandlung überlappender Entitäten,
+  \item Ermöglichung verschiedener Seiten-Arten,
+  \item Durchnummerierung der Seiten,
+  \item Seitenzugehörigkeit von Entitäten bestimmbar,
+  \item Dokumenten-Areale zur Strukturierung.
+\end{itemize}
+
+
+\section{Domain-Specific Language}\label{sec-dsl}
+
+% TODO wie es zum Vergleich kommt
+% TODO was ist eine DSL? Definition DSL!
+
+\section{Verbindung zwischen DSL und Ziel}\label{sec-verbindung}
 
 

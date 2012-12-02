@@ -23,7 +23,7 @@ Aber diese Bachelor-Thesis will einen anderen Ansatz ausprobieren, und
 seine Machbarkeit, Praxistauglichkeit und Weiterentwicklungsmöglichkeiten
 festzustellen bzw. zu überprüfen.
 
-\section{Idee}
+\section{Vision}
 
 Wie wäre es, wenn als Dokument-Endprodukt eine HTML/CSS/JS-Webseite
 herauskommt? Wenn dieses Endprodukt zudem vom Webbrowser aus passend auf
@@ -33,8 +33,139 @@ Wie wäre es, wenn als Dokumenten-\-Generator-\-Sprache eine \emph{vollwertige}
 Programmiersprache zum Einsatz käme? Wenn diese Sprache zudem an die
 Domänen\-gege\-ben\-heit die durch den Willen ein Dokument zu verfassen geprägt ist?
 
-Was kann man alles damit anstellen?
+\subsection{Gestalterische Fähigkeiten}
 
+Mit Webtechnologien ist es möglich sehr flexible Layouts zu erstellen,
+hochwertige Schriftarten einzusetzen und hat eine große Auswahl an
+Technologien zu bieten, um z.B. Vektorgrafiken, Animationen oder
+andere dynamische und statische Inhalte zu generieren und zu
+präsentieren. Es gibt schon sehr viele aktive und geniale Javascript-Bibliotheken,
+um Webseiten mit verschiedensten Dingen auszurüsten, wie z.B. MathJAX oder D3.
+
+All diese Webtechnologien sind durch die W3C Organisation standardisiert
+und sind quasi schon ubiqutär da nahezu jedes Gerät mittlerweile einen
+Webbrowser hat.
+Die meisten Softwareentwickler oder auch
+Gestalter mit diesen Technologien vertraut, zudem beschäftigen sich
+Laien sehr oft auch mit Webtechnologie, allein weil sie z.B. eine kleine
+eigene Webseite erstellen wollen.
+
+Bündelung von verschiedenen Webdiensten wird ermöglicht, so könnte man sich
+vorstellen bestimmte Informationen über z.B. die Wolfram|Alpha API
+anzufordern oder verarbeiten zu lassen oder wenn es nur eine Weiterleitung
+als Metainformation ist.
+Zusammengefasst:
+
+\begin{itemize}
+  \item flexible Layouts,
+  \item hochwertige Schriftarten verfügbar,
+  \item leichte Erweiterbarkeit,
+  \item viele Technologien,
+  \item Standardisiert und stark entwickelt → Zukunftssicherheit,
+  \item ubiqutär eingesetzt → keine zusätzlichen Softwareinstallationen,
+  \item bekannte Materie für viele Menschen,
+  \item Verwendung verschiedener Dienste über Web-APIs.
+\end{itemize}
+
+\subsection{Interaktive Fähigkeiten}
+
+Webtechnologien haben nicht nur die o.g. Fähigkeiten, sondern gerade
+HTML5 glänzt mit seinen interaktiven Fähigkeiten, welche einem relativ
+statischen Dokument zusätzliche Möglichkeiten bietet Dinge zu
+visualisieren und dennoch druckbar zu halten.
+
+Die neuen visuellen Fähigkeiten sind nicht der einzge Vorteil der sich ergibt,
+sondern der Benutzer kann auch viel mehr mit dem Dokument interagieren
+und mit anderen Personen die in irgendeiner Form an dem Dokument beteiligt
+sind, z.B. durch Kommentare bzw. Diskussionen direkt im Dokument.
+
+Auch können Daten dynamisch nachgeladen werden, z.B. ein Plot der sich
+im Dokument bei Änderungen oder neuen Daten automatisch aktualisieren kann.
+
+Anreicherung mit Metadaten ist auch möglich, die Daten können dem Dokument
+implizit mitgeliefert werden, so dass Metainformationen über ein Maus-Hover
+eingeblendet werden oder eine extra Informationsbox aufgeht oder einfache
+Querverweise, z.B. zur komfortablen Referenzierung auf Quellen,
+auf andere Dokumente oder Internetadressen.
+
+\subsection{Automatisierungs- und Programmierungsfähigkeiten}
+
+Als Schnittstelle zur Erstellung eines Dokuments soll Programmcode
+dienen, ähnlich wie es bei LaTeX und Derivaten der Fall ist, nur
+dass eben eine vollwertige Programmiersprache zum Einsatz kommt, diese
+dann viele neue Türen öffnet, um die Dokumentengenerierung weiter
+zu automatisieren oder mit mehr dynamischen bzw. generierten Inhalten
+füllen kann.
+
+\emph{Die Plattform dient zur Kooperation zwischen verschiedensten
+Funktionen, Programmen und Diensten.}
+
+Der Programmcode übernimmt auch Dinge wie die automatische Durchnummerierung
+von Kapiteln, oder Auflösung von Querreferenzen auf Kapitel, Bilder oder
+Literatur. Dadruch, dass es Programmcode ist, kann jedes beliebige Verhalten
+hinzugefügt oder modifiziert werden, so dass es auf die Anforderungen
+des gewünschten, eventuell speziellen neuartigen, Dokumententypus
+zugeschnitten werden kann.
+
+\paragraph{Szenario 0:} Makrdown, Txt, Html (doc?, tex?) \ldots
+Bsp. Komplexe und halbautomatische Tabellen.
+
+% TODO schreiben, Word doc integrieren, xls/csv Datei als input als tabelle
+% tabelle gleich als datenstruktur nutzbar zur weiterverarbeitung, rechnung,
+% anreicherung
+% --> alle möglichen technologien kooperieren lassen und auf einen nenner bringen!
+% ---> bessere kolloboration (jeder kann sein gewohntes tool nutzen)
+
+\paragraph{Szenario 1:} Immer wenn das Dokument „gebaut“ wird, kann z.B.
+automatisch ein Skript angeworfen werden, welches einen Plot als Bild
+anfertigt. Dieses Bild kann dann direkt in das resultierende Dokument ohne
+Umwege eingebaut werden. Vorteil: Der Dokumenten-Ersteller muss also nicht jedes
+mal wenn er den Plot verändert, ihn nochmals manuell anfertigen und
+die Bilddatei ins richtige Verzeichnis schieben. → Weniger Handarbeit,
+die Dokumenten-Erstellungsumgebung muss nicht verlassen werden.
+
+\paragraph{Szenario 2:} Durch eine vollwertige Programmiersprache hat
+der Dokumenten-Ersteller Zugriff auf verschiedene Programm-Bibliotheken,
+um z.B. Daten aus einer Datenbank oder dem Dateisystem zu holen, diese
+zu verarbeiten, aufzubereiten und im Dokument darzustellen, beispielsweise
+als Plot. → Zugriff auf immer aktuelle Daten, mit jeder Dokumenten-Erzeugung.
+
+% TODO Excel Popup (mit VB Script?)  <-> Einbettung im verschiedene Umgebungen.
+
+\paragraph{Szenario 3:} Ermöglicht Konvertierung von verschiedenen
+Konventionen auf einen gemeinsamen Nenner, z.B. bei chemischie Formeln
+gibt es viele Konventionen der Dateiformale (populär sind SMILES, Molfiles oder
+IUPAC-Namen.) Eine Bibliothek könnte all diese Formate annehmen und
+für die Webansicht konform machen.
+
+Zudem könnte eine implizite Anreicherung der Informationen vorgenommen werden,
+so dass der Benutzer im Programmcode lediglich „Zeichne Strukturformel
+für Coffein“ angibt, aber die Bibliothek noch weitere Hintergrundinformationen
+zu Coffein aus anderen Quellen (z.B. Wikipedia, Wolfram|Alpha, \ldots) bezieht.
+
+\paragraph{Szenario 4:} Dokumentation
+und lauffähiger Code vereint, so dass das Dokument quasi auch schon selbst
+die Problemlösung errechnen kann.
+
+Beispiel: Das Dokument beschreibt eine Simulation, zu einem gestellten
+Problem. In dem Dokument selbst ist ein Algorithmus beschrieben, der
+für die Simulation eingesetzt wird. Aber dadruch, dass das Dokument selbst
+in einer vollständigen Programmiersprache geschrieben wird, kann dieser
+Algorithmus direkt während der Dokumenten-Generierung ausgeführt werden
+und mit Daten aus einer Datenbank gefüttert werden und entsprechende Plots
+im resultierenden Dokument darstellen. Also ist der Code, der im Dokument
+beschrieben ist auch gleichzeitg der funktionsfähige und ausführbare
+Algorithmus.
+
+\paragraph{Szenario 5:} Man könnte sogar so weit gehen, und statt eine einfache
+zu HTML-Seite zu generieren einen Webservice starten, der dem Dokument noch
+mehr dynamische Fähigkkeiten ermöglicht, z.B. durch bidirektionale
+Kommunikation zwischen Webbrowser-Client (Dokumenten-Betrachter) und
+Dokumenten-Server, welche eine Interaktion zwischen Benutzer und Dokument
+bzw. anderen Benutzern des Dokuments ermöglicht.
+
+\subsection{Zusammengefasst / Was getan werden muss / Was dafür gebraut wird}
+% TODO fertig machen
 \begin{itemize}
   \item Vermischung von statischen und automatisch generierten
         Doku\-menten-\-Be\-stand\-teilen,

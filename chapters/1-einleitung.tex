@@ -23,7 +23,15 @@ Aber diese Bachelor-Thesis will einen anderen Ansatz ausprobieren, und
 seine Machbarkeit, Praxistauglichkeit und Weiterentwicklungsmöglichkeiten
 festzustellen bzw. zu überprüfen.
 
-\section{Vision}
+\paragraph{Was diese Thesis klären will ist}
+
+\begin{itemize}
+  \item Potentiale dieser Idee bzw. Vision erkennen,
+  \item Ein Proof of Concept erstellen,
+  \item Weiterentwicklungsmöglichkeiten darstellen.
+\end{itemize}
+
+\section{Idee und Vision}
 
 Wie wäre es, wenn als Dokument-Endprodukt eine HTML/CSS/JS-Webseite
 herauskommt? Wenn dieses Endprodukt zudem vom Webbrowser aus passend auf
@@ -57,7 +65,7 @@ als Metainformation ist.
 Zusammengefasst:
 
 \begin{itemize}
-  \item flexible Layouts,
+  \item flexible Layouts und Gestaltungsmöglichkeiten,
   \item hochwertige Schriftarten verfügbar,
   \item leichte Erweiterbarkeit,
   \item viele Technologien,
@@ -107,14 +115,51 @@ hinzugefügt oder modifiziert werden, so dass es auf die Anforderungen
 des gewünschten, eventuell speziellen neuartigen, Dokumententypus
 zugeschnitten werden kann.
 
-\paragraph{Szenario 0:} Makrdown, Txt, Html (doc?, tex?) \ldots
-Bsp. Komplexe und halbautomatische Tabellen.
+Da es sich um normalen Programmcode handelt, ist es leicht möglich die
+Best-Practices auch auf die Dokumentenerstellung zu übertragen.
+Beispielsweise werden Versionierung und Zusammenarbeit erleichtert,
+da Versionskontrolltools wie \emph{git} eingesetzt werden können -- also
+die volle Bandbreite.
 
-% TODO schreiben, Word doc integrieren, xls/csv Datei als input als tabelle
-% tabelle gleich als datenstruktur nutzbar zur weiterverarbeitung, rechnung,
-% anreicherung
-% --> alle möglichen technologien kooperieren lassen und auf einen nenner bringen!
-% ---> bessere kolloboration (jeder kann sein gewohntes tool nutzen)
+Als Grundlage dienen objektorientierte Paradigmen, was dem Programmcode
+und damit auch dem Dokument-Code ermöglicht gut gegliedert und strukturiert
+zu werden z.B. in Namenräume bzw. Pakete oder Klassen bzw. Objekte.
+
+\paragraph{Szenario 0:} Integration von verschiedenen „Markup-Formaten“.
+Die Programmierplattform könnte eine Bibliothek bereitstellen, mit der
+man auch andere Markups laden und in das Dokument leicht integrieren
+kann.
+
+So könnte man sich vorstellen, dass ein Teil des Dokuments mit Markdown
+geschrieben ist, ein anderer als html und wieder ein anderer in
+restructuredtext. Die Bibliothek wandelt die verschiedenen Eingebeformate
+auf einen gemeinsamen Nenner um.
+
+\begin{verbatim}
+Section('Ueberschrift')
+Paragraph('Ein laengerer Text . . .')
+SectionFromMarkdown('/home/kapitel_x.md')
+Subsection('Unterueberschrift')
+SectionFromRestructuredtext('/home/kapitel_y.rst')
+Paragraph('Weiterer Text . . .')
+\end{verbatim}
+
+Weiter könnte man sich auch vorstellen, statt Markdown auch z.B. Word-Dokumente
+umwandeln zu lassen, also Kapitel, Texte, Bilder etc. extrahieren und so in
+das Dokument einzupassen. → Jeder kann seine gewohnten Tools nutzen bzw.
+Tools können kombiniert werden.
+
+Oder die Wandlung von Datenstrukturen der Programmiersprache in eine passende
+Dokumenten-Darstellung. So dass man beispielsweise komplexte Tabellen aus
+Listen zusammenstellen kann und diese Listen können dann Resultate
+verschiedener Regeln sein oder auch aus einer Quelle wie einer CSV-Datei
+entstammen. Sprich man kann direkt mit der zu darstellenden Tabelle
+rechnen, sie weiterverarbeiten oder anreichern.
+
+Auf diese Art kann man verschiedenste Technologien kooperieren lassen und
+auf einen Nennen bringen -- ohne dass die Qualität des Dokuments darunter
+leider muss, da eine Formatierungssicherheit (Layout) vorliegt,
+ähnlich wie es bei LaTeX der Fall ist.
 
 \paragraph{Szenario 1:} Immer wenn das Dokument „gebaut“ wird, kann z.B.
 automatisch ein Skript angeworfen werden, welches einen Plot als Bild
@@ -130,7 +175,13 @@ um z.B. Daten aus einer Datenbank oder dem Dateisystem zu holen, diese
 zu verarbeiten, aufzubereiten und im Dokument darzustellen, beispielsweise
 als Plot. → Zugriff auf immer aktuelle Daten, mit jeder Dokumenten-Erzeugung.
 
-% TODO Excel Popup (mit VB Script?)  <-> Einbettung im verschiedene Umgebungen.
+Weiter könnte man sich weiter vorstellen, statt einen direkten Datenbankzugriff
+einen Zugriff über Excel zu machen, dass ich als Dokumenten-Ersteller
+über meine gewohnte Excel-Abläufe meine Daten zusammenstelle und die xls-Datei
+über den Programmcode einbinde. Excel könnte so auch bei Bedarf geöffnet
+werden, neue Daten holen und eine aktualiserte xls-Datei ablegen. Die
+Kommunikation könnte dann als VB-Script ablaufen. → Einbettung
+verschiedener Umgebungen.
 
 \paragraph{Szenario 3:} Ermöglicht Konvertierung von verschiedenen
 Konventionen auf einen gemeinsamen Nenner, z.B. bei chemischie Formeln
@@ -141,7 +192,7 @@ für die Webansicht konform machen.
 Zudem könnte eine implizite Anreicherung der Informationen vorgenommen werden,
 so dass der Benutzer im Programmcode lediglich „Zeichne Strukturformel
 für Coffein“ angibt, aber die Bibliothek noch weitere Hintergrundinformationen
-zu Coffein aus anderen Quellen (z.B. Wikipedia, Wolfram|Alpha, \ldots) bezieht.
+zu Coffein aus anderen Quellen (z.B. Wikipedia, WolframAlpha, \ldots) bezieht.
 
 \paragraph{Szenario 4:} Dokumentation
 und lauffähiger Code vereint, so dass das Dokument quasi auch schon selbst
@@ -164,37 +215,21 @@ Kommunikation zwischen Webbrowser-Client (Dokumenten-Betrachter) und
 Dokumenten-Server, welche eine Interaktion zwischen Benutzer und Dokument
 bzw. anderen Benutzern des Dokuments ermöglicht.
 
-\subsection{Zusammengefasst / Was getan werden muss / Was dafür gebraut wird}
-% TODO fertig machen
-\begin{itemize}
-  \item Vermischung von statischen und automatisch generierten
-        Doku\-menten-\-Be\-stand\-teilen,
-  \item Datenaufbereitung quasi zur Laufzeit der Doku\-menten-\-Er\-stell\-ung,
-  \item Strukturierungsmöglichkeiten durch den Quellcode, in Pakete, Klassen
-        → Objekt-Orientierung,
-  \item Webtechnologie ermöglicht dynamische Inhalte,
-  \item Webtechnologie ist reaktiv (z.B. auf den Benutzer, Inhalte nachladen),
-  \item Gute Kolloberationsmöglichkeiten, Verwaltungsmöglichkeiten,
-        da Quellcode
-  \item Verknüpfung verschiedener Technologien (Datenbanken, Dateisystem,
-        Interpozesskommunikation, etc.),
-  \item Sehr flexible Gestaltung des Dokuments, da Webtechnologie möglich,
-  \item Webtechnologie ermöglicht Rückkanal, z.B. kollaborierende Benutzer
-        können Kommentare schreiben, oder mehr. (Richtung Google Docs.),
-  \item Viele Erweiterungsmöglichkeiten, geg. durch Programmiersprache und
-        Webtechnologie,
-  \item Webtechnologie hat eine sichere Zukunft und ist standardisiert.
-\end{itemize}
+\subsection{Was getan werden muss}
 
 Es muss also ein kleines JavaScript-Framework entwickelt werden, welches die
 Aufgabe der Darstellung des Dokuments übernimmt. Die Zielachitektur.
+Mehr dazu in Kapitel \ref{sec-zielarchitektur}.
 
-Zudem braucht es noch ein Programm bzw. Programmiersprache, welches diese
+Zudem braucht es noch ein Programm bzw. eine Programmiersprache, welche diese
 Zielarchitektur füttern kann. Dieses Programm soll Aufgaben wie z.B.
 Kapitel-Nummerierung automatisch abwickeln. Weiterhin muss es auch ein
 wohlgeformte Schnittstelle zum Benutzer liefern. Diese Kriterien führen
 dazu, dass die Entwicklung einer Domänen-Spezifischen Programmiersprache,
-kurz DSL, sehr sinnvoll ist.
+kurz DSL, sehr sinnvoll ist. Mehr dazu ist in Kapitel \ref{sec-dsl} zu finden.
+
+\paragraph{Ziel} ist es also zu prüfen, ob es möglich und praktikabel ist
+ein solches „\LaTeX on steroids“ zu erschaffen.
 
 \section{Eine Wendung}
 

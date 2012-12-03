@@ -1,29 +1,33 @@
 \chapter{Einleitung}
 
-Die Idee entstammt der Zeit als ich mein Praxissemester beim Fraunhofer ISE
-gemacht habe, da die Tools zur automatischen Dokumentengenerierung, genauer
-den Jahresbericht, alle weniger geeignet erschienen. Die gewünschten
+Die Idee entstammt der Zeit meines Praxissemesters am
+\emph{Fraunhofer-Institut für Solare Energiesysteme ISE}.
+Diese sind mit den Tools zur automatischen Dokumentengenerierung, insbesondere
+für den den Jahresbericht, weniger zufrieden. Die gewünschten
 Fähigkeiten müssen über mehrere Tools zusammenlaufen, welche nicht immer
-ideal zusammenarbeiten; z.B. LaTeX plus Microsoft Word. Ab da an tüftelte
-ich daran, wie diesem Umstand Besserung gelingen kann.
+ideal zusammenarbeiten; z.B. LaTeX plus Microsoft Word plus Python-Skripte.
+Ab da an tüftelte ich daran, wie diesem Umstand Besserung verschafft
+werden kann.
 
 Wie schon erwähnt handelt es sich um ein Tool, welches automatische
-Dokumentengenerierung ermöglichen soll. Für diese oder ähnliche Aufgaben
+Dokumentengenerierung ermöglichen soll. Für diese oder ähnliche Aufgaben,
+mit mehr oder weniger automatisierten Fähigkeiten,
 gibt es bereits zahlreiche andere Werkzeuge wie z.B.:
 
 \begin{itemize}
   \item LaTeX,
   \item Word, OpenOffice,
   \item Google Docs,
-  \item ...
+  \item Markdown,
+  \item \ldots
 \end{itemize}
 
 Jedes dieser Werkzeuge hat seine individuellen Vor- und Nachteile.
 Aber diese Bachelor-Thesis will einen anderen Ansatz ausprobieren, und
 seine Machbarkeit, Praxistauglichkeit und Weiterentwicklungsmöglichkeiten
-festzustellen bzw. zu überprüfen.
+feststellen bzw. zu überprüfen.
 
-\paragraph{Was diese Thesis klären will ist}
+\paragraph{Was diese Thesis klären will ist also}
 
 \begin{itemize}
   \item Potentiale dieser Idee bzw. Vision erkennen,
@@ -33,13 +37,15 @@ festzustellen bzw. zu überprüfen.
 
 \section{Idee und Vision}
 
-Wie wäre es, wenn als Dokument-Endprodukt eine HTML/CSS/JS-Webseite
-herauskommt? Wenn dieses Endprodukt zudem vom Webbrowser aus passend auf
-eine DIN-A4-Seite gedruckt oder als PDF gespeichert werden kann?
+Wie wäre es, wenn als Dokument-Endprodukt eine mehr oder weniger
+gewöhnliche HTML/CSS/JS-Webseite herauskommt?
+Wenn dieses Endprodukt zudem vom Webbrowser aus \emph{passend} auf
+DIN-A4-Seiten gedruckt oder als PDF gespeichert werden kann?
 
 Wie wäre es, wenn als Dokumenten-\-Generator-\-Sprache eine \emph{vollwertige}
 Programmiersprache zum Einsatz käme? Wenn diese Sprache zudem an die
-Domänen\-gege\-ben\-heit die durch den Willen ein Dokument zu verfassen geprägt ist?
+Domänen\-gege\-ben\-heit, die durch den Willen ein Dokument zu verfassen,
+angepasst ist?
 
 \subsection{Gestalterische Fähigkeiten}
 
@@ -48,28 +54,28 @@ hochwertige Schriftarten einzusetzen und hat eine große Auswahl an
 Technologien zu bieten, um z.B. Vektorgrafiken, Animationen oder
 andere dynamische und statische Inhalte zu generieren und zu
 präsentieren. Es gibt schon sehr viele aktive und geniale Javascript-Bibliotheken,
-um Webseiten mit verschiedensten Dingen auszurüsten, wie z.B. MathJAX oder D3.
+um Webseiten mit verschiedensten Dingen auszurüsten,
+wie z.B. MathJAX\footnote{http://www.mathjax.org} oder
+D3.js\footnote{http://d3js.org}.
 
 All diese Webtechnologien sind durch die W3C Organisation standardisiert
-und sind quasi schon ubiqutär da nahezu jedes Gerät mittlerweile einen
-Webbrowser hat.
-Die meisten Softwareentwickler oder auch
-Gestalter mit diesen Technologien vertraut, zudem beschäftigen sich
+und sind quasi schon ubiqutär, da nahezu jedes Gerät mittlerweile einen
+Webbrowser hat. Die meisten Softwareentwickler oder auch
+Gestalter sind mit diesen Technologien vertraut, zudem beschäftigen sich
 Laien sehr oft auch mit Webtechnologie, allein weil sie z.B. eine kleine
 eigene Webseite erstellen wollen.
 
 Bündelung von verschiedenen Webdiensten wird ermöglicht, so könnte man sich
-vorstellen bestimmte Informationen über z.B. die Wolfram|Alpha API
-anzufordern oder verarbeiten zu lassen oder wenn es nur eine Weiterleitung
-als Metainformation ist.
-Zusammengefasst:
+vorstellen bestimmte Informationen über z.B. die WolframAlpha-API
+anzufordern oder verarbeiten zu lassen oder wenn es nur eine Verlinkung
+als Metainformation ist. Zusammengefasst:
 
 \begin{itemize}
   \item flexible Layouts und Gestaltungsmöglichkeiten,
   \item hochwertige Schriftarten verfügbar,
   \item leichte Erweiterbarkeit,
   \item viele Technologien,
-  \item Standardisiert und stark entwickelt → Zukunftssicherheit,
+  \item Standardisiert, sichere Weiterentwicklung → Zukunftssicherheit,
   \item ubiqutär eingesetzt → keine zusätzlichen Softwareinstallationen,
   \item bekannte Materie für viele Menschen,
   \item Verwendung verschiedener Dienste über Web-APIs.
@@ -79,13 +85,14 @@ Zusammengefasst:
 
 Webtechnologien haben nicht nur die o.g. Fähigkeiten, sondern gerade
 HTML5 glänzt mit seinen interaktiven Fähigkeiten, welche einem relativ
-statischen Dokument zusätzliche Möglichkeiten bietet Dinge zu
+statischen Dokument zusätzliche Möglichkeiten bietet, Dinge zu
 visualisieren und dennoch druckbar zu halten.
 
 Die neuen visuellen Fähigkeiten sind nicht der einzge Vorteil der sich ergibt,
 sondern der Benutzer kann auch viel mehr mit dem Dokument interagieren
 und mit anderen Personen die in irgendeiner Form an dem Dokument beteiligt
-sind, z.B. durch Kommentare bzw. Diskussionen direkt im Dokument.
+sind, z.B. durch Kommentare bzw. Diskussionen direkt im Dokument,
+kommunizieren.
 
 Auch können Daten dynamisch nachgeladen werden, z.B. ein Plot der sich
 im Dokument bei Änderungen oder neuen Daten automatisch aktualisieren kann.
@@ -99,33 +106,32 @@ auf andere Dokumente oder Internetadressen.
 \subsection{Automatisierungs- und Programmierungsfähigkeiten}
 
 Als Schnittstelle zur Erstellung eines Dokuments soll Programmcode
-dienen, ähnlich wie es bei LaTeX und Derivaten der Fall ist, nur
-dass eben eine vollwertige Programmiersprache zum Einsatz kommt, diese
+dienen, ähnlich wie es bei \LaTeX und Derivaten der Fall ist, nur
+dass eben eine „vollwertige“ Programmiersprache zum Einsatz kommt, diese
 dann viele neue Türen öffnet, um die Dokumentengenerierung weiter
 zu automatisieren oder mit mehr dynamischen bzw. generierten Inhalten
-füllen kann.
+zu füllen.
 
-\emph{Die Plattform dient zur Kooperation zwischen verschiedensten
-Funktionen, Programmen und Diensten.}
+\emph{Die Plattform soll zur Kooperation zwischen verschiedensten
+Funktionen, Programmen und Diensten dienen.}
 
 Der Programmcode übernimmt auch Dinge wie die automatische Durchnummerierung
 von Kapiteln, oder Auflösung von Querreferenzen auf Kapitel, Bilder oder
 Literatur. Dadruch, dass es Programmcode ist, kann jedes beliebige Verhalten
-hinzugefügt oder modifiziert werden, so dass es auf die Anforderungen
-des gewünschten, eventuell speziellen neuartigen, Dokumententypus
+hinzugefügt oder Vorhandenes modifiziert werden, so dass es auf die Anforderungen
+des gewünschten, eventuell speziellen oder neuartigen, Dokumententypus
 zugeschnitten werden kann.
 
 Da es sich um normalen Programmcode handelt, ist es leicht möglich die
 Best-Practices auch auf die Dokumentenerstellung zu übertragen.
 Beispielsweise werden Versionierung und Zusammenarbeit erleichtert,
-da Versionskontrolltools wie \emph{git} eingesetzt werden können -- also
-die volle Bandbreite.
+da Versionskontrollwerkzeuge wie \emph{git} eingesetzt werden können.
 
 Als Grundlage dienen objektorientierte Paradigmen, was dem Programmcode
 und damit auch dem Dokument-Code ermöglicht gut gegliedert und strukturiert
 zu werden z.B. in Namenräume bzw. Pakete oder Klassen bzw. Objekte.
 
-\paragraph{Szenario 0:} Integration von verschiedenen „Markup-Formaten“.
+\paragraph{Szenario 1:} Integration von verschiedenen „Markup-Formaten“.
 Die Programmierplattform könnte eine Bibliothek bereitstellen, mit der
 man auch andere Markups laden und in das Dokument leicht integrieren
 kann.
@@ -145,75 +151,81 @@ Paragraph('Weiterer Text . . .')
 \end{verbatim}
 
 Weiter könnte man sich auch vorstellen, statt Markdown auch z.B. Word-Dokumente
-umwandeln zu lassen, also Kapitel, Texte, Bilder etc. extrahieren und so in
+umwandeln zu lassen, also Kapitel, Texte, Bilder etc. daraus zu extrahieren und so in
 das Dokument einzupassen. → Jeder kann seine gewohnten Tools nutzen bzw.
 Tools können kombiniert werden.
 
 Oder die Wandlung von Datenstrukturen der Programmiersprache in eine passende
-Dokumenten-Darstellung. So dass man beispielsweise komplexte Tabellen aus
-Listen zusammenstellen kann und diese Listen können dann Resultate
+Dokumenten-Darstellung. So dass man beispielsweise komplexe Tabellen aus
+Listen zusammenstellen kann und diese Listen können Resultate
 verschiedener Regeln sein oder auch aus einer Quelle wie einer CSV-Datei
 entstammen. Sprich man kann direkt mit der zu darstellenden Tabelle
-rechnen, sie weiterverarbeiten oder anreichern.
+rechnen, sie weiterverarbeiten oder anreichern und falls benötigt auch
+mehrfach verwenden bzw. darstellen lassen.
 
 Auf diese Art kann man verschiedenste Technologien kooperieren lassen und
 auf einen Nennen bringen -- ohne dass die Qualität des Dokuments darunter
 leider muss, da eine Formatierungssicherheit (Layout) vorliegt,
-ähnlich wie es bei LaTeX der Fall ist.
+ähnlich wie es bei \LaTeX der Fall ist.
 
-\paragraph{Szenario 1:} Immer wenn das Dokument „gebaut“ wird, kann z.B.
+\paragraph{Szenario 2:} Immer wenn das Dokument „gebaut“ wird, kann z.B.
 automatisch ein Skript angeworfen werden, welches einen Plot als Bild
 anfertigt. Dieses Bild kann dann direkt in das resultierende Dokument ohne
 Umwege eingebaut werden. Vorteil: Der Dokumenten-Ersteller muss also nicht jedes
-mal wenn er den Plot verändert, ihn nochmals manuell anfertigen und
-die Bilddatei ins richtige Verzeichnis schieben. → Weniger Handarbeit,
+mal wenn er den Plot modifiziert, ihn nochmals manuell anfertigen und
+die Bilddatei erneut in das Dokument einpflegen. → Weniger Handarbeit,
 die Dokumenten-Erstellungsumgebung muss nicht verlassen werden.
 
-\paragraph{Szenario 2:} Durch eine vollwertige Programmiersprache hat
+\paragraph{Szenario 3:} Durch eine vollwertige Programmiersprache hat
 der Dokumenten-Ersteller Zugriff auf verschiedene Programm-Bibliotheken,
-um z.B. Daten aus einer Datenbank oder dem Dateisystem zu holen, diese
+um z.B. Daten aus einer Datenbank oder dem Dateisystem zu holen und diese
 zu verarbeiten, aufzubereiten und im Dokument darzustellen, beispielsweise
 als Plot. → Zugriff auf immer aktuelle Daten, mit jeder Dokumenten-Erzeugung.
 
 Weiter könnte man sich weiter vorstellen, statt einen direkten Datenbankzugriff
-einen Zugriff über Excel zu machen, dass ich als Dokumenten-Ersteller
-über meine gewohnte Excel-Abläufe meine Daten zusammenstelle und die xls-Datei
-über den Programmcode einbinde. Excel könnte so auch bei Bedarf geöffnet
-werden, neue Daten holen und eine aktualiserte xls-Datei ablegen. Die
-Kommunikation könnte dann als VB-Script ablaufen. → Einbettung
+einen Zugriff über ein gewohntes Werkzeug wie Excel zu machen,
+so dass ich als Dokumenten-Ersteller über meine gewohnte Excel-Abläufe
+meine Daten zusammenstelle und die xls-Datei über den Programmcode einbinde.
+Excel könnte so bei Bedarf geöffnet
+werden, um neue Daten holen und eine aktualiserte xls-Datei ablegen. Die
+Kommunikation könnte via VBScript ablaufen. → Einbettung
 verschiedener Umgebungen.
 
-\paragraph{Szenario 3:} Ermöglicht Konvertierung von verschiedenen
+\paragraph{Szenario 4:} Ermöglicht Konvertierung von verschiedenen
 Konventionen auf einen gemeinsamen Nenner, z.B. bei chemischie Formeln
-gibt es viele Konventionen der Dateiformale (populär sind SMILES, Molfiles oder
-IUPAC-Namen.) Eine Bibliothek könnte all diese Formate annehmen und
+gibt es viele Konventionen der Repräsentation (populär sind u.a.
+SMILES, Molfiles oder IUPAC-Namen.)
+Eine Bibliothek könnte all diese Formate annehmen und
 für die Webansicht konform machen.
 
 Zudem könnte eine implizite Anreicherung der Informationen vorgenommen werden,
-so dass der Benutzer im Programmcode lediglich „Zeichne Strukturformel
-für Coffein“ angibt, aber die Bibliothek noch weitere Hintergrundinformationen
-zu Coffein aus anderen Quellen (z.B. Wikipedia, WolframAlpha, \ldots) bezieht.
+so dass der Benutzer im Programmcode lediglich programmatisch etwas wie
+„Zeichne Strukturformel für Coffein“ angibt,
+aber die Bibliothek noch weitere Hintergrundinformationen
+zu Coffein aus anderen Quellen (z.B. Wikipedia, WolframAlpha, \ldots) bezieht
+und dem Dokument hinzufügt.
 
-\paragraph{Szenario 4:} Dokumentation
+\paragraph{Szenario 5:} Dokumentation
 und lauffähiger Code vereint, so dass das Dokument quasi auch schon selbst
 die Problemlösung errechnen kann.
 
 Beispiel: Das Dokument beschreibt eine Simulation, zu einem gestellten
 Problem. In dem Dokument selbst ist ein Algorithmus beschrieben, der
 für die Simulation eingesetzt wird. Aber dadruch, dass das Dokument selbst
-in einer vollständigen Programmiersprache geschrieben wird, kann dieser
+in einer vollständigen Programmiersprache geschrieben ist, kann dieser
 Algorithmus direkt während der Dokumenten-Generierung ausgeführt werden
-und mit Daten aus einer Datenbank gefüttert werden und entsprechende Plots
-im resultierenden Dokument darstellen. Also ist der Code, der im Dokument
-beschrieben ist auch gleichzeitg der funktionsfähige und ausführbare
-Algorithmus.
+und z.B. mit Daten aus einer Datenbank gefüttert werden und entsprechende Plots
+anfertigen um diese im resultierenden Dokument darzustellen.
+Also ist der Code, der im Dokument beschrieben ist auch quasi gleichzeitg
+der funktionsfähige und ausführbare Algorithmus, der Ergebnisse liefern kann.
 
-\paragraph{Szenario 5:} Man könnte sogar so weit gehen, und statt eine einfache
-zu HTML-Seite zu generieren einen Webservice starten, der dem Dokument noch
+\paragraph{Szenario 6:} Man könnte sogar so weit gehen, und statt eine einfache
+zu HTML-Seite zu generieren einen kleinen Webserver über die
+Programmierschnittstelle starten, welcher dem Dokument noch
 mehr dynamische Fähigkkeiten ermöglicht, z.B. durch bidirektionale
 Kommunikation zwischen Webbrowser-Client (Dokumenten-Betrachter) und
-Dokumenten-Server, welche eine Interaktion zwischen Benutzer und Dokument
-bzw. anderen Benutzern des Dokuments ermöglicht.
+Dokumenten-Server. Das ermöglicht eine Interaktion zwischen Benutzer und
+Dokument bzw. anderen Benutzern des Dokuments ermöglicht.
 
 \subsection{Was getan werden muss}
 
@@ -235,22 +247,25 @@ ein solches „\LaTeX on steroids“ zu erschaffen.
 
 Als ich soweit an der Thematik getüftelt hatte und die Machbarkeit als
 Bachelor-Thesis erkannte trug ich den Vorschlag am ISE vor, jedoch sind
-diese kein Informatik Institut und sahen sich nicht in der Lage die Arbeit
+diese kein Informatik-Institut und sahen sich so nicht in der Lage die Arbeit
 zu betreuen, wenngleich sie die Idee sehr nützlich fanden. So wurde mir
-nahe gelegt, dass ich bei einem anderen Fraunhofer Institut anklopfen könne.
+nahe gelegt, dass ich doch bei einem anderen Fraunhofer-Institut anklopfen
+könne.
 
-Ich habe das Fraunhofer SCAI angeschrieben, und Dr. Marc Zimmermann fand
+So habe das \emph{Fraunhofer-Institut für Algorithmen und Wissenschaftliches
+Rechnen SCAI} angeschrieben, und Dr. Marc Zimmermann fand
 die Idee spannend und auch passend für deren Themengebiet. Sie bereiten u.a.
-Patente auf, indem sie eine Patent-PDF-Datei mit Hilfe ihres Java-Framework
+Patente auf indem sie eine Patent-PDF-Datei mit Hilfe ihres Java-Framework
 zerlegen und die so erhaltenen Daten ggf. mit zusätzlichen Informationen
 anreichern. Die Idee von mir hat ihnen sehr zugesagt, da sie noch eine
 Möglichkeit suchten, die die aufbereiteten Patente mit Webtechnologie
-darzustellen kann bzw. auszuliefern.
+darzustellen kann, ohne ihre eigentliche Form bzw. Layout zu verlieren.
 
 \section{Zum Dokument}
 
-In diesem Dokument versuche ich nach Möglichkeit \emph{vollständig}
-deutsche Sprache anzuwenden, also nur dort wo es unumgänglich ist
-Anglizismen zu verwenden. Das gilt auch gerade für Fachsprache, sofern es
-passende deutsche Übersetzungen gibt.
+In diesem Dokument versuche ich nach Möglichkeit Anglizismen zu umgehen.
+Das gilt auch für Fachsprache, sofern es passende deutsche Übersetzungen gibt.
+
+% Typographie?
+% Code Darstellung?
 

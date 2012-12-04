@@ -2,6 +2,152 @@
 
 Architektureller Aufbau der Softwaresysteme.
 
+\section{Zielarchitektur}
+
+Wie in Kapitel \ref{sec-zielarchitektur} schon beschrieben wurde, ist die
+Zielarchitektur für die Darstellung des Dokuments verantwortlich, welche
+auf Webtechnologie aufbaut und somit von einem Webbrowser gerendert werden
+soll.
+
+Da Webtechnologie, insbesondere HTML/CSS, keine Möglichkeiten bieten
+Seiten wie DIN A4 darzustellen ist \emph{die} Hauptaufgaben eine geeignete
+\emph{Abstraktion für Seiten} zu entwickeln.
+
+% TODO Übersicht über die Konzepte. Wie funktiioniert es grob?
+% Grober Aufbau, Template-Snippets, JS \ldots
+
+\subsection{Abstraktion für Seiten}
+
+Um eine solche Abstraktion zu ermöglichen wird die Hilfe von Javascript
+benötigt, welches dafür sorgt, an der richtigen Stelle das Dokument auf
+seine entsprechenden Seiten umzubrechen.
+
+\paragraph{Vorarbeit}
+Zunächst muss mit gewöhnlichem HTML plus CSS eine „Webseite“ angefertigt
+werden, die den Inhalt in eine z.B. DIN A4 Seite hüllt. Diese Konstruktion
+kann später von dem Javascript-Framework vervielfältigt und mit entsprechendem
+Inhalt gefüllt werden. Wie es beispielhaft auf auf Abbildung
+\ref{fig-one_page} zu sehen ist,
+kann man gut die Seite mit ihren inneren und äußeren
+Grenzen erkennen. Wenn jetzt weitere Texte und Bilder
+hinzukommen, wächst der Inhalt über die Seite hinaus. Wir brauchen nun
+eine Strategie, um dies zu vermeiden und neue Seiten einzufügen, auf denen
+der Inhalt fortgesetzt werden kann.
+
+\newpage
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.9\textwidth]{figures/one_page.png}
+  \caption{Einzelne DIN A4 Seite mit HTML und CSS gesetzt.}\label{fig-one_page}
+\end{figure}
+\newpage
+
+\paragraph{Strategie}
+Konzentriert sich zunächst darauf die Entitäten, wie Texte, Bilder usw.,
+auf Seiten im Dokumentenfluss zuzuweisen. In diesem Fall darf zunächst eine
+einzelne Entität nicht die größe einer Seite überschreiten -- diese
+Problematik soll später näher erläutert werden.
+
+Der prinzipielle Ablauf wird auf Abbildung \ref{fig-aufteilungsstrategie}
+visualisiert. Rechts ist die temporäre \emph{Construction Page}, die zum
+ausmessen der Entitäten dient, für jeden Seitentypus welcher vom jeweilige
+Dokumenten-Template geboten wird gibt es also eine Construction Page, sofern
+dieser sich von den Ausmaßen anderes verhalten sollte.
+
+Der Ablauf ist also wie folgt: die Entität wird mithilfe der Construction
+Page ausgemessen und wenn auf der \emph{View Page} noch genügend Platz
+vorhanden ist dort hin verschoben, wenn nicht genügend Platz vorhanden ist,
+wir eine neue Seite erstellt und die Entität dort platziert.
+
+Hier kann noch ein Zwischenschritt eingefügt werden, der es ermöglichen
+sollte gerade Textentitäten weiter aufteilen zu können, so dass eine
+bessere Auslastung der Seiten erreicht werden kann.
+% TODO Falls umgesetzt, noch ergänzen.
+
+\newpage
+\begin{figure}[h!]
+  \centering
+    \includegraphics[height=0.9\textheight]{figures/aufteilungsstrategie.pdf}
+  \caption{Aufteilungsstrategie: wie Entitäten auf einzelne Seiten
+           verteilt werden.}\label{fig-aufteilungsstrategie}
+\end{figure}
+\newpage
+
+\subsection{Templating}
+
+Ich habe mich dazu entschieden das Templating vorerst mit JavaScript
+vorzunehmen, also komplett auf der Seite des Dokumenten-Betrachters.
+Dies soll den Zweck haben, dass ein Dokumenten-Template-Designer es
+leichter haben soll sein Dokumenten-Design zu bauen und zu debuggen --
+komplett unabhängig von der DSL bzw. der Programmierlogik.
+Zum Einsatz kommt dabei die Javascript-Bibliothek
+\emph{mustache}\footnote{\url{http://mustache.github.com}}.
+
+Auf diese Weise kann jede einzelne Entität oder Seite clientseitig
+durch ein kleines Template-Snippet darstellt werden, welches an die
+Bedürfnisse des spezifischen Dokumenten-Designs bzw. Dokumenten-Templates
+angepasst ist. Beispielsweise eine Überschrift, könnte so aussiehen.
+
+\begin{verbatim}
+<script id="heading" type="text/template">
+<div class="row">
+  <div class="col4">
+    <{{h}}>{{number}}
+      </br>
+      {{heading}}
+    </{{h}}>
+    </br></br>
+  </div>
+  <div class="row-end">&nbsp;</div>
+</div>
+</script>
+\end{verbatim}
+
+Diese muss dann nur noch von der DSL entsprechend mit einer
+JSON-Datenstruktur\footnote{JSON ist die \emph{JavaScript Object Notation},
+und bildet die zentrale Datenstruktur von JavaScript.
+Mehr Informationen unter \url{http://json.org}.} gefüttert werden.
+
+\subsection{Dokumenten-Areale}
+
+Die resultierenden Seiten zur Anzeige (View Pages), werden bestimmten
+Arealen zugeordnet, diese dienen insbesondere der logischen Strukturierung
+des Dokuments. Aus Sicht der Seiten sind diese Areale quasi
+Einhängepunkte, wo die fertig befüllten Seiten angefügt werden.
+Beispiele für Areale sind z.B.
+
+\begin{itemize}
+  \item Titelblätter,
+  \item Inhaltsverzeichnis,
+  \item eigentliches Dokument,
+  \item Literaturverzeichnis,
+  \item \ldots
+\end{itemize}
+
+Innerhalb des HTML-Dokuments können diese Areale in ihrer Reihenfolge
+verändert werden, und ermöglichen so einen recht flexiblen Umgang mit
+den Dokumtenten-Arealen. Diese sind ganz primitiver HTML-Code wie dieser
+z.B.:
+
+\begin{verbatim}
+<div id="TitlepageAreal"></div>
+<div id="TableOfContentsAreal"></div>
+<div id="DocumentAreal"></div>
+\end{verbatim}
+
+Es muss nur dem JavaScript-Framework welches die Abstraktion für die
+Seiten vornimmt mitgeteilt werden, für welche IDs, welche Areale definiert
+sind.
+
+\subsection{Klassendiagramm?}
+
+pass  % TODO!!!
+
+\subsection{Beispiel Code}
+
+pass % TODO ein kleines aber komplettes html-code beispiel (welches man durch
+% die vorherigen kapitel hoffentlich verstehen kann.
+
 \section{Vorwärtsverweis „Forward Reference“}\label{sec-forwardreference}
 
 Dieses Problem tritt auf, wenn z.B. in einem Text auf eine Abbildung

@@ -9,14 +9,85 @@ Zielarchitektur für die Darstellung des Dokuments verantwortlich, welche
 auf Webtechnologie aufbaut und somit von einem Webbrowser gerendert werden
 soll.
 
-Da Webtechnologie, insbesondere HTML/CSS, keine Möglichkeiten bieten
-Seiten wie DIN A4 darzustellen ist \emph{die} Hauptaufgaben eine geeignete
-\emph{Abstraktion für Seiten} zu entwickeln.
+Da Webtechnologie, insbesondere HTML/CSS, keine Möglichkeiten bietet
+Seiten wie z.B. im DIN A4 Format darzustellen ist \emph{die}
+Hauptaufgaben eine geeignete \emph{Abstraktion für Seiten} zu entwickeln.
+Eine detailierte Beschreibung ist in Kapitel \ref{sec-abstrationSeiten}.
 
-% TODO Übersicht über die Konzepte. Wie funktiioniert es grob?
-% Grober Aufbau, Template-Snippets, JS \ldots
+Weiterhin ist wichtig, wie die einzelnen Entitäten, wie Überschriften,
+Texte, Bilder etc. erstellt werden können -- dies soll in Kapitel
+\ref{sec-templating} geklärt werden.
 
-\subsection{Abstraktion für Seiten}
+Eine Übersicht über die Anforderungen ist in Kapitel
+\ref{sec-ziel_anforderungen} aufgelistet.
+
+Im Anhang \ref{appendix-zielarchitektur} sind die wichtigsten Teile des
+Quellcodes zu diesem JavaScript-Framework griffig zusammengefasst.
+Auch ist im Anhang \ref{appendix-ziel_beispiel} in einem kompletten
+Beispiel aufgeführt, wie die einzelnen Klassen zu benutzen sind,
+damit daraus ein semi-autoamtisches Dokument erstellt werden kann.
+Der kompletten Quellcode mit Tests und weiteren Beispielen ist im
+Github Repository \url{https://github.com/themerius/ScalTeX-templates}
+zu finden.
+
+\subsection{Anforderungen}\label{sec-ziel_anforderungen}
+
+Das kleine JavaScript-Framework wird mit dem
+\emph{behavior-driven development} Paradigma entwickelt,
+für diesen Zweck kommt das
+Jasmine-Framework\footnote{\url{http://pivotal.github.com/jasmine/}}
+zum Einsatz. Folgende Spezifikationen gelten:
+
+\begin{itemize}
+  \item Util
+    \begin{itemize}
+      \item should determine the dpi used by the browser
+      \item should calculate the browser specific `pixels per mm`
+      \item should be a singleton
+      \item should be able to transform mm to px
+    \end{itemize}
+  \item Entity (siehe Kapitel \ref{sec-templating})
+    \begin{itemize}
+      \item should create an element out of template and json
+      \item should be able to append the created element to another
+            element with an id
+      \item should know it's actual height
+      \item should be able to modify or extend the json
+    \end{itemize}
+  \item Page (siehe Kapitel \ref{sec-abstrationSeiten})
+    \begin{itemize}
+      \item should know the type and id for every configured append point
+      \item should know it's maximum height for every append point
+      \item should create a new element out of a page template and
+            configured append points
+      \item should be append-able to another element with an id
+      \item should know the available space on the page resp. it's
+            append points
+    \end{itemize}
+  \item PageFactory (siehe Kapitel \ref{sec-abstrationSeiten})
+    \begin{itemize}
+      \item should save the (maybe incomplete) page configurations
+            with a related name
+      \item should combine the page configs with other page config fragments
+            to a complete page config
+      \item should produce Page instances out of a certain page config and
+            other page config fragments
+    \end{itemize}
+  \item Areal (siehe Kapitel \ref{sec-areal})
+    \begin{itemize}
+      \item should be able prepare a construction area for every page type
+      \item should generate entities out of a json-sequence and keep them
+      \item should generate the special entities, which are individual
+            for every page
+      \item should mount the entities into the targeted construction area
+      \item should create new pages for viewing, with footer, and move the
+            entities to fill the pages
+      \item should keep track of the page numbers of the viewed pages
+      \item should be able to destruct the construction areas
+    \end{itemize}
+\end{itemize}
+
+\subsection{Abstraktion für Seiten}\label{sec-abstrationSeiten}
 
 Um eine solche Abstraktion zu ermöglichen wird die Hilfe von Javascript
 benötigt, welches dafür sorgt, an der richtigen Stelle das Dokument auf
@@ -68,19 +139,21 @@ bessere Auslastung der Seiten erreicht werden kann.
 \begin{figure}[h!]
   \centering
     \includegraphics[height=0.9\textheight]{figures/aufteilungsstrategie.pdf}
-  \caption{Aufteilungsstrategie: wie Entitäten auf einzelne Seiten
-           verteilt werden.}\label{fig-aufteilungsstrategie}
+  \caption{Aufteilungsstrategie, wie Entitäten auf einzelne Seiten
+           verteilt werden. Rechts ist die \emph{Construction Page},
+           links sind die \emph{View Pages}.}
+  \label{fig-aufteilungsstrategie}
 \end{figure}
 \newpage
 
-\subsection{Templating}
+\subsection{Templating}\label{sec-templating}
 
 Ich habe mich dazu entschieden das Templating vorerst mit JavaScript
 vorzunehmen, also komplett auf der Seite des Dokumenten-Betrachters.
 Dies soll den Zweck haben, dass ein Dokumenten-Template-Designer es
 leichter haben soll sein Dokumenten-Design zu bauen und zu debuggen --
 komplett unabhängig von der DSL bzw. der Programmierlogik.
-Zum Einsatz kommt dabei die Javascript-Bibliothek
+Zum Einsatz kommt dabei die Javascript-Bib\-lio\-thek
 \emph{mustache}\footnote{\url{http://mustache.github.com}}.
 
 Auf diese Weise kann jede einzelne Entität oder Seite clientseitig
@@ -104,11 +177,11 @@ angepasst ist. Beispielsweise eine Überschrift, könnte so aussiehen.
 \end{verbatim}
 
 Diese muss dann nur noch von der DSL entsprechend mit einer
-JSON-Datenstruktur\footnote{JSON ist die \emph{JavaScript Object Notation},
+JSON-Daten\-struktur\footnote{JSON ist die \emph{JavaScript Object Notation},
 und bildet die zentrale Datenstruktur von JavaScript.
 Mehr Informationen unter \url{http://json.org}.} gefüttert werden.
 
-\subsection{Dokumenten-Areale}
+\subsection{Dokumenten-Areale}\label{sec-areal}
 
 Die resultierenden Seiten zur Anzeige (View Pages), werden bestimmten
 Arealen zugeordnet, diese dienen insbesondere der logischen Strukturierung
@@ -126,7 +199,7 @@ Beispiele für Areale sind z.B.
 
 Innerhalb des HTML-Dokuments können diese Areale in ihrer Reihenfolge
 verändert werden, und ermöglichen so einen recht flexiblen Umgang mit
-den Dokumtenten-Arealen. Diese sind ganz primitiver HTML-Code wie dieser
+den Doku\-men\-ten-Arealen. Diese sind ganz primitiver HTML-Code wie dieser
 z.B.:
 
 \begin{verbatim}
@@ -139,14 +212,7 @@ Es muss nur dem JavaScript-Framework welches die Abstraktion für die
 Seiten vornimmt mitgeteilt werden, für welche IDs, welche Areale definiert
 sind.
 
-\subsection{Klassendiagramm?}
 
-pass  % TODO!!!
-
-\subsection{Beispiel Code}
-
-pass % TODO ein kleines aber komplettes html-code beispiel (welches man durch
-% die vorherigen kapitel hoffentlich verstehen kann.
 
 \section{Vorwärtsverweis „Forward Reference“}\label{sec-forwardreference}
 

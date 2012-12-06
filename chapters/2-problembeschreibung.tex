@@ -1,21 +1,21 @@
 \chapter{Problembeschreibung → Aufgabenstellung}
 
 In diesem Kapitel soll eine umfassende Beschreibung des Problems erfolgen,
-aus welcher sich wiederum die Aufgabenstellung ergibt, welche im
-späteren Verlauf implementiert wird.
+aus welcher sich wiederum die Aufgabenstellung ergibt. Diese dann im
+späteren Verlauf umgesetzt wird.
 
 Den Anfang macht die Zielachitektur, welche primär aus Webtechnologien
 besteht und somit zur Darstellung des Dokumentes dient. Siehe
 Abschnitt \ref{sec-zielarchitektur}.
 
 Die Zielarchitektur soll von einem Benutzer ohne großen Aufwand
-generierbar sein und soll dabei die Möglichkeit haben, bestimmte
+generierbar sein und dabei die Möglichkeit haben, bestimmte
 Aufgaben automatisch zu erledigen, wie z.B. das Zusammenstellen
 eines Inhaltsverzeichnisses. Siehe Abschnitt \ref{sec-dsl}.
 
 Damit aus der Schnittstelle die dem Benutzer gegebenen ist die Zielarchitektur
 generiert werden kann, muss es eine geeignete Brücke bzw. Verbindung
-geben, diese wird in Abschnitt \ref{sec-verbindung} näher beschrieben.
+geben, welche in Abschnitt \ref{sec-verbindung} näher beschrieben wird.
 
 % TODO Verweise auf die Architektur!
 
@@ -24,26 +24,27 @@ geben, diese wird in Abschnitt \ref{sec-verbindung} näher beschrieben.
 Die primäre Aufgabe der Zielarchitektur ist es ein Dokument in
 einem Webbrowser darzustellen. Das Dokument ist aber keine gewöhnliche
 Webseite, sondern orientiert sich hautsächlich an akademischen
-Dokumenten wie z.B. Fachbüchern. Bücher bestehen auch einzelnen Seiten,
-diese sind in Webseiten in ihrer Ursprünglichen Form nicht vorgesehen,
-eine stellt lange Dokumente stufenlos, also ohne Seiten dar.
-Daher ist eine Aufgabe der Zielarchitektur eine \emph{Abstraktion
-über Seiten} für Webtechnologie zu bieten.
+Dokumenten wie z.B. Fachbüchern. Bücher bestehen aus einzelnen Seiten,
+welche in Webseiten in ihrer Ursprünglichen Form nicht vorgesehen sind.
+Lange Dokumente werden mit Webtechnologie für gewöhnlich stufenlos
+dargestellt, also alles auf einer einzelnen „Seite.“
+Daher ist die Hauptaufgabe der Zielarchitektur eine \emph{Abstraktion
+über Seiten} für Webtechnologie zu schaffen.
 
 Die eigentliche Problematik ist hierbei, dass der Webbrowser fließenden
 Text nicht selbst auf definierte Seiten umbrechen kann. Für den Browser
-gibt es nur eine Seite die quasi einem langen Textschlauch entspricht,
+gibt es nur eine Seite, die quasi einem langen Textschlauch entspricht,
 wenngleich er durch HTML struktuirert und
 CSS-Eigenschaften gestaltet werden kann.
 
 Damit verbunden ist die Problematik der
 \emph{Zuordnung der einzelnen Dokumenten-Entitäten zu den Seiten},
 dabei kann es dazu kommen dass eine Entität zwischen zwei Seiten
-\emph{überlappt} und diese sollte, wenn möglich, passend aufgeteilt werden.
+\emph{überlappt} und diese sollte, wenn möglich passend aufgeteilt werden.
 
 Dadurch dass die Zielarchitektur sich um die Erstellung der Seiten und
 die Zuteilung der Entitäten kümmern muss, ist es vollkommen natürlich,
-dass sich diese auch der \emph{Nummerierung der Seiten} annehmen muss.
+dass sich diese auch der \emph{Durchnummerierung der Seiten} annehmen muss.
 Davon hängt auch dirket die Funktion, die einzelnen Punkte des
 Inhaltsverzeichnisses mit der entsprechden Seitennummer zu versehen, ab.
 
@@ -53,23 +54,22 @@ große Tabellen oder Abbildungen. Oder auch dass verschiedene Papierformate
 wie DIN-A4 oder US-Letter zur Auswahl stehen.
 
 Die Einführung von \emph{Dokumenten-Arealen} als eine weitere hilfreiche
-Abstraktion die zur Gliederung eines - insbesondere
-akademischen - Dokuments dient, ist mit Sicherheit nicht verkehrt.
+Abstraktion die zur Gliederung eines -- insbesondere
+akademischen -- Dokuments dient, ist mit Sicherheit wünschenswert.
 Damit soll es möglich sein, Dinge wie beispielsweise
 Deckblatt, Inhaltsverzeichnis, eigentliches Dokument
-und Literaturverzeichnis etc. von einander zu separieren für eine
-flexiblere Konfiguration, z.B. um die Areale in der Anordnung zu
-verändern, oder Dinge wie Nummerierungen zu modifizieren, beispielsweise
-wird gerne der Anfang eines Dokuments mit römischen Ziffern durchnummeriert
-und das eigentliche Dokument wird jedoch mit
-arabischen Ziffern durchnummeriert.
+und Literaturverzeichnis etc. von einander zu separieren, um für eine
+flexiblere Konfiguration zu bieten. Beispielsweise um Areale in der Anordnung zu
+verändern, oder Dinge wie Nummerierungen zu modifizieren, es wird z.B.
+gerne der Anfang eines Dokuments mit römischen Ziffern durchnummeriert
+und das eigentliche Dokument jedoch mit arabischen Ziffern.
 
 % Seitennummerierung
 % Inhaltsverzeichnis, Seite zuordnen
 % Dokumentenareale
 % Vorteile die sich durch die HTML-Nutzung ergeben? Welches Kapitel?
 
-\paragraph{Anforderungen} auf einen Blick zusammengefasst:
+\paragraph{Aufgaben} auf einen Blick zusammengefasst:
 
 \begin{itemize}
   \item Abstraktion für Seiten,
@@ -84,26 +84,26 @@ arabischen Ziffern durchnummeriert.
 
 \section{Domain-Specific Language}\label{sec-dsl}
 
-Die \emph{Domain-specific language}, kurz \emph{DSL}, stellt die
+Die \emph{domain-specific language}, kurz \emph{DSL}, stellt die
 textuelle Schnittstelle zwischen Benutzer und der Zielplatform dar.
 Eine DSL ist eine leichtgewichtige Programmiersprache, die für den
-Einsatz ihres Spezialgebietes, ihre Domäne, zugeschnitten ist.
+Einsatz ihres Spezialgebietes, ihrer Domäne, zugeschnitten ist.
 
 Dabei unterscheidet man grob zwischen \emph{internen}, \emph{externen}
-und \emph{nicht-textuellen} DSLs.\cite{dsls} Da in diesem Projekt
-nur eine textuell DSLs zum Einsatz kommen soll, konzentrieren wir uns
+und \emph{nicht-textuellen} DSLs.\cite{dsls} Da in diesem Projekt allerdings
+nur eine textuelle DSL zum Einsatz kommen soll, konzentrieren wir uns
 auf die internen DSLs bzw. externen DSLs.
 
-\paragraph{Interne DSL}
+\paragraph{Definition interne DSL}
 \begin{quote}
 Eine interne DSL wird als Bibliothek auf Basis
 einer bereits existierenden Wirtssprache implementiert. Das interne DSL-Skript
 ist eine dünne Fassade über die Abstraktionen der unterliegenden Wirtssprache.
 \end{quote} (von \cite{dsls} Kapitel 1.5.1, Seite 18.)
 
-\paragraph{Externe DSL}
+\paragraph{Definition externe DSL}
 \begin{quote}
-Eine externe DSL wird von Grund auf entwickelt und hat eine separierte
+Eine externe DSL wird von Grund auf entwickelt und hat eine separate
 Infrastruktur für die lexikalische Analyse, Interpretation, Kompilierung
 und Code Generierung. Eine externe DSL zu entwickeln ist gleichzusetzen mit
 der Implementierung einer neuen Sprache von Grund auf, welche ihre eigene
@@ -120,18 +120,20 @@ Komplexitäten einer vollwertigen Sprache benötigt.
 \end{itemize}
 
 Wobei Scala ausgezeichnete Fähigkeiten zur Gestaltung einer
-internen DSL hat, nähere Details siehe \ref{sec-grammatikGestaltung},
+internen DSL hat, nähere Details siehe Kapitel \ref{sec-grammatikGestaltung},
 und als objekt-orientierte sowohl auch funktionale Sprache sehr
 vielfältige Möglichkeiten für den Benutzer bietet, egal ob er sich
-gerade innerhalb der DSL gefindet oder „standard Scala“ schreiben
-möchte. Zudem hat Scala eine sehr aktive Community und wir von einem
-Universitätzlehrstuhl unter einer Open Source Lizenz weiterentwickelt
-und durch die Fähigkeit auf der Java Virtual Machine (JVM) zu laufen,
-auch sehr gute Integration mit Java und Java-Bibliotheken mitbringt.
+gerade „innerhalb“ der DSL gefindet oder „standard“ Scala schreiben
+möchte. Zudem hat Scala eine sehr aktive Community und wird vom
+Universitätzlehrstuhl von Martin Odersky unter einer Open Source Lizenz
+weiterentwickelt.
+Durch die Fähigkeit auf der Java Virtual Machine (JVM) zu laufen,
+hat Scala auch eine sehr gute Integration mit Java und den
+Java-Bibliotheken.
 
 Xtext ist ein Framework welches auf die Entwicklung externer DSLs
-ausgelegt ist und dabei auf die Eclipse IDE Platform aufbaut
-und sehr viel der harten Arbeit abnimmt was die Entwicklung
+ausgelegt ist und dabei auf die Eclipse IDE Plattform aufbaut
+und sehr viel der harten Arbeit abnimmt, was die Entwicklung
 externer DSLs nachhaltig vereinfacht.
 Auch Xtext läuft auf der JVM und ist stark mit Java integriert, bringt
 zudem eine eigene, auch mit Xtext entwickelte, Sprache mit, die von der
@@ -140,12 +142,12 @@ Java-Konzepten aufhält. Diese Sprache heißt Xtend und wird vornehmlich
 intern zur Generator-Programmierung eingesetzt. Ein genauerer Vergleich
 zwischen Scala und Xtext findet sich in Kapitel \ref{sec-vergleichsmatrix}.
 
-\subsection{Anforderungen}
+\subsection{Aufgaben}
 
 Wie schon erwähnt, dient die DSL als Schnittstelle für den Benutzer,
 und sollte möglicht leicht für diesen zu verstehen sein, so dass
 auch ein Benutzer ohne große Programmierkenntnisse zumindest die
-DSL versteht und schreiben kann. Dies erfordert intuitive Konzepte,
+DSL verstehen und schreiben kann. Dies erfordert intuitive Konzepte,
 klare Strukturen und übersichtliche bzw. leichtgewichtige Syntax, welche
 sich auf das Domänen-Problem einer Dokumentengenerierung konzentriert.
 
@@ -231,11 +233,19 @@ Problem dass zwar immer auf das gleiche Ziel (Webtechnologie) abgebildet
 wird, aber dieses unterschiedliche Ausprägungen besitzen kann. Jede
 dieser Ausprägungen kann sich in ihren Eigenschaften, Einsatzzielen
 und Darstellungsmöglichkeiten (z.B. mathematische Formeln in einen
-Dokument-Typ und chemische Formeln im anderen) unterscheiden.
+Dokument-Typ und chemische Formeln im Anderen) unterscheiden.
 
-Ideal wäre es wenn insbesondere die Darstellungsmöglichkeiten zwischen
-den einzelnen Dokument-Typen \emph{austauschbar} sind. Außerdem ist
+Ideal ist es wenn insbesondere die Darstellungsmöglichkeiten zwischen
+den einzelnen Dokument-Typen \emph{austauschbar} sind, z.B. gefällt mir
+die Tabelle aus dem \verb|Patent|-Template, aber ich möchte diese gerne im
+\verb|Bericht|-Template verwenden.
+
+Außerdem ist
 es wünschenswert, wenn zwischen verschiedenen Dokumenten-Typen gewechselt
-bzw. migriert werden kann, ohne große Veränderungen am DSL-Code vornehmen
-zu müssen.
+bzw. \emph{migriert} werden kann, ohne große Veränderungen am
+DSL-Code vornehmen zu müssen, z.B. wird im
+DSL-Skript nur die Programmzeile \verb|Bericht| durch \verb|Patent| geändert und
+das Dokument bekommt ein völlig anderes Erscheinungsbild -- die des Patents.
+Wobei natürlich diese beiden Ausprägungen Spezialisierungen des Typs
+\verb|AkedemischesDokument| sein müssen, damit die Migration funktionieren kann.
 

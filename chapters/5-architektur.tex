@@ -213,11 +213,44 @@ Seiten vornimmt mitgeteilt werden, für welche IDs, welche Areale definiert
 sind.
 
 
+\section{Scala DSL}
 
-\section{Vorwärtsverweis „Forward Reference“}\label{sec-forwardreference}
+Architektureller Aufbau der auf Scala basierenden internen DSL. Wie in
+Kapitel \ref{sec-dsl} beschrieben, wird eine interne DSL in eine bereits
+existierende Wirts-Programmiersprache eingebettet und bildet somit
+eine mehr oder weniger gewöhn\-liche Software-Bibliothek. Im Idealfall ist
+die \emph{API} dieser Bibliothek in ihrer Einsatzdomäne sehr ausdrucksstark.
+Wie die API in diesem Fall gestaltet wird, ist in Kapitel \ref{sec-apiDesign}
+näher beschrieben.
 
-Dieses Problem tritt auf, wenn z.B. in einem Text auf eine Abbildung
-verweisen wird, welche innerhalb des Programmflusses erst später verfügbar
+Scala bietet als Wirtssprache dafür ausgezeichnete Fähigkeiten und
+Abstraktionsmittel, wie in Kapitel \ref{sec-grammatikGestaltung} aufgeführt.
+Viele dieser Fähigkeiten werden auch bei der Implementierung eingesetzt
+und dadruch auch in diesem Kapitel näher beschrieben.
+
+Ein Muster, welches eine wichtige Rolle bei der Erstellung von Dokumenten
+spielt, ist der Vorwärtsverweis, also gegenseitige Verweise von Entitäten,
+wie Texten, Bildern, etc., aufeinander. Für dieses Muster gibt es in Scala
+eine ziemlich elegante Lösung, siehe dazu Kapitel \ref{sec-forwardreference}.
+
+\subsection{Anforderungen}
+
+Kommt noch. Auch behavior-driven development!
+
+\subsection{API Design}\label{sec-apiDesign}
+
+Kommt noch.
+
+\subsection{Bindung zwischen API, Logik und Template}
+
+Kommt noch.
+
+\subsection{Vorwärtsverweis Muster}\label{sec-forwardreference}
+
+Das Problem des
+Vorwärtsverweises\footnote{Engl. \emph{forward reference}} tritt auf,
+wenn z.B. in einem Text auf eine Abbildung
+verweisen wird, welche innerhalb des Programmflusses aber erst später verfügbar
 wird.
 
 \begin{lstlisting}
@@ -233,13 +266,23 @@ Die Abbilung soll also an der Position im Dokument erscheinen, an der sie
 auch im Dokument-Quellcode geschrieben wurde, da es sich hier um eine DSL
 handelt, die sich möglichst nahme am eigentlichen Dokument orientiert.
 
-% Note:
-% Von oben nach unten, wir die Lösung immer unflexibler, unsicherer und
-% aufwendiger in der Implementierung. Wobei Request-Queue und Pattern-Matching
-% etwas zusammengehören.
+Vollständig beschrieben wird hier die Lösung mit einem \emph{Closure} in
+Kapitel \ref{sec-closure}, welches zugleich die eleganteste Lösung darstellt
+und auch in der fertigen Implementierung zum Einsatz kommt.
 
+Ein weiterer Ansatz der welcher auch implementiert wurde ist die Lösung
+mit \emph{Eval}, welche aber unpraktischer und auch unsicherer einzustufen
+ist als die Lösung mit einem Closure. Die in Kapitel \ref{sec-eval}
+beschriebene Lösung kommt in der fertigen Implementierung jeodoch nicht
+zum Einsatz.
 
-\subsection{Closure}
+Zudem gibt es noch weitere Überlegungen die während der Lösungsfindung
+aufgekommen sind, welche aber nicht weiter verfolgt werden, da die Lösung
+mit dem Closure überlegen ist durch höhere Eleganz, Flexibilität und
+Sicherheit ist. Daher wird nur kurz auf die anderen Überlegungen in
+Kapitel \ref{sec-datenstrukturbasierend} eingegangen.
+
+\subsubsection{Closure}\label{sec-closure}
 
 Insbesondere funktionale Programmiersprachen wie Scala haben die
 Möglichkeit Closures zu bilden, d.h. der Teile Geltungsbereich (Scope)
@@ -284,7 +327,7 @@ Nachteil hier ist, dass der Domänen-Benutzer innerhalb der DSL diese
 Unverständnis führen würde.
 
 
-\subsubsection{Verbesserung für den Domänen-Benutzer}
+\paragraph{Verbesserung für den Domänen-Benutzer}
 
 Ideal wäre also nun eine Lösung inder der Domänen-Benutzer keine
 Aufmerksamkeit auf die Closure-Magie verschwenden muss.
@@ -325,22 +368,25 @@ aus einem beliebigen \lstinline|$"…"|-String übergeben und in ein Closure gep
 welches erst dann ausgeführt wird, wenn die Referenzen auch tatsächlich
 vorhanden sind.
 
+% ---> ermöglicht es, in einem Rutsch die Referenzen aufzulösen,
+% anders als TeX, welches Zwischenkontexte erstellen muss.
+
 % http://stackoverflow.com/questions/13307418/scala-variable-argument-list-with-call-by-name-possible
 
 % http://stackoverflow.com/questions/13270906/cast-scala-string-to-stringcontext-and-virtually-forward-references
 
-\subsection{Eval}
+\subsubsection{Eval}\label{sec-eval}
 
-\subsection{Datenstrukturbasierend}
+\subsubsection{Datenstrukturbasierend}\label{sec-datenstrukturbasierend}
 
-\subsubsection{Request-Queue}
-
-Nur Idee!
-
-\subsubsection{Pattern-Matching}
+\paragraph{Request-Queue}
 
 Nur Idee!
 
-\subsubsection{„place here“}
+\paragraph{Pattern-Matching}
+
+Nur Idee!
+
+\paragraph{„place here“}
 
 Praktikabel mit Xtext-Generator. Prototypisierung ausnutzen (C-Header).

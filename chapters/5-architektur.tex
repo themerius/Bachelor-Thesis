@@ -6,8 +6,7 @@ Architektureller Aufbau der Softwaresysteme.
 
 Wie in Kapitel \ref{sec-zielarchitektur} schon beschrieben wurde, ist die
 Zielarchitektur für die Darstellung des Dokuments verantwortlich, welche
-auf Webtechnologie aufbaut und somit von einem Webbrowser gerendert werden
-soll.
+auf Webtechnologie basiert und somit von einem Webbrowser gerendert wird.
 
 Da Webtechnologie, insbesondere HTML/CSS, keine Möglichkeiten bietet
 Seiten wie z.B. im DIN A4 Format darzustellen ist \emph{die}
@@ -26,7 +25,7 @@ Quellcodes zu diesem JavaScript-Framework griffig zusammengefasst.
 Auch ist im Anhang \ref{appendix-ziel_beispiel} in einem kompletten
 Beispiel aufgeführt, wie die einzelnen Klassen zu benutzen sind,
 damit daraus ein semi-autoamtisches Dokument erstellt werden kann.
-Der kompletten Quellcode mit Tests und weiteren Beispielen ist im
+Der komplette Quellcode mit Tests und weiteren Beispielen ist im
 Github Repository \url{https://github.com/themerius/ScalTeX-templates}
 zu finden.
 
@@ -36,7 +35,7 @@ Das kleine JavaScript-Framework wird mit dem
 \emph{behavior-driven development} Paradigma entwickelt,
 für diesen Zweck kommt das
 Jasmine-Framework\footnote{\url{http://pivotal.github.com/jasmine/}}
-zum Einsatz. Folgende Spezifikationen gelten:
+zum Einsatz. Folgende Spezifikationen sind aufgestellt:
 
 \begin{itemize}
   \item Util
@@ -89,14 +88,14 @@ zum Einsatz. Folgende Spezifikationen gelten:
 
 \subsection{Abstraktion für Seiten}\label{sec-abstrationSeiten}
 
-Um eine solche Abstraktion zu ermöglichen wird die Hilfe von Javascript
-benötigt, welches dafür sorgt, an der richtigen Stelle das Dokument auf
-seine entsprechenden Seiten umzubrechen.
+Um eine solche Abstraktion zu ermöglichen wird die Hilfe von JavaScript
+benötigt, welches dafür sorgt, dass das Dokument an den richtigen Stelle auf
+entsprechende Seiten umgebrochen wird.
 
 \paragraph{Vorarbeit}
 Zunächst muss mit gewöhnlichem HTML plus CSS eine „Webseite“ angefertigt
 werden, die den Inhalt in eine z.B. DIN A4 Seite hüllt. Diese Konstruktion
-kann später von dem Javascript-Framework vervielfältigt und mit entsprechendem
+kann später von dem JavaScript-Framework vervielfältigt und mit entsprechendem
 Inhalt gefüllt werden. Wie es beispielhaft auf auf Abbildung
 \ref{fig-one_page} zu sehen ist,
 kann man gut die Seite mit ihren inneren und äußeren
@@ -114,15 +113,16 @@ der Inhalt fortgesetzt werden kann.
 \newpage
 
 \paragraph{Strategie}
-Konzentriert sich zunächst darauf die Entitäten, wie Texte, Bilder usw.,
-auf Seiten im Dokumentenfluss zuzuweisen. In diesem Fall darf zunächst eine
+Diese konzentriert sich zunächst darauf die Entitäten, wie Texte, Bilder usw.,
+auf Seiten entsprechend dem Dokumentenfluss zuzuweisen.
+In diesem Fall darf zunächst eine
 einzelne Entität nicht die größe einer Seite überschreiten -- diese
 Problematik soll später näher erläutert werden.
 
 Der prinzipielle Ablauf wird auf Abbildung \ref{fig-aufteilungsstrategie}
 visualisiert. Rechts ist die temporäre \emph{Construction Page}, die zum
-ausmessen der Entitäten dient, für jeden Seitentypus welcher vom jeweilige
-Dokumenten-Template geboten wird gibt es also eine Construction Page, sofern
+ausmessen der Entitäten dient. Für jeden Seitentypus welcher vom jeweilige
+Dokumenten-Template angeboten wird gibt es also eine Construction Page, sofern
 dieser sich von den Ausmaßen anderes verhalten sollte.
 
 Der Ablauf ist also wie folgt: die Entität wird mithilfe der Construction
@@ -131,7 +131,7 @@ vorhanden ist dort hin verschoben, wenn nicht genügend Platz vorhanden ist,
 wir eine neue Seite erstellt und die Entität dort platziert.
 
 Hier kann noch ein Zwischenschritt eingefügt werden, der es ermöglichen
-sollte gerade Textentitäten weiter aufteilen zu können, so dass eine
+sollte, gerade Textentitäten, weiter aufteilen zu können, so dass eine
 bessere Auslastung der Seiten erreicht werden kann.
 % TODO Falls umgesetzt, noch ergänzen.
 
@@ -159,7 +159,7 @@ Zum Einsatz kommt dabei die Javascript-Bib\-lio\-thek
 Auf diese Weise kann jede einzelne Entität oder Seite clientseitig
 durch ein kleines Template-Snippet darstellt werden, welches an die
 Bedürfnisse des spezifischen Dokumenten-Designs bzw. Dokumenten-Templates
-angepasst ist. Beispielsweise eine Überschrift, könnte so aussiehen.
+angepasst ist. Beispielsweise eine Überschrift, könnte so aussiehen:
 
 \begin{verbatim}
 <script id="heading" type="text/template">
@@ -179,7 +179,15 @@ angepasst ist. Beispielsweise eine Überschrift, könnte so aussiehen.
 Diese muss dann nur noch von der DSL entsprechend mit einer
 JSON-Daten\-struktur\footnote{JSON ist die \emph{JavaScript Object Notation},
 und bildet die zentrale Datenstruktur von JavaScript.
-Mehr Informationen unter \url{http://json.org}.} gefüttert werden.
+Mehr Informationen unter \url{http://json.org}.} gefüttert werden, wie z.B.:
+
+\begin{verbatim}
+{
+  heading: "First Heading",
+  number: 1,
+  h: "h1"
+};
+\end{verbatim}
 
 \subsection{Dokumenten-Areale}\label{sec-areal}
 
@@ -187,7 +195,7 @@ Die resultierenden Seiten zur Anzeige (View Pages), werden bestimmten
 Arealen zugeordnet, diese dienen insbesondere der logischen Strukturierung
 des Dokuments. Aus Sicht der Seiten sind diese Areale quasi
 Einhängepunkte, wo die fertig befüllten Seiten angefügt werden.
-Beispiele für Areale sind z.B.
+Beispiele für Areale sind:
 
 \begin{itemize}
   \item Titelblätter,
@@ -226,7 +234,7 @@ näher beschrieben.
 Scala bietet als Wirtssprache dafür ausgezeichnete Fähigkeiten und
 Abstraktionsmittel, wie in Kapitel \ref{sec-grammatikGestaltung} aufgeführt.
 Viele dieser Fähigkeiten werden auch bei der Implementierung eingesetzt
-und dadruch auch in diesem Kapitel näher beschrieben.
+und dadruch auch in diesem Kapitel näher beleuchtet.
 
 Ein Muster, welches eine wichtige Rolle bei der Erstellung von Dokumenten
 spielt, ist der Vorwärtsverweis, also gegenseitige Verweise von Entitäten,
@@ -251,7 +259,7 @@ Das Problem des
 Vorwärtsverweises\footnote{Engl. \emph{forward reference}} tritt auf,
 wenn z.B. in einem Text auf eine Abbildung
 verweisen wird, welche innerhalb des Programmflusses aber erst später verfügbar
-wird.
+wird. Beispiel:
 
 \begin{lstlisting}
 ... auf Abbildung {Reference} ist zu sehen ...
@@ -260,7 +268,7 @@ Reference = new Figure(...)
 \end{lstlisting}
 
 Hier wird also auf \lstinline|Reference| bereits zugegriffen,
-bevor sie überhaupt existiert. Erschwerend kommt hinzu, dass sich die
+bevor sie überhaupt existiert. Erschwerend kommt hinzu, dass die
 Reihenfolge der Entitäten (Texte, Bilder, etc.) nicht verändert werden darf.
 Die Abbilung soll also an der Position im Dokument erscheinen, an der sie
 auch im Dokument-Quellcode geschrieben wurde, da es sich hier um eine DSL
@@ -270,7 +278,7 @@ Vollständig beschrieben wird hier die Lösung mit einem \emph{Closure} in
 Kapitel \ref{sec-closure}, welches zugleich die eleganteste Lösung darstellt
 und auch in der fertigen Implementierung zum Einsatz kommt.
 
-Ein weiterer Ansatz der welcher auch implementiert wurde ist die Lösung
+Ein weiterer Ansatz welcher auch probeweisimplementiert wurde ist die Lösung
 mit \emph{Eval}, welche aber unpraktischer und auch unsicherer einzustufen
 ist als die Lösung mit einem Closure. Die in Kapitel \ref{sec-eval}
 beschriebene Lösung kommt in der fertigen Implementierung jeodoch nicht
@@ -279,14 +287,14 @@ zum Einsatz.
 Zudem gibt es noch weitere Überlegungen die während der Lösungsfindung
 aufgekommen sind, welche aber nicht weiter verfolgt werden, da die Lösung
 mit dem Closure überlegen ist durch höhere Eleganz, Flexibilität und
-Sicherheit ist. Daher wird nur kurz auf die anderen Überlegungen in
+Sicherheit. Daher wird nur kurz auf die anderen Überlegungen in
 Kapitel \ref{sec-datenstrukturbasierend} eingegangen.
 
 \subsubsection{Closure}\label{sec-closure}
 
 Insbesondere funktionale Programmiersprachen wie Scala haben die
-Möglichkeit Closures zu bilden, d.h. der Teile Geltungsbereich (Scope)
-der äußeren Funktion  kann von der inneren Funktion beibehalten werden,
+Möglichkeit Closures zu bilden, d.h. Teile des Geltungsbereichs (Scope)
+der äußeren Funktion kann von der inneren Funktion beibehalten werden,
 auch wenn der Geltungsbereich der äußeren Funktion bereits verwirkt ist.
 % TODO(oder in appendix?)
 
@@ -302,9 +310,9 @@ selbst wenn \lstinline|outer_func| nicht mehr exisiert. Teile des
 \lstinline|outer_func|-Geltungsbereichts werden quasi mitgezogen.
 
 Genau mit dieser Technik kann man den Vorwärtsverweis in den Griff bekommen.
-Es wird der äußere Geltungsbereich eines Objects nach innen gezogen,
-um dort später wenn alle Entitäten bekannt sind und die Referenz aufgelöst
-wurde darauf zuzugreifen.
+Es wird der äußere Geltungsbereich eines Objekts nach innen gezogen,
+um dort später, wenn alle Entitäten bekannt sind und die Referenz aufgelöst
+wurde, darauf zuzugreifen.
 
 \begin{lstlisting}
 object O {
@@ -318,12 +326,12 @@ O.text()  // wenn reference vorhanden
 Hier wird zudem die Eigenschaft des \lstinline|object| ausgenutzt,
 dass die im \lstinline|object| genannten Variablen immer schon vom Compiler
 zumindest mit einer \lstinline|null|-Referenz exisieren, aber die Reihenfolge
-der eigentlichen Instanziierung wird nicht verändert. Durch das
+der eigentlichen Instanziierung nicht verändert wird. Durch das
 \lstinline|lazy|-Keyword von Scala, würde die Reihenfolge modifiziert werden
-und ist dadurch nicht verwendbar.
+und ist dadurch nicht praktikabel.
 
 Nachteil hier ist, dass der Domänen-Benutzer innerhalb der DSL diese
-\lstinline|() => s""|-Magie schreiben müsste -- was zu Verwirrung und
+\lstinline|() => s""| Magie schreiben müsste -- was zu Verwirrung und
 Unverständnis führen würde.
 
 
@@ -332,9 +340,9 @@ Unverständnis führen würde.
 Ideal wäre also nun eine Lösung inder der Domänen-Benutzer keine
 Aufmerksamkeit auf die Closure-Magie verschwenden muss.
 
-Wie bereits in einem vorherigen Kapitel % TODO(oder in appendix?)
-erwähnt wird auf den ab Scala 2.10 verfügbaren
-\lstinline|StringContext| (\lstinline|s"…"|) gesetzt.
+Hierbei wird auf den ab Scala 2.10 verfügbaren
+\lstinline|StringContext| (\lstinline|s"…"|)
+gesetzt. \cite{scala-stringInterpolation}
 Dieser lässt sich so erweitern, dass
 sich die Closure-Magie verstecken lässt und somit in die API
 gezogen wird und der Domänen-Benutzer davon gar nichts mitbekommt.

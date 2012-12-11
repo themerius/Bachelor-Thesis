@@ -3,13 +3,46 @@
 Die Erstellung von Dokumenten ist wohl schon fast so alt wie die Menschheit
 selbst. Es gibt wohl zahllose Methoden, um Dokumente zu erstellen, wobei
 das digitale Zeitalter sehr vieles stark vereinfacht hat. Man kann also
-in kürzerer Zeit Dokumente mit hoher Qualität erstellen -- wenn man es
+in kürzerer Zeit Dokumente mit hoher Qualität erstellen---wenn man es
 denn darauf anlegt. Dabei haben sich im digitalen Zeitalter vornehmlich
 Satzsysteme bzw. Desktop-Publishing wie WYSIWYG-Programme
-ala Microsoft Word, \LaTeX oder Adobe InDesign Verbreitung gefunden.
+ala Microsoft Word, \TeX~oder Adobe InDesign Verbreitung gefunden.
 
-\section{\LaTeX}
+\section{\TeX}
 
+Der Name hat seinen Ursprung aus dem griechischen $\tau\epsilon\chi$,
+welches auch die Wurzel für das englische Wort \emph{technology} ist.
+$\tau\epsilon\chi$ bedeutet also Technologie, aber auch Kunst.
+(\cite{tex-a}, Kapitel 1, Seite 1)
+
+\TeX~ist ein Textsatzsystem, welches für die Erstellung
+von qualitativ hochwertigen Büchern ausgelegt ist, mit einem starken Fokus auf
+Mathematik.
+
+Es gibt etwa 300 \TeX~Kontrollsequenzen, sog. „Primitive“ welche das
+Low-Level TeX bilden. Diese Primitiven sind atomisch und werden nicht weiter
+in kleinere Funktionen zerlegt.
+
+Primitiv:
+
+\begin{verbatim}
+**\show\input
+> \input=\input.
+\end{verbatim}
+
+Makro:
+
+\begin{verbatim}
+**\show\TeX
+> \TeX=macro:
+->T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX.
+\end{verbatim}
+
+Zudem kommen noch etwa 600 weitere Kontrollsequenzen „plain \TeX“ dazu,
+die zusammen mit den Primitiven das Standard-\TeX~bilden.
+(\cite{tex-a}, Kapitel 3, Seite 9--11)
+
+% ALT ===================================
 \LaTeX erweitert die Makro-Programmiersprache \TeX um eine Vielzahl von
 fertigen Makros. \TeX ist nicht nur eine Makro-Programmiersprache sondern
 bietet auch Methoden an, um Typographie zu setzen und Texte auf einer Seite

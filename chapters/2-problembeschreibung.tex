@@ -1,4 +1,4 @@
-\chapter{Problembeschreibung → Aufgabenstellung}
+\chapter{Anwendungsfall: Problembeschreibung}
 
 In diesem Kapitel soll eine umfassende Beschreibung des Problems erfolgen,
 aus welcher sich wiederum die Aufgabenstellung ergibt. Diese dann im
@@ -17,7 +17,38 @@ Damit aus der Schnittstelle die dem Benutzer gegebenen ist die Zielarchitektur
 generiert werden kann, muss es eine geeignete Brücke bzw. Verbindung
 geben, welche in Abschnitt \ref{sec-verbindung} näher beschrieben wird.
 
-% TODO Verweise auf die Architektur!
+\section{Allgemeiner Aufbau von Dokumenten}
+
+Vor allem akademische Dokumente wie z.B. Bücher, Patente oder Bachelorarbeiten
+haben alle im Groben einen ähnlichen Aufbau. Daher ist es sinnvoll ersteinmal
+allgemeine Ableitung über die Struktur solcher Dokumente zu machen, so dass
+später daraus eine Architektur für nachfolgende Implementierungen enstehen kann.
+
+Die wichtigsten Unterteilungen,
+  wie auf Abbildung \ref{fig-areal_pages_entities} dargestellt,
+werden hier grob definiert als
+
+\begin{itemize}
+  \item Dokumenten\emph{areal}.
+        Beispielsweise gliedert sich diese Bachelorarbeit in die
+        Areale Titelseiten, Inhaltsverzeichnis, Hauptdokument, Anhang und
+        Literaturverzeichnis auf.
+  \item Seiten.
+        Jedes Dokument kann eventuell verschiedenartige Seiten haben, aber zumindest
+        eine Standardseite, wie z.B. vertikales DIN A4, muss vorhanden sein.
+        Aber auch innerhalb des Dokuments kann es verschiedenartige Seiten
+        geben, wie z.B. horizontale Seiten für extra bereite Tabellen oder
+        Titelblätter mit speziellem Layout.
+  \item Entitäten.
+        Das sind die einzelnen Einheiten wie Überschriften, Texte, Tabellen
+        oder Bilder woraus sich schlussendlich das Dokument zusammensetzt.
+\end{itemize}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.9\textwidth]{figures/areal_pages_entities.pdf}
+  \caption{Ein Dokument kann hierachisch grob in Areal, Seiten und Entitäten gegliedert werden.}\label{fig-areal_pages_entities}
+\end{figure}
 
 \section{Zielarchitektur}\label{sec-zielarchitektur}
 
@@ -87,7 +118,8 @@ und das eigentliche Dokument jedoch mit arabischen Ziffern.
 Die \emph{domain-specific language}, kurz \emph{DSL}, stellt die
 textuelle Schnittstelle zwischen Benutzer und der Zielplatform dar.
 Eine DSL ist eine leichtgewichtige Programmiersprache, die für den
-Einsatz ihres Spezialgebietes, ihrer Domäne, zugeschnitten ist.
+Einsatz ihres Spezialgebietes, ihrer Domäne bzw. ihres Aktionsraumes,
+zugeschnitten ist.
 
 Dabei unterscheidet man grob zwischen \emph{internen}, \emph{externen}
 und \emph{nicht-textuellen} DSLs.\cite{dsls} Da in diesem Projekt allerdings
@@ -122,7 +154,9 @@ Komplexitäten einer vollwertigen Sprache benötigt.
 Warum genau diese zwei Vertreter sich besonders eigenen und ausgewählt wurden,
 wird in Kapitel \ref{sec-warumAusgewaehlt} beschrieben.
 
-\subsection{Aufgaben}
+\input{chapters/3-tex}
+
+\subsection{Das DSL Idealbild}
 
 Wie schon erwähnt, dient die DSL als Schnittstelle für den Benutzer,
 und sollte möglicht leicht für diesen zu verstehen sein, so dass
@@ -131,12 +165,15 @@ DSL verstehen und schreiben kann. Dies erfordert intuitive Konzepte,
 klare Strukturen und übersichtliche bzw. leichtgewichtige Syntax, welche
 sich auf das Domänen-Problem einer Dokumentengenerierung konzentriert.
 
-\paragraph{Das DSL Idealbild} könnte so aussehen wie die zwei unten
-aufgeführten Pseudo-Codes, auch wenn diese von der
-realen Implementierung abweichen. % TODO Referenz darauf, was daraus geworden ist!
+In dem aufgeführten Pseudo-Code, ist aufgezeigt, wie die DSL im Idealfall
+aussehen könnte, auch wenn diese von der realen Implementierung abweicht.
+% TODO Referenz darauf, was daraus geworden ist!
 % TODO Begründung, warum diese Abweichungen nötig sind -> und warum TeX so aussieht.
 
-\begin{lstlisting}[language=TeX]
+\begin{lstlisting}[language=DSL_ideal]
+Use Template
+    AcademicReport
+
 Section
     Ueberschrift
 
@@ -153,7 +190,7 @@ Text
     sed diam nonumy eirmod tempor invidunt ut labore et dolore
     magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
 
-    Auf Abb. picName.referenceNumber kann man erkennen ...
+    Auf Abb. picName.figureNumber kann man erkennen ...
 
 PythonScript named pyScriptName
     from matplotlib import pyplot
@@ -167,39 +204,6 @@ Figure named picName
     descr = Beschreibung des Bildes
 \end{lstlisting}
 
-\begin{lstlisting}[language=TeX]
-%*§*) Ueberschrift
-
-+ {
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-    sed diam nonumy eirmod tempor invidunt ut labore et dolore
-    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-}
-
-%*§§*) Unterueberschrift
-
-+ {
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-    sed diam nonumy eirmod tempor invidunt ut labore et dolore
-    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-
-    Auf Abb. picName.referenceNumber kann man erkennen ...
-}
-
-+ PythonScript named pyScriptName {
-    from matplotlib import pyplot
-    from scaltex import return_to_document
-    pyplot.plot(range(10))
-    pic = pyplot.savefig("pic.png")  // Achtung Vereinfachung!
-    return_to_document(pic)
-}
-
-+ Figure named picName {
-    src = pyScriptName  // oder z.B. auch moeglich /home/pic.png
-    descr = Beschreibung des Bildes
-}
-\end{lstlisting}
-
 
 \section{Verbindung zwischen DSL und Ziel}\label{sec-verbindung}
 
@@ -210,8 +214,8 @@ Webbrowser, \emph{generiert} werden.
 Dadurch, dass es viele \emph{verschiedene Dokumenten-Templates} geben kann,
 z.B. eines für akademische Berichte und ein anderes für Patente, entsteht das
 Problem dass zwar immer auf das gleiche Ziel (Webtechnologie) abgebildet
-wird, aber dieses unterschiedliche Ausprägungen besitzen kann. Jede
-dieser Ausprägungen kann sich in ihren Eigenschaften, Einsatzzielen
+wird, aber dieses unterschiedliche Ausprägungen besitzen kann.
+Jede dieser Ausprägungen kann sich in ihren Eigenschaften, Einsatzzielen
 und Darstellungsmöglichkeiten (z.B. mathematische Formeln in einen
 Dokument-Typ und chemische Formeln im Anderen) unterscheiden.
 
@@ -225,7 +229,7 @@ es wünschenswert, wenn zwischen verschiedenen Dokumenten-Typen gewechselt
 bzw. \emph{migriert} werden kann, ohne große Veränderungen am
 DSL-Code vornehmen zu müssen, z.B. wird im
 DSL-Skript nur die Programmzeile \verb|Bericht| durch \verb|Patent| geändert und
-das Dokument bekommt ein völlig anderes Erscheinungsbild -- die des Patents.
+das Dokument bekommt ein völlig anderes Erscheinungsbild---die eines Patents.
 Wobei natürlich diese beiden Ausprägungen Spezialisierungen des Typs
 \verb|AkedemischesDokument| sein müssen, damit die Migration funktionieren kann.
 

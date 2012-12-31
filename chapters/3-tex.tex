@@ -1,0 +1,73 @@
+\subsection{\TeX, eine DSL für Dokumente}
+
+\TeX~ ist eine weit verbreitete Programmiersprache die speziell für die
+Aufgaben die ein Textsatzsystem benötigt erschaffen wurde. Daher kann man
+\TeX~ auch als eine DSL ansehen. In diesem Abschnitt wird etwas auf
+\TeX~ eingegangen, da insbesondere diese Programmiersprache als Inspiration
+bzw. Vorbild dient.
+
+
+\subsubsection{Herkunft und Grundlagen}
+
+Der Name hat seinen Ursprung aus dem griechischen $\tau\epsilon\chi$,
+welches auch die Wurzel für das englische Wort \emph{technology} ist.
+$\tau\epsilon\chi$ bedeutet also Technologie, aber auch Kunst.
+(\cite{tex-a}, Kapitel 1, Seite 1)
+
+\TeX~ist ein Textsatzsystem, welches für die Erstellung
+von qualitativ hochwertigen Büchern ausgelegt ist, mit einem starken Fokus auf
+Mathematik.
+
+Es gibt etwa 300 \TeX~Kontrollsequenzen, sog. „Primitive“ welche das
+Low-Level TeX bilden. Diese Primitiven sind atomisch und werden nicht weiter
+in kleinere Funktionen zerlegt.
+Zudem kommen noch etwa 600 weitere, aus Primivien zusammengesetzte,
+Kontrollsequenzen „plain \TeX“ dazu,
+die zusammen mit den Primitiven das Standard-\TeX~bilden.
+(\cite{tex-a}, Kapitel 3, Seite 9--11)
+
+\TeX~ hat eine \emph{REPL}\footnote{REPL steht für read–eval–print loop,
+eine interaktive Programmierumgebung. Scala besitzt auch eine REPL.}
+in welcher interaktive Programmiersitzungen abgehalten werden können,
+wie z.B.:
+
+\paragraph{Primitiv}
+
+\begin{verbatim}
+**\show\input
+> \input=\input.
+\end{verbatim}
+
+\paragraph{Zusammengesetzte Kontrollsequenz, ein Makro}
+
+\begin{verbatim}
+**\show\TeX
+> \TeX=macro:
+->T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX.
+\end{verbatim}
+
+
+\subsubsection{Fähigkeiten als Programmiersprache}
+
+
+\subsubsection{Warum \TeX~ so aussieht, wie es aussieht}
+
+
+\subsubsection{Was \TeX~ generiert}
+
+
+\paragraph{Produktionsformat versus Auslieferungsformat}
+
+\TeX~ stellt ein Konzept besonders klar dar: die \emph{Unterscheidung
+zwischen Produktionsformat und Auslieferungsformat.} Diese Unterscheidung
+wird von vielen Menschen nicht verstanden oder wahrgenommen; daher kommt
+es immer mal wieder vor, dass Microsoft Word Dateien im E-Mail Anhang zu
+finden sind.
+
+Bei \TeX~ ist das Produktionsformat die Quellcode-Dateien und in neuerer
+Zeit ist das Auslieferungsformat eine gesetzte PDF-Datei, welche auf jeder
+Plattform gleich angezeigt wird und auch als Archivierungsformat tauglich
+ist.
+
+
+\subsubsection{The Good, the Bad and the Ugly}

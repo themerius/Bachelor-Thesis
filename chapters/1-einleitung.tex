@@ -1,8 +1,5 @@
 \chapter{Einleitung}
 
-% Warum DSLs. Überleitung zur Idee. Was wird im Dokument geklärt
-% TeX als Vorbild DSL --> später dazu Details, warum TeX als DSL betrachtet werden kann
-
 Sprache formt die Realität. Programmschöfper können diese Tatsache unmittelbar
 in Aktion erleben, wie die Sprache die Realität des Computersystems verändert.
 Wenn eine Sprache auf ein speziellen Aktionsraum definiert wird, kann die
@@ -12,25 +9,56 @@ Als \emph{domain-specific language (DSL)} bezeichnet man eine solche auf
 einen spezifischen Aktionsraum, Wissensgebiet, Problemfeld oder Domäne
 zugeschnittene Sprache.
 
+\paragraph{Vorteile von DSLs}
+
+\begin{itemize}
+  \item DSLs sind ausdrucksstark
+  \item DSLs sind prägnant
+  \item DSLs haben einen hohen Abstraktionsgrad
+  \item DSLs können ein besseres Ergebnis liefern
+  \item DSL-basierte Entwicklung skaliert gut
+\end{itemize}
+
+(\cite{dsls} Seite 20f)
+
+\paragraph{Nachteile von DSLs}
+
+\begin{itemize}
+  \item Sprachdesign ist schwierig
+  \item DSLs haben gewisse Vorauskosten
+  \item Der Einsatz von DSLs kann zu Performanzschwäche führen
+  \item DSLs fehlen machmal die adäquate Werkzeugunterstützung
+  \item „Wieder-eine-neue-Sprache-zu-lernen Syndrom“
+  \item DSLs verführen zu sprachlicher Kakophonie\footnote{
+        Kann entstehen durch den Einsatz verschiedenster
+        Programmiersprachen bzw. DSLs die sich in verschiedene
+        Richtungen entwickeln, wenn nicht ordentlich verwaltet, kann
+        dies zu einer gewissen Anarchie führen kann.}
+\end{itemize}
+
+(\cite{dsls} Seite 21f)
+
+\paragraph{Ablauf}
+
 In dieser Thesis wird ein Vergleich zwischen zwei DSL-Technologien vorgenommen
 und die Frage geklärt welche der Technologien die praktikablere Lösung für
 den gestellten Anwendungsfall darstellt.
 Das heißt also, dass innerhalb der Arbeit eine Entscheidung getroffen wird,
-welche der beiden Technologien ausgewählt wird, in welcher schlussendlich der
-Anwendungsfall als Prototyp umgesetzt wird.
+welche der beiden Technologien ausgewählt wird und in welcher somit
+schlussendlich der Anwendungsfall als Prototyp umgesetzt wird.
 
 Der Anwendungsfall bzw. Aktionsraum dieser so entstehenden Sprache ist ein
 neuartiges Textsatzsystem, welches von \TeX~ inspiriert ist, jedoch auf
 Webtechnologie zur Darstellung setzt.
 
-\paragraph{Zeitaufwendung}
+\paragraph{Geplante Zeitaufwendung}
 
 \begin{itemize}
   \item ca. $1\over{2}$ der Zeit für den Vergleich der Technologien,
   \item ca. $1\over{2}$ der Zeit für die Implementierung der DSL, sowie
         der Webtechnologie zur Darstellung.
-        Wobei ein nicht unerheblicher Teil der Code-Snippets vom Vergleich
-        auch sehr nützlich bei der eigentlichen Implementierung ist.
+        Wobei ein nicht unerheblicher Teil der Code-Snippets vom Technologievergleich
+        auch in die eigentliche Implementierung einfließt.
 \end{itemize}
 
 \section{Vorgeschichte}
@@ -39,19 +67,19 @@ Die Idee, welche in Kapitel \ref{sec-idee} im Detail beschrieben ist,
 entstammt der Zeit meines Praxissemesters am
 \emph{Fraunhofer-Institut für Solare Energiesysteme ISE}.
 Diese sind mit den Tools zur automatischen Dokumentengenerierung, insbesondere
-für den den Jahresbericht, weniger zufrieden. Die gewünschten
+für deren Jahresbericht, weniger zufrieden. Die gewünschten
 Fähigkeiten müssen über mehrere Tools zusammenlaufen, welche nicht immer
 ideal zusammenarbeiten; z.B. LaTeX plus Microsoft Word plus Python-Skripte.
-Ab da an tüftelte ich daran, wie diesem Umstand Besserung verschafft
-werden kann.
+Da mich diese Thematik interessiert, beschäftigte ich mich in meiner Freizeit
+etwas damit und überlegte mir, wie ich diesem Umstand verbessern kann.
 
-Wie schon erwähnt handelt es sich um ein Tool, welches automatische
+Wie schon erwähnt handelt es sich um ein Werkzeug, welches automatische
 Dokumentengenerierung ermöglichen soll. Für diese oder ähnliche Aufgaben,
 mit mehr oder weniger automatisierten Fähigkeiten,
 gibt es bereits zahlreiche andere Werkzeuge wie z.B.:
 
 \begin{itemize}
-  \item LaTeX,
+  \item \TeX~ bzw. \LaTeX,
   \item Word, OpenOffice,
   \item Google Docs,
   \item Markdown,
@@ -59,9 +87,9 @@ gibt es bereits zahlreiche andere Werkzeuge wie z.B.:
 \end{itemize}
 
 Jedes dieser Werkzeuge hat seine individuellen Vor- und Nachteile.
-Aber diese Bachelor-Thesis will einen anderen Ansatz ausprobieren, und
+Aber diese Bachelor-Thesis will u.a. einen anderen Ansatz ausprobieren, und
 seine Machbarkeit, Praxistauglichkeit und Weiterentwicklungsmöglichkeiten
-feststellen bzw. zu überprüfen.
+feststellen bzw. überprüfen.
 
 \paragraph{Diese Thesis will für den Anwendungsfall}
 
@@ -204,7 +232,7 @@ mehrfach verwenden bzw. darstellen lassen.
 Auf diese Art kann man verschiedenste Technologien kooperieren lassen und
 auf einen Nennen bringen -- ohne dass die Qualität des Dokuments darunter
 leider muss, da eine Formatierungssicherheit (Layout) vorliegt,
-ähnlich wie es bei \LaTeX der Fall ist.
+ähnlich wie es bei \LaTeX~ der Fall ist.
 
 \paragraph{Szenario 2:} Immer wenn das Dokument „gebaut“ wird, kann z.B.
 automatisch ein Skript angeworfen werden, welches einen Plot als Bild
@@ -279,25 +307,25 @@ dazu, dass die Entwicklung einer Domänen-Spezifischen Programmiersprache,
 kurz DSL, sehr sinnvoll ist. Mehr dazu ist in Kapitel \ref{sec-dsl} zu finden.
 
 \paragraph{Ziel} ist es also zu prüfen, ob es möglich und praktikabel ist
-ein solches „\LaTeX on steroids“ zu erschaffen.
+ein solches „\LaTeX~ on steroids“ zu erschaffen.
 
 \section{Weitere Entwicklung}
 
-Als ich soweit an der Thematik getüftelt hatte und die Machbarkeit als
-Bachelor-Thesis erkannte trug ich den Vorschlag am ISE vor, jedoch sind
+Als ich die Machbarkeit als Bachelor-Thesis erkannte trug ich den
+Vorschlag am ISE vor---jedoch sind
 diese kein Informatik-Institut und sahen sich so nicht in der Lage die Arbeit
-zu betreuen, wenngleich sie die Idee sehr nützlich fanden. So wurde mir
+zu betreuen, wenngleich sie die Idee sehr nützlich finden. So wurde mir
 nahe gelegt, dass ich doch bei einem anderen Fraunhofer-Institut anklopfen
 könne.
 
-So habe das \emph{Fraunhofer-Institut für Algorithmen und Wissenschaftliches
+So habe ich das \emph{Fraunhofer-Institut für Algorithmen und Wissenschaftliches
 Rechnen SCAI} angeschrieben, und Dr. Marc Zimmermann fand
 die Idee spannend und auch passend für deren Themengebiet. Sie bereiten u.a.
 Patente auf indem sie eine Patent-PDF-Datei mit Hilfe ihres Java-Framework
 zerlegen und die so erhaltenen Daten ggf. mit zusätzlichen Informationen
 anreichern. Die Idee von mir hat ihnen sehr zugesagt, da sie noch eine
 Möglichkeit suchten, die die aufbereiteten Patente mit Webtechnologie
-darzustellen kann, ohne ihre eigentliche Form bzw. Layout zu verlieren.
+darstellen kann, ohne ihre eigentliche Form bzw. Layout zu verlieren.
 
 Damit dieses Projekt jedoch als Bachelor-Thesis bearbeitet werden darf,
 muss ein Professor an der HTWG gefunden werden, dem das Thema auch gefällt
@@ -305,5 +333,5 @@ und die Betreuung dazu übernehmen will. So bin bin auf Prof. Dr. Marko
 Boger zugengangen, der den Lehrstuhl für Software Architekturen an der HTWG
 inne hat. Glücklicherweise konnte ich ihn überzeugen, dass das Thema auch
 für ihn interessant ist dadruch, dass eine Entwicklung einer DSL Teil des
-Projektes ist -- jedoch wollte er noch einen Vergleich zwischen Xtext und Scala
+Projektes ist---jedoch wollte er noch einen Vergleich zwischen Xtext und Scala
 dabei haben.

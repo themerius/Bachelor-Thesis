@@ -39,113 +39,84 @@ zwischen Scala und Xtext findet sich in Kapitel \ref{sec-vergleichsmatrix}.
 \section{Vergleichsmatrix}\label{sec-vergleichsmatrix}
 
 In dieser Tabelle ist eine Übersicht über den Vergleich gegeben, indem
-die Fähigkeiten bzw. die Möglichkeiten von Xtext und
-Scala (als interne DSL) gegenübergestellt und bewertet werden.
-Dabei wird bei jeder Fähigkeit bewertet, ob Xtext oder Scala die besseren
-Argumente liefert.
-Zu beachten ist jedoch, dass die Bewertungen auf das hier vorliegende Projekt
-angepasst sind und sich somit nicht 1:1 auf beliebige Projekte anwenden lassen.
-Die Bewertungen bzw. Gewichtungen müssen also für jedes Projekt und dessen
-spezifischen Anforderungen individuell angepasst werden.
-
-Weiterhin gilt zu beachten, dass die Bewertungen ihrer Natur nach sowohl
-\emph{intuitiv} als auch \emph{objektiv} gewichtet sind, da eben vieles vom
-Betracher abhängt und die Fähigkeiten gewisse Überschneidungen haben.
-Am Ende steht jedoch ein einigermaßen objektives Maß,
-welche Lösung die meisten Vorteile, mit Blick
-auf das vorliegende Projekt, bietet.
+die Fähigkeiten bzw. die Möglichkeiten von Xtext als externe DSL und
+Scala als interne DSL gegenübergestellt werden.
 
 Für \emph{einige} der gelisteten Fähigkeiten gibt es
 tiefergehende Beschreibungen, auf diese
 in der ersten Spalte der Tabelle entsprechend referenziert wird.
 
-Ich habe mich dazu entschieden eine Skala zwischen \emph{0 und 3} zu verwenden,
-wobei 0 schlechte Unterstützung/Möglichkeit/Funktion bzw.
-allgemein für das Projekt ungeschickt bedeutet.
-Dabei ist ein Ergebnis zustande gekommen, indem sich \textbf{Scala mit 35 zu
-29 Punkten in Vergleich mit Xtext} durchsetzt.
-Somit ist für \emph{dieses} Projekt Scala besser geeignet.
-Und wird als eigentliche Implementierungsbasis verwendet, siehe dazu
-Kapitel \ref{sec-scalaDSL}.
-
 \begin{landscape}
-\begin{longtable}{|p{0.8cm}|p{4.4cm}|p{6.4cm}|p{6.4cm}|}
+\begin{longtable}{|p{0.5cm}|p{0.8cm}|p{4.3cm}|p{6.3cm}|p{6.3cm}|}
 
   \hline
-  Ref. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline \hline
+  Nr. & Kap. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline \hline
   \endfirsthead
 
   \hline
-  Ref. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
+  Nr. & Kap. & Fähigkeit & Xtext (externe DSL) & Scala (interne DSL) \\ \hline
   \endhead
 
-
-  \ref{sec-grammatikGestaltung}
+  1
+  & \ref{sec-grammatikGestaltung}
   & Grammatikalische Gestaltung der DSL
   & Komplett frei und flexibel, da in BNF-Regeln definiert.
   & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
     dennoch sehr ausdrucksstarke Möglichkeiten.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 1 } \\ \hline
+  \\\hline
 
-  \ref{sec-gpl}
+  2
+  & \ref{sec-gpl}
   & DSL mit General Purpose mischbar
   & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.
   & Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
-  \ref{sec-strukturierungsfaehigkeit}
+  3
+  & \ref{sec-strukturierungsfaehigkeit}
   & Strukturierungsfähigkeit des Codes
   & Muss alles selbst gebaut werden. Vorteil: Es muss nur das nötigste
     umgesetzt werden.
   & Sämtliche Infrastruktur vorhanden. (Packages, Kontrollstrukturen,
     Build-Tools, ...)
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
-  \ref{sec-erweiterbar}
+  4
+  & \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
   & Es würde von dem Domain User verlangt werden BNF-Notation zu können,
     Xtend und er wäre auf Eclipse gezwungen. % da kann sich fast gar keine Community bilden
   & Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen,
     die Bindings zu erstellen.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 0 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
-  \ref{sec-erweiterbar}
+  5
+  & \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Entwickler
   & Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
     Unterstützung durch Eclipse.
   & Der Aufwand liegt bei der Entwicklung einer Library. Jedoch müssen
     Testumgebungen etc. selbst eingerichtet werden.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  \\\hline
 
-  \ref{sec-erweiterbar}
+  6
+  & \ref{sec-erweiterbar}
   & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
   & Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.
   & Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach
     gewohnter Manier kombiniert und erweitert werden.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  \\\hline
 
-  \ref{sec-infrastruktur}
+  7
+  & \ref{sec-infrastruktur}
   & Sprach-Infrastruktur
   & Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.
   & Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
     Breite Unterstützung von vielen Editoren.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
-  \ref{sec-scalierEinbett}
+  8
+  & \ref{sec-scalierEinbett}
   & Einbettbarkeit in beliebige Umgebungen
   & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
     welches sich mit dem Projektverlauf automatisch mit anpassen kann.
@@ -157,11 +128,10 @@ Kapitel \ref{sec-scalaDSL}.
     Kann also quasi in eine beliebige Umgebung eingebettet werden
     wo eine JVM läuft oder auch als Service bereitgestellt werden.
     Allerdings ist Xtext in Eclipse besser eingebunden, da speziell angepasst.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
-  \ref{sec-generator}
+  9
+  & \ref{sec-generator}
   & Generator: Zielplatform
   & Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell durch eine
     Template-Engine generiert werden, das Eclipse-Plugin stellt sofort das
@@ -173,11 +143,10 @@ Kapitel \ref{sec-scalaDSL}.
     bereit, welches direkt nach jeder Änderung das Generat bereitstellt; das
     Verfahren hierzu muss selbst entwickelt werden (das kann ein Vor- oder
     auch ein Nachteil sein.)
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
-  \ref{sec-generator}
+  10
+  & \ref{sec-generator}
   & Generator: Template-Engine
   & Xtend eine speziell angepasste DSL-Generator-Template-Engine.
     Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt,
@@ -187,10 +156,10 @@ Kapitel \ref{sec-scalaDSL}.
     einen Zwischenschritt (Bindings), welcher programmiert werden muss.
     Scala kann jedoch ggf. das Generat als Unterprogramm ausführen.
     2. Die interne DSL ist selbst lauffähig.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  \\\hline
 
+  11
+  &
   & Entwicklungsaufwand (u.a. Zeit, Einarbeitung)
   & Wenn BNF-Kenntnisse (theoretische Informatik) vorhanden sind,
     relativ leichte Einarbeitung.
@@ -199,41 +168,37 @@ Kapitel \ref{sec-scalaDSL}.
   & Wenn Scala-Kenntnisse vorhanden, ist es mehr oder weniger die Entwicklung
     einer Bibliothek.
     Wie man den Generator baut, muss allerdings überlegt werden.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  \\\hline
 
-  \ref{sec-erweiterbar}
+  12
+  & \ref{sec-erweiterbar}
   & Software-Lebenszyklus und Wartbarkeit
   & Dank IDE und einer schon eingerichteten Testumgebung, also sehr gut.
   & Man hat alle Möglichkeiten, die die Scala-Welt bietet, also sehr gut.
     Jedoch ist Handarbeit nötig.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 2 } & \multicolumn{1}{c|}{ 2 } \\ \hline
+  \\\hline
 
+  13
+  &
   & Tooling (für DSL Gestaltung)
   & Komplette und entsprechend angepasste Eclipse Entwicklungsumgebung.
   & Die Sprache selbst, sonst keine Hilfen.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 3 } & \multicolumn{1}{c|}{ 0 } \\ \hline
+  \\\hline
 
-  \ref{sec-scalierEinbett}
+  14
+  & \ref{sec-scalierEinbett}
   & Skalierbarkeit
   & Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.
   & Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut
     skalierbar.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
+  15
+  &
   & DSL als Library bzw. Bereitstellung
   & Ist eine in sich mehr oder weniger geschlossene Struktur.
   & Interne DSL ist eine ganz normale Scala Library.
-  \\
-  \cline{3-4}
-  & & \multicolumn{1}{c|}{ 1 } & \multicolumn{1}{c|}{ 3 } \\ \hline
+  \\\hline
 
 \end{longtable}
 \newpage
@@ -524,4 +489,161 @@ Der große Vorteil einer internen DSL ist jedoch, dass der DSL-Code auch
 direkt als Programm laufen kann -- also komplett ohne Umwege, ohne Generierung.
 Zudem kann man von der sehr hohen Freiheit und Flexibilität profitieren,
 wobei u.U. viel Handarbeit nötig ist.
+
+
+\section{Auswertung und Ergebnis}
+
+Wie schon in Kapitel \ref{par-ablauf} erwähnt,
+  fällt hier die Entscheidung welche der beiden
+  DSL-Technologien zur Implementierung des Prototypen ausgewählt wird.
+
+In der Tabelle aus Kapitel \ref{sec-vergleichsmatrix} werden Xtext und
+Scala gegenübergestellt und bewertet.
+Dabei wird bei jeder Fähigkeit bewertet,
+  ob Xtext oder Scala die besseren Argumente liefert,
+  jedoch beziehen sich die Bewertungen auf das hier vorliegende Projekt
+angepasst sind und sich somit nicht 1:1 auf beliebige Projekte anwenden lassen.
+Die Bewertungen bzw. Gewichtungen müssen also ggf. für jedes Projekt und dessen
+spezifischen Anforderungen individuell angepasst werden, falls gewünscht.
+
+Weiterhin gilt zu beachten, dass die Bewertungen ihrer Natur nach sowohl
+\emph{intuitiv} als auch \emph{objektiv} gewichtet sind, da eben vieles vom
+Betracher abhängt und die Fähigkeiten gewisse Überschneidungen haben.
+Am Ende steht jedoch ein einigermaßen objektives Maß,
+welche Lösung die meisten Vorteile, mit Blick
+auf das vorliegende Projekt bietet.
+
+Ich habe mich dazu entschieden eine Skala zwischen \emph{0 und 3} zu verwenden,
+wobei 0 schlechte Unterstützung/Möglichkeit/Funktion bzw.
+allgemein für das Projekt ungeschickt bedeutet.
+
+
+\subsection{Auswertungstabelle}\label{sec-auswertungstabelle}
+
+\begin{longtable}{|p{0.5cm}|p{0.8cm}|p{5cm}|c|c|}
+
+  \hline
+  Nr. & Kap. & Fähigkeit & Bewertung: Xtext & Bewertung: Scala \\ \hline \hline
+  \endfirsthead
+
+  \hline
+  Nr. & Kap. & Fähigkeit & Bewertung: Xtext & Bewertung: Scala \\ \hline
+  \endhead
+
+  1
+  & \ref{sec-grammatikGestaltung}
+  & Grammatikalische Gestaltung der DSL
+  & 3
+  & 1
+  \\\hline
+
+  2
+  & \ref{sec-gpl}
+  & DSL mit General Purpose mischbar
+  & 1
+  & 3
+  \\\hline
+
+  3
+  & \ref{sec-strukturierungsfaehigkeit}
+  & Strukturierungsfähigkeit des Codes
+  & 1
+  & 3
+  \\\hline
+
+  4
+  & \ref{sec-erweiterbar}
+  & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
+  & 0
+  & 3
+  \\\hline
+
+  5
+  & \ref{sec-erweiterbar}
+  & Erweiterbarkeit durch Entwickler
+  & 3
+  & 2
+  \\\hline
+
+  6
+  & \ref{sec-erweiterbar}
+  & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
+  & 1
+  & 2
+  \\\hline
+
+  7
+  & \ref{sec-infrastruktur}
+  & Sprach-Infrastruktur
+  & 3
+  & 3
+  \\\hline
+
+  8
+  & \ref{sec-scalierEinbett}
+  & Einbettbarkeit in beliebige Umgebungen
+  & 2
+  & 3
+  \\\hline
+
+  9
+  & \ref{sec-generator}
+  & Generator: Zielplatform
+  & 3
+  & 3
+  \\\hline
+
+  10
+  & \ref{sec-generator}
+  & Generator: Template-Engine
+  & 3
+  & 2
+  \\\hline
+
+  11
+  &
+  & Entwicklungsaufwand (u.a. Zeit, Einarbeitung)
+  & 2
+  & 2
+  \\\hline
+
+  12
+  & \ref{sec-erweiterbar}
+  & Software-Lebenszyklus und Wartbarkeit
+  & 2
+  & 2
+  \\\hline
+
+  13
+  &
+  & Tooling (für DSL Gestaltung)
+  & 3
+  & 0
+  \\\hline
+
+  14
+  & \ref{sec-scalierEinbett}
+  & Skalierbarkeit
+  & 1
+  & 3
+  \\\hline
+
+  15
+  &
+  & DSL als Library bzw. Bereitstellung
+  & 1
+  & 3
+  \\\hline
+
+\end{longtable}
+
+
+\subsection{Ergebnis}
+
+Wenn man die Werte aus der Tabelle \ref{sec-auswertungstabelle} zusammenrechnet
+kommnt ein Ergebnis zustande, indem sich \textbf{Scala mit 35 zu
+29 Punkten in Vergleich mit Xtext} durchsetzt.
+
+Somit ist für \emph{dieses} Projekt Scala besser geeignet.
+Und wird als eigentliche Implementierungsbasis für den Prototyp verwendet.
 

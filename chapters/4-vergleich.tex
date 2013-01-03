@@ -282,15 +282,29 @@ diesen Fähigkeiten auzustatten. Soll heißen, all das wird gratis mitgeliefert.
 
 Im Gegensatz zu DSLs stehen \emph{General Purpose Languages}, kurz GPLs.
 Das soll heißen, dass mit diesen Sprachen alle Probleme gelöst werden, da
-sie Turing-Vollständig sind.
+sie turing-vollständig sind.
 
-Jetzt kann es sein, dass es wie in diesem Projekt gewünscht ist, dass
+Hauptunterschiede zwischen DSLs und GPLs sind,
+
+\begin{itemize}
+  \item eine DSL zielt auf ein spezifisches Problemfeld ab,
+  \item eine DSL enthält Syntax und Semantik, welches sich auf dem gleichen
+        Abstraktionslevel wie das der Domäne befindet.
+\end{itemize}
+
+(\cite{dsls}, Seite 11)
+
+Das bedeutet, dass das DSL-Skript die unterliegende Implementierung abstrahieren
+muss. Es düfen also möglichst keine Implementierungsdetails darin auftauchen.
+(\cite{dsls}, Seite 15)
+
+Jetzt kann es sein dass, wie in diesem Projekt gewünscht,
 auch die Möglichkeit geboten wird universellen Programmcode zu schreiben,
 um z.B. auf das Dateisystem zuzugreifen oder eine Grafik mit einer
 externen Bibliothek zu erstellen. Der Domain-Benutzer soll also die
 Möglichkeit haben, die DSL zeitweise zu verlassen um „normalen“ Programmcode
-zu schreiben und danach wieder in die DSL zurückzukehren -- ohne große
-Umstände.
+zu schreiben und danach wieder in die DSL zurückzukehren---ohne große
+Aufwand.
 
 \paragraph{Xtext} bietet die Möglichkeit mittels Xbase GPL-Expressions
 auszuführen -- und das obwohl Xtext externe DSLs erstellt, für die es für
@@ -364,6 +378,71 @@ Dabei setzt Xtext auf eine selbst entwickelte externe DSL, die sehr große
 Ähnlichkeit mit der \emph{Backus-Naur-Form} hat, mit der kontextfreie
 Grammatiken bzw. Programmiersprachen entworfen werden können.
 
+\paragraph{Xtext Grammatik-Beispiele}
+
+Hier zwei implementierte Beispiel-Grammatiken, um die Flexibilität von
+Xtext zu verdeutlichen, einmal eine Grammatik die Ähnlichkeit mit \TeX~
+hat und zum anderen eine Grammatik die an die interne DSL von Scala angelent,
+jedoch entspricht diese nicht ganz dem Endresultat der Scala-DSL, ist.
+
+\begin{lstlisting}[caption=\TeX-ähnliches Xtext-Grammatik-Snippet.]
+grammar de.htwg.scaltex.latexdsl.LaTeXDSL
+  with org.eclipse.xtext.common.Terminals
+
+generate laTeXDSL "http://www.htwg.de/scaltex/latexdsl/LaTeXDSL"
+
+Model:
+  entities += Entity*;
+
+Entity:
+  Section | Paragraph;
+
+Section:
+  '\\section' '{' content = TEXT '}';
+
+Paragraph:
+  content = TEXT;
+
+terminal TEXT  : 
+  ( '\\'('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') |
+    !('\\'|'{'|'}'|'\n') )*;
+\end{lstlisting}
+
+\begin{lstlisting}[caption=An Scala-DSL angelente Xtext-Grammatik.]
+grammar de.htwg.scaltex.dsl.ScalTeX with org.eclipse.xtext.common.Terminals
+
+generate scalTeX "http://www.htwg.de/scaltex/dsl/ScalTeX"
+
+Scaltex:
+  'filename' name = ID
+  entities += Entity*;
+
+Entity:
+  Heading | UniversalEntity | UniversalEntityWithKwargs | ControlCommand;
+
+Heading:
+  '§' order = ('>' | '>>' | '>>>') content += STRING;
+
+UniversalEntity:
+  '^' name = ID
+    content = STRING;
+
+UniversalEntityWithKwargs:
+  '^' name = ID
+    content = Kwargs;
+
+ControlCommand:
+  '!!' content = ID;
+
+Kwargs:
+  '('
+    (arguments += Argument)*
+  ')';
+
+Argument:
+  name = ID '=' content = STRING (comma = ',')?;
+\end{lstlisting}
+
 \paragraph{Scala} hat für eine Programmiersprache von sich aus schon
 sehr gute Fähigkeiten zur Erstellung von internen DSLs, dies
 manifestiert sich in folgenden Fähigkeiten (siehe \cite{dsls} Kapitel 6.1):
@@ -384,6 +463,32 @@ Zudem sei erwähnt, dass es für Scala auch eine Bibliothek gibt mit
 der es möglich ist externe DSLs zu entwerfen. Diese basiert der
 \emph{parser combinator} Technik (siehe \cite{dsls} Kapitel 8.)
 
+\begin{lstlisting}[caption=Scala DSL Syntax (Snippet).]
+class EntityBinding {
+  // ...
+  def § (heading: String) = println(heading)  // new EntityHeading ...
+  def txt (text: String) = println(text)  // new EntityText ...
+}
+
+class Areal {
+  // ...
+  val ++ : EntityBinding = new EntityBinding
+  // ...
+}
+
+// Run Code
+
+object O extends Areal {
+  ++ § "My Heading"
+  ++ txt "Lorem ipsum ..."
+}
+\end{lstlisting}
+
+Das Objekt O erbt von Areal die Syntax. Bedeutung der Syntax ist
+„plus Überschrift Entität, plus Text Entität”. Der Nachteil dabei ist,
+dass leider ein + nicht allein für sich stehen kann, da der Compiler dies
+als Unäre-Operation zählt und somit nicht wie gewünscht erkennt, ++ jedoch
+zählt als Infix-Operation und funktioniert daher wie gewünscht.
 
 \subsection{Skalierbarkeit und Einbettbarkeit}\label{sec-scalierEinbett}
 

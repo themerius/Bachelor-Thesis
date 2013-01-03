@@ -243,7 +243,120 @@ eine ziemlich elegante Lösung, siehe dazu Kapitel \ref{sec-forwardreference}.
 
 \subsection{Anforderungen}
 
-Kommt noch. Auch behavior-driven development!
+Wie auch das Javascript-Framework wird auch die DSL bzw. Generator
+mittels behavior-driven development entwickelt. Als Testframework
+kommt das ausgezeichnete
+\emph{scalatest}\footnote{\url{http://www.scalatest.org}} zum Einsatz.
+
+\paragraph{DocumentTemplateSpec}
+
+\begin{itemize}
+  \item A Entity
+  \begin{itemize}
+    \item should be a half abstract type to make concrete
+    \item should contain a template id name
+    \item knows an append point where it will appended to a page
+    \item should have an unique id
+    \item should generate a JSON suitable for the template snippet
+    \item should be optional nameable via a \$ method
+    \item should be able to set it's name as property to an areal-object
+  \end{itemize}
+  \item A Page 
+  \begin{itemize}
+    \item is a special form of an entity
+    \item defines several append points, where entities are hooked in
+    \item defines for every append point a type, templateVariable and maximum height
+  \end{itemize}
+  \item A Tray 
+  \begin{itemize}
+    \item should have a list buffer for type T, for extending companion objects
+  \end{itemize}
+  \item A Areal 
+  \begin{itemize}
+    \item The Entity binding ++ 
+    \begin{itemize}
+      \item binds the entity-method to corrosponding the entity-class
+      \item should register the entity implicit to the calling areal's companion object's list
+      \item should be able to register the entities reference as property to the corrosponding areal
+      \end{itemize}
+    \item is related to an append point, where pages are appended to
+    \item has as minimum one assigned default page
+    \item extends ordinary scala objects
+    \item should own a implicit reference onto itslef
+    \item is able to change the page layout
+    \item The Generator 
+    \begin{itemize}
+      \item produces out of the areal entity-list a json datastructure
+      \item should accept a implicit reference onto a Builder
+    \end{itemize}
+  \end{itemize}
+  \item A Builder 
+  \begin{itemize}
+    \item must have a companion object with a list of related areals, in the right predefined order
+    \item should own a implicit reference onto itslef
+    \item should set the areal append points in the right order
+    \item should know all pages available for this template
+    \item calls the Generator for every Areal to form the js entity instances
+    \item should assemble the page factory
+    \item should be able to manipulate document's name
+    \item should assemble the configuration in js for the special entities like page header/footer
+    \item should assemble the js areal setup code
+    \item should generate the areal append points
+    \item should have a `build` method for generating the document
+    \item should have a `write` method to save the document as html
+  \end{itemize}
+  \item A TemplateStock
+  \begin{itemize}
+    \item should have a `headerTemplate` method with title argument
+    \item getting all entity snippets as String with `entityTemplate` method
+    \item should have a `footerTemplate` getter/setter
+  \end{itemize}
+\end{itemize}
+
+\paragraph{LogicSpec}
+
+\begin{itemize}
+\item The Logic trait
+\begin{itemize}
+  \item - is a abstract marker
+\end{itemize}
+\item A FigureNumber
+\begin{itemize}
+  \item - should extend an entity with an figure number variable
+  \item - should count figures and set the appropriate number for the particular figure
+\end{itemize}
+\item A SectionNumber
+\begin{itemize}
+  \item should extend an entity with a section variable
+  \item should extend an entity with a h variable
+  \item A Chapter
+  \begin{itemize}
+    \item should count all chapters
+  \end{itemize}
+  \item A Section
+  \begin{itemize}
+    \item should count in it's capter all sections
+  \end{itemize}
+  \item A SubSection 
+  \begin{itemize}
+    \item should count in it's section all subsections
+  \end{itemize}
+  \item A SubSubSection
+  \begin{itemize}
+    \item should count in it's subsection all subsubsections
+  \end{itemize}
+  \item   A TableOfContents 
+  \begin{itemize}
+    \item should filter all instances of SectionNumber returned as List (pending)
+    \item extends an areal class (pending)
+  \end{itemize}
+\end{itemize}
+\item A PythonScript
+\begin{itemize}
+  \item should construct a py-file out of a string (pending)
+  \item should be able to execute the py file and its catch the std:out (pending)
+\end{itemize}
+\end{itemize}
 
 \subsection{API Design}\label{sec-apiDesign}
 
@@ -382,19 +495,3 @@ vorhanden sind.
 % http://stackoverflow.com/questions/13307418/scala-variable-argument-list-with-call-by-name-possible
 
 % http://stackoverflow.com/questions/13270906/cast-scala-string-to-stringcontext-and-virtually-forward-references
-
-\subsubsection{Eval}\label{sec-eval}
-
-\subsubsection{Datenstrukturbasierend}\label{sec-datenstrukturbasierend}
-
-\paragraph{Request-Queue}
-
-Nur Idee!
-
-\paragraph{Pattern-Matching}
-
-Nur Idee!
-
-\paragraph{„place here“}
-
-Praktikabel mit Xtext-Generator. Prototypisierung ausnutzen (C-Header).

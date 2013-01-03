@@ -306,6 +306,11 @@ Möglichkeit haben, die DSL zeitweise zu verlassen um „normalen“ Programmcod
 zu schreiben und danach wieder in die DSL zurückzukehren---ohne große
 Aufwand.
 
+Dies ist für dieses Projekt relativ wichtig, dass auch GPL-Elemente zugelassen
+werden, um eine möglichst hohe Automatisierung der Dokumentenerstellung
+dem Benutzer zu ermöglichen. Siehe dazu als Beispiele
+die verschiedenen Szenarien aus Kapitel \ref{sec-idee-szenarien}.
+
 \paragraph{Xtext} bietet die Möglichkeit mittels Xbase GPL-Expressions
 auszuführen -- und das obwohl Xtext externe DSLs erstellt, für die es für
 gewöhnlich eine sehr harte Arbeit darstellt GPL-Elemente einfließen zu lassen.
@@ -408,7 +413,7 @@ terminal TEXT  :
     !('\\'|'{'|'}'|'\n') )*;
 \end{lstlisting}
 
-\begin{lstlisting}[caption=An Scala-DSL angelente Xtext-Grammatik.]
+\begin{lstlisting}[label=xtext-gramm,caption=An Scala-DSL angelente Xtext-Grammatik.]
 grammar de.htwg.scaltex.dsl.ScalTeX with org.eclipse.xtext.common.Terminals
 
 generate scalTeX "http://www.htwg.de/scaltex/dsl/ScalTeX"
@@ -561,7 +566,13 @@ das Eclipse-Plugin überprüft lediglich die DSL auf ihre
 grammatikalische Korrektheit. Man ist also komplett in der DSL eingesperrt.
 Sehr gut also für nicht-JVM-Ziele, die einen striken Geltungsbereich mit
 klar definierten DSL-Vokablen aufweisen. Kurz: Keine Unterstützung für
-Expressions.
+Expressions.\cite{xtext}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.9\textwidth]{figures/igenerator.png}
+  \caption{IGenerator generiert eine scala-Datei aus der Grammatik von Listing \ref{xtext-gramm}.}\label{fig-igenerator}
+\end{figure}
 
 Der ModelInferrer zielt direkt auf die JVM bzw. Java ab und ermöglicht es
 u.a. JVM-Datentypen direkt mit in die DSL einzubetten, mit allen Möglichkeiten

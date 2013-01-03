@@ -20,13 +20,8 @@ Texte, Bilder etc. erstellt werden können -- dies soll in Kapitel
 Eine Übersicht über die Anforderungen ist in Kapitel
 \ref{sec-ziel_anforderungen} aufgelistet.
 
-Im Anhang \ref{appendix-zielarchitektur} sind die wichtigsten Teile des
-Quellcodes zu diesem JavaScript-Framework griffig zusammengefasst.
-Auch ist im Anhang \ref{appendix-ziel_beispiel} in einem kompletten
-Beispiel aufgeführt, wie die einzelnen Klassen zu benutzen sind,
-damit daraus ein semi-autoamtisches Dokument erstellt werden kann.
 Der komplette Quellcode mit Tests und weiteren Beispielen ist im
-Github Repository \url{https://github.com/themerius/ScalTeX-templates}
+Github Repositorium unter \url{https://github.com/themerius/ScalTeX-templates}
 zu finden.
 
 \subsection{Anforderungen}\label{sec-ziel_anforderungen}
@@ -228,20 +223,26 @@ Kapitel \ref{sec-dsl} beschrieben, wird eine interne DSL in eine bereits
 existierende Wirts-Programmiersprache eingebettet und bildet somit
 eine mehr oder weniger gewöhn\-liche Software-Bibliothek. Im Idealfall ist
 die \emph{API} dieser Bibliothek in ihrer Einsatzdomäne sehr ausdrucksstark.
-Wie die API in diesem Fall gestaltet wird, ist in Kapitel \ref{sec-apiDesign}
-näher beschrieben.
+Wie die API in diesem Fall gestaltet wird, ist in Kapitel
+\ref{sec-grammatikGestaltung} näher beschrieben.
 
-Scala bietet als Wirtssprache dafür ausgezeichnete Fähigkeiten und
-Abstraktionsmittel, wie in Kapitel \ref{sec-grammatikGestaltung} aufgeführt.
-Viele dieser Fähigkeiten werden auch bei der Implementierung eingesetzt
-und dadruch auch in diesem Kapitel näher beleuchtet.
+Wie der Generator bzw. Builder aufgebaut ist, wird in
+Kapitel \ref{sec-generator} erklärt.
+
+Die gesamten Spezifikationen bzw. Anforderungen sind in Kapitel
+\ref{sec-dsl_anforderungen} aufgelistet.
 
 Ein Muster, welches eine wichtige Rolle bei der Erstellung von Dokumenten
 spielt, ist der Vorwärtsverweis, also gegenseitige Verweise von Entitäten,
 wie Texten, Bildern, etc., aufeinander. Für dieses Muster gibt es in Scala
-eine ziemlich elegante Lösung, siehe dazu Kapitel \ref{sec-forwardreference}.
+eine ziemlich elegante Lösung. Siehe dazu Kapitel \ref{sec-forwardreference}.
 
-\subsection{Anforderungen}
+Das Repositorium mit dem gesamten Quellcode, sowie dem Testcode
+und entsprechenden Versionen als ZIP-Archiv herunterladbar ist auf Github bereitgestellt.
+Unter \url{https://github.com/themerius/ScalTeX-DSL} sind sämtliche
+Quellcodes.
+
+\subsection{Anforderungen}\label{sec-dsl_anforderungen}
 
 Wie auch das Javascript-Framework wird auch die DSL bzw. Generator
 mittels behavior-driven development entwickelt. Als Testframework
@@ -357,14 +358,6 @@ kommt das ausgezeichnete
   \item should be able to execute the py file and its catch the std:out (pending)
 \end{itemize}
 \end{itemize}
-
-\subsection{API Design}\label{sec-apiDesign}
-
-Kommt noch.
-
-\subsection{Bindung zwischen API, Logik und Template}
-
-Kommt noch.
 
 \subsection{Vorwärtsverweis Muster}\label{sec-forwardreference}
 

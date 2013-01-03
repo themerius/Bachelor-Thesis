@@ -606,6 +606,18 @@ direkt als Programm laufen kann -- also komplett ohne Umwege, ohne Generierung.
 Zudem kann man von der sehr hohen Freiheit und Flexibilität profitieren,
 wobei u.U. viel Handarbeit nötig ist.
 
+Auf Abbildung \ref{fig-uml_generator} ist der architekturelle Aufbau
+des Generators für den Anwendungsfall zu sehen. Wobei der TemplateStock
+lediglich HTML-Snippets für den Builder lagert, der Builder
+kennt die im Dokument vorhandenen Areale und wandelt diese in die HTML-Pendante
+um, sowie die Entitäten und Seiten die in den Arealen vorkommen werden auch
+in ihre JSON-Repräsentaion umgewandelt.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[height=0.8\textheight]{figures/uml_generator.pdf}
+  \caption{Aufbau des Generators des Anwendungsfalls in Scala.}\label{fig-uml_generator}
+\end{figure}
 
 \section{Auswertung und Ergebnis}
 

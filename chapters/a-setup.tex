@@ -1,0 +1,35 @@
+\chapter{Einrichtung und Betrieb}
+
+GitHub Repositoria:
+
+\begin{itemize}
+  \item Zielarchitetkur: \url{https://github.com/themerius/ScalTeX-templates}
+  \item DSL: \url{https://github.com/themerius/ScalTeX-DSL}
+\end{itemize}
+
+\section{Voraussetzungen}
+
+\begin{itemize}
+  \item Java Virtual Machine bzw. OpenJDK in Version 6 oder 7,
+  \item UNIX Betriebssystem,
+  \item git,
+  \item sbt.
+\end{itemize}
+
+\section{Installation}
+
+\begin{enumerate}
+  \item Mit git das Repositorium herunterladen:
+        \begin{verbatim}
+          git clone https://github.com/themerius/ScalTeX-DSL
+        \end{verbatim}
+  \item In das \verb+ScalTeX-DSL/Scala-NextGen+ Verzeichnis wechseln,
+  \item \verb+sbt+ ausführen,
+  \item in der sbt-shell den Befehl \verb+run+ eingeben.
+\end{enumerate}
+
+Nach dem \verb+run+ Befehl werden von sbt automatisch die benötigten
+Bibliothektsabhänigkeiten und korrekte Scala Verison heruntergeladen.
+Danach werden die Quellen kompiliert und ausgeführt---es sollte dann eine
+\verb+_output/output.html+ Datei entstehen, mit dem Dokument als HTML-Datei,
+welche das kleine hier im Dokument entstandene JavaScript-Framework verwendet.

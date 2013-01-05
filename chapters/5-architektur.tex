@@ -224,7 +224,9 @@ existierende Wirts-Programmiersprache eingebettet und bildet somit
 eine mehr oder weniger gewöhn\-liche Software-Bibliothek. Im Idealfall ist
 die \emph{API} dieser Bibliothek in ihrer Einsatzdomäne sehr ausdrucksstark.
 Wie die API in diesem Fall gestaltet wird, ist in Kapitel
-\ref{sec-grammatikGestaltung} näher beschrieben.
+\ref{sec-grammatikGestaltung} näher beschrieben. In Kapitel
+\ref{sec-api-resultat} ist ein Beispiel für ein lauffähiges
+Dokumentenskript gegeben.
 
 Wie der Generator bzw. Builder aufgebaut ist, wird in
 Kapitel \ref{sec-generator} erklärt.
@@ -358,6 +360,98 @@ kommt das ausgezeichnete
   \item should be able to execute the py file and its catch the std:out (pending)
 \end{itemize}
 \end{itemize}
+
+\subsection{API Design Resultat}\label{sec-api-resultat}
+
+\begin{lstlisting}[caption=Ausführliches Scala DSL Dokument-Skript.]
+import scaltex.template.fraunhofer._
+
+object Doc extends FraunhoferReportBuilder {
+
+  (new Document)
+
+  Kapitel_X
+  Kapitel_Y
+
+  def main(args: Array[String]) {
+    write("_output/output.html")
+  }
+}
+
+object Kapitel_X extends Document {
+
+  ++ § "Überschrift"
+
+  ++ §§ "Unterüberschrift"
+
+  ++ txt """
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.
+  """
+
+  ++ txt $"""
+    Lorem ipsum Abb. ${Chapter_1.figname.figureNumber} dolor sit amet, consetetur
+    sadipscing elitr, sed diam
+    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.
+  """
+
+
+  ++ § "Beispiel"
+
+  ++ §§ "Konkretes Beispiel"
+
+  ++ §§ "Fazit"
+
+  ++ §§§ "Überschrift 3. Ordnung"   $ "ueb"
+
+  ++ txt """
+    <em>Lorem ipsum</em> dolor sit amet, consetetur sadipscing elitr, sed diam
+    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.
+  """
+
+  ++ $ "figname" figure(
+    src="https://raw.github.com/themerius/ScalTeX/play/public/images/plot.png",
+    desc="Matplotlib example histogramm"
+  )
+
+  ++ txt $"""
+    Lorem ipsum Abb. ${Chapter_2.otherfig.figureNumber} dolor sit amet, consetetur
+    sadipscing elitr, sed diam
+    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.
+  """
+}
+
+object Kapitel_Y extends Document {
+  ++ § "Other"
+
+  ++ $ "otherfig" figure(
+    src="https://raw.github.com/themerius/ScalTeX/play/public/images/plot.png",
+    desc="Matplotlib example histogramm"
+  )
+
+  ++ txt $"""
+    Paragraph within Other.
+    Reference on Fig ${Chapter_1.figname.figureNumber} in
+    chapter ${Chapter_1.ueb.sectionNumber}.
+  """
+}
+\end{lstlisting}
+
+Im Objekt Doc wird das Dokument konfiguriert, also u.a. welche Areale aktiviert
+sind und in welcher Reihenfolge die einzelnen Dokumentobjekte strukturiert
+werden sollen.
+
+Jedes Dokumentobjekt wird einen Areal zugeordnet indem es via extends
+von der Arealklasse erbt. Die Arealklasse bringt dann Dinge wie die DSL-Syntax
+mit, und wenn es gelungen ist, sollte intuitiv klar sein, dass man mit
+++ Entitäten wie Überschriften, Bilder und Texte hinzufügen kann. Mit \$
+kann ein Referenzname der Entität zugewiesen werden, mit dem man u.a. in
+den speziellen Strings die mit \lstinline|$""" ... ${Referenzname} ... """|.
+
 
 \subsection{Vorwärtsverweis Muster}\label{sec-forwardreference}
 

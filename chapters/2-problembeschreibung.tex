@@ -20,9 +20,9 @@ geben, welche in Abschnitt \ref{sec-verbindung} näher beschrieben wird.
 \section{Allgemeiner Aufbau von Dokumenten}
 
 Vor allem akademische Dokumente wie z.B. Bücher, Patente oder Bachelorarbeiten
-haben alle im Groben einen ähnlichen Aufbau. Daher ist es sinnvoll ersteinmal
+haben alle im Groben einen ähnlichen Aufbau. Daher ist es sinnvoll erst einmal
 allgemeine Ableitung über die Struktur solcher Dokumente zu machen, so dass
-später daraus eine Architektur für nachfolgende Implementierungen enstehen kann.
+später daraus eine Architektur für nachfolgende Implementierungen entstehen kann.
 
 Die wichtigsten Unterteilungen,
   wie auf Abbildung \ref{fig-areal_pages_entities} dargestellt,
@@ -47,7 +47,7 @@ werden hier grob definiert als
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.9\textwidth]{figures/areal_pages_entities.pdf}
-  \caption{Ein Dokument kann hierachisch grob in Areal, Seiten und Entitäten gegliedert werden.}\label{fig-areal_pages_entities}
+  \caption{Ein Dokument kann hierarchisch grob in Areal, Seiten und Entitäten gegliedert werden.}\label{fig-areal_pages_entities}
 \end{figure}
 
 \section{Zielarchitektur}\label{sec-zielarchitektur}
@@ -65,7 +65,7 @@ Daher ist die Hauptaufgabe der Zielarchitektur eine \emph{Abstraktion
 Die eigentliche Problematik ist hierbei, dass der Webbrowser fließenden
 Text nicht selbst auf definierte Seiten umbrechen kann. Für den Browser
 gibt es nur eine Seite, die quasi einem langen Textschlauch entspricht,
-wenngleich er durch HTML struktuirert und
+wenngleich er durch HTML strukturiert und
 CSS-Eigenschaften gestaltet werden kann.
 
 Damit verbunden ist die Problematik der
@@ -76,8 +76,8 @@ dabei kann es dazu kommen dass eine Entität zwischen zwei Seiten
 Dadurch dass die Zielarchitektur sich um die Erstellung der Seiten und
 die Zuteilung der Entitäten kümmern muss, ist es vollkommen natürlich,
 dass sich diese auch der \emph{Durchnummerierung der Seiten} annehmen muss.
-Davon hängt auch dirket die Funktion, die einzelnen Punkte des
-Inhaltsverzeichnisses mit der entsprechden Seitennummer zu versehen, ab.
+Davon hängt auch direkt die Funktion, die einzelnen Punkte des
+Inhaltsverzeichnisses mit der entsprechenden Seitennummer zu versehen, ab.
 
 Zudem sollte es möglich sein, dass es \emph{verschiedene Arten von Seiten}
 gibt, z.B. Deckblatt, normale vertikale Seite und horizontale Seiten für

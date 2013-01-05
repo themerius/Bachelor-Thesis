@@ -11,7 +11,7 @@ auf Webtechnologie basiert und somit von einem Webbrowser gerendert wird.
 Da Webtechnologie, insbesondere HTML/CSS, keine Möglichkeiten bietet
 Seiten wie z.B. im DIN A4 Format darzustellen ist \emph{die}
 Hauptaufgaben eine geeignete \emph{Abstraktion für Seiten} zu entwickeln.
-Eine detailierte Beschreibung ist in Kapitel \ref{sec-abstrationSeiten}.
+Eine detaillierte Beschreibung ist in Kapitel \ref{sec-abstrationSeiten}.
 
 Weiterhin ist wichtig, wie die einzelnen Entitäten, wie Überschriften,
 Texte, Bilder etc. erstellt werden können -- dies soll in Kapitel
@@ -111,7 +111,7 @@ der Inhalt fortgesetzt werden kann.
 Diese konzentriert sich zunächst darauf die Entitäten, wie Texte, Bilder usw.,
 auf Seiten entsprechend dem Dokumentenfluss zuzuweisen.
 In diesem Fall darf zunächst eine
-einzelne Entität nicht die größe einer Seite überschreiten -- diese
+einzelne Entität nicht die Größe einer Seite überschreiten -- diese
 Problematik soll später näher erläutert werden.
 
 Der prinzipielle Ablauf wird auf Abbildung \ref{fig-aufteilungsstrategie}
@@ -154,7 +154,7 @@ Zum Einsatz kommt dabei die Javascript-Bib\-lio\-thek
 Auf diese Weise kann jede einzelne Entität oder Seite clientseitig
 durch ein kleines Template-Snippet darstellt werden, welches an die
 Bedürfnisse des spezifischen Dokumenten-Designs bzw. Dokumenten-Templates
-angepasst ist. Beispielsweise eine Überschrift, könnte so aussiehen:
+angepasst ist. Beispielsweise eine Überschrift, könnte so aussehen:
 
 \begin{verbatim}
 <script id="heading" type="text/template">
@@ -189,7 +189,7 @@ Mehr Informationen unter \url{http://json.org}.} gefüttert werden, wie z.B.:
 Die resultierenden Seiten zur Anzeige (View Pages), werden bestimmten
 Arealen zugeordnet, diese dienen insbesondere der logischen Strukturierung
 des Dokuments. Aus Sicht der Seiten sind diese Areale quasi
-Einhängepunkte, wo die fertig befüllten Seiten angefügt werden.
+Einhängepunkte, wo die fertig gefüllten Seiten angefügt werden.
 Beispiele für Areale sind:
 
 \begin{itemize}
@@ -470,9 +470,9 @@ Reference = new Figure(...)
 Hier wird also auf \lstinline|Reference| bereits zugegriffen,
 bevor sie überhaupt existiert. Erschwerend kommt hinzu, dass die
 Reihenfolge der Entitäten (Texte, Bilder, etc.) nicht verändert werden darf.
-Die Abbilung soll also an der Position im Dokument erscheinen, an der sie
+Die Abbildung soll also an der Position im Dokument erscheinen, an der sie
 auch im Dokument-Quellcode geschrieben wurde, da es sich hier um eine DSL
-handelt, die sich möglichst nahme am eigentlichen Dokument orientiert.
+handelt, die sich möglichst nahe am eigentlichen Dokument orientiert.
 
 Vollständig beschrieben wird hier die Lösung mit einem \emph{Closure} in
 Kapitel \ref{sec-closure}, welches zugleich die eleganteste Lösung darstellt
@@ -481,7 +481,7 @@ und auch in der fertigen Implementierung zum Einsatz kommt.
 Ein weiterer Ansatz welcher auch probeweisimplementiert wurde ist die Lösung
 mit \emph{Eval}, welche aber unpraktischer und auch unsicherer einzustufen
 ist als die Lösung mit einem Closure. Die in Kapitel \ref{sec-eval}
-beschriebene Lösung kommt in der fertigen Implementierung jeodoch nicht
+beschriebene Lösung kommt in der fertigen Implementierung jedoch nicht
 zum Einsatz.
 
 Zudem gibt es noch weitere Überlegungen die während der Lösungsfindung
@@ -506,8 +506,8 @@ def outer_func = {
 \end{lstlisting}
 
 Auf \lstinline|v| kann noch über die Lambda-Funktion zugegriffen werden,
-selbst wenn \lstinline|outer_func| nicht mehr exisiert. Teile des
-\lstinline|outer_func|-Geltungsbereichts werden quasi mitgezogen.
+selbst wenn \lstinline|outer_func| nicht mehr existiert. Teile des
+\lstinline|outer_func|-Geltungsbereiches werden quasi mitgezogen.
 
 Genau mit dieser Technik kann man den Vorwärtsverweis in den Griff bekommen.
 Es wird der äußere Geltungsbereich eines Objekts nach innen gezogen,

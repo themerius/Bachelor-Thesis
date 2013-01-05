@@ -13,9 +13,9 @@ hat ausgezeichnete Fähigkeiten zur Gestaltung einer
 internen DSL, nähere Details siehe Kapitel \ref{sec-grammatikGestaltung},
 und als objekt-orientierte sowohl auch funktionale Sprache sehr
 vielfältige Möglichkeiten für den Benutzer bietet, egal ob er sich
-gerade „innerhalb“ der DSL gefindet oder „standard“ Scala schreiben
+gerade „innerhalb“ der DSL befindet oder „standard“ Scala schreiben
 möchte. Zudem hat Scala eine sehr aktive Community und wird vom
-Universitätzlehrstuhl unter Martin Odersky weiterentwickelt.
+Universitätslehrstuhl unter Martin Odersky weiterentwickelt.
 Zudem ist Scala ein OpenSource-Projekt.
 Durch die Fähigkeit auf der Java Virtual Machine (JVM) zu laufen,
 hat Scala auch eine sehr gute Integration mit Java und
@@ -123,7 +123,7 @@ in der ersten Spalte der Tabelle entsprechend referenziert wird.
     Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern
     Eclipse eingesetzt werden will.
   & Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
-    innerhalb eines Frameworks möglich, oder einsatz als Bibliothek,
+    innerhalb eines Frameworks möglich, oder Einsatz als Bibliothek,
     Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar.
     Kann also quasi in eine beliebige Umgebung eingebettet werden
     wo eine JVM läuft oder auch als Service bereitgestellt werden.
@@ -137,7 +137,7 @@ in der ersten Spalte der Tabelle entsprechend referenziert wird.
     Template-Engine generiert werden, das Eclipse-Plugin stellt sofort das
     Generat bereit. Jedoch kann nativer Code nicht direkt auf Xtext laufen,
     es muss also ggf. noch ein externer Build o.ä. angestossen werden.
-  & Die DSL selbst kann direkt ein lauffähigkes Programm sein. Andere Ziele,
+  & Die DSL selbst kann direkt ein lauffähiges Programm sein. Andere Ziele,
     z.B. andere Programmier-Sprachen oder Markup-Sprachen müssen einen Umweg
     über eine Template-Engine nehmen, allerdings steht hier ein Eclipse-Plugin
     bereit, welches direkt nach jeder Änderung das Generat bereitstellt; das
@@ -151,7 +151,7 @@ in der ersten Spalte der Tabelle entsprechend referenziert wird.
   & Xtend eine speziell angepasste DSL-Generator-Template-Engine.
     Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt,
     mit denen das Ziel über das Template generiert werden kann.
-  & 1. Freie Wahl, z.B. einface Multiline-Strings, Scala XML oder Scalate;
+  & 1. Freie Wahl, z.B. einfache Multiline-Strings, Scala XML oder Scalate;
     wie aus der internen DSL das Ziel generiert wird, benötigt in der Regel
     einen Zwischenschritt (Bindings), welcher programmiert werden muss.
     Scala kann jedoch ggf. das Generat als Unterprogramm ausführen.
@@ -209,7 +209,7 @@ in der ersten Spalte der Tabelle entsprechend referenziert wird.
 
 \paragraph{Xtext} wird direkt als fertig eingerichtete Eclipse IDE
 ausgeliefert, die speziell an die Erstellung von externen DSLs angepasst
-ist. Es wird also ein DSL-Erstellungs-Ökosystem „out-of-the-box“ geliefert.
+ist. Es wird also ein DSL-Erstellungsökosystem „out-of-the-box“ geliefert.
 
 Xtext bietet die folgenden Dinge, mit einer exzellenten IDE Unterstützung:
 
@@ -270,12 +270,12 @@ auch dazu gezwungen sich Gedanken dazu zu machen, wie der DSL-Code
 der vom Domain-Benutzer geschrieben wird strukturiert werden kann,
 was insbesondere bei größeren DSL-Skripten oder
 Projekten günstig sein kann -- falls gewünscht bzw. gebraucht.
-Jedoch ist Handarbeit erfolderlich, um solche Fähigkeiten wie sie o.g.
+Jedoch ist Handarbeit erforderlich, um solche Fähigkeiten wie sie o.g.
 sind in der DSL unter zu bekommen.
 
 \paragraph{Scala} bietet die o.g. Struktuierungsfähigkeiten generisch an,
 es muss also keinerlei Aufwand getrieben werden, um die interne DSL mit
-diesen Fähigkeiten auzustatten. Soll heißen, all das wird gratis mitgeliefert.
+diesen Fähigkeiten auszustatten. Soll heißen, all das wird gratis mitgeliefert.
 
 
 \subsection{General Purpose Language}\label{sec-gpl}
@@ -371,9 +371,9 @@ auf das Wesentliche konzentriert werden kann.
 
 \subsection{Grammatikalische Gestaltung}\label{sec-grammatikGestaltung}
 
-Die grammatikalische Gestaltung ist eine der wichtigsten Eingenschaften
+Die grammatikalische Gestaltung ist eine der wichtigsten Eigenschaften
 für die Ausdrucksstärke einer DSL und die Ausdrucksstärke ist eines
-der wichtigsten Kriteren für die Akzeptanz der Domain-Benutzer.
+der wichtigsten Kriterien für die Akzeptanz der Domain-Benutzer.
 
 \paragraph{Xtext} ist ein Framework zur Erstellung von externen DSLs und
 hat somit naturgemäß ausgezeichnete Fähigkeiten zur Gestaltung einer beliebigen
@@ -387,7 +387,7 @@ Grammatiken bzw. Programmiersprachen entworfen werden können.
 
 Hier zwei implementierte Beispiel-Grammatiken, um die Flexibilität von
 Xtext zu verdeutlichen, einmal eine Grammatik die Ähnlichkeit mit \TeX~
-hat und zum anderen eine Grammatik die an die interne DSL von Scala angelent,
+hat und zum anderen eine Grammatik die an die interne DSL von Scala angelehnt,
 jedoch entspricht diese nicht ganz dem Endresultat der Scala-DSL, ist.
 
 \begin{lstlisting}[caption=\TeX-ähnliches Xtext-Grammatik-Snippet.]
@@ -459,9 +459,9 @@ manifestiert sich in folgenden Fähigkeiten (siehe \cite{dsls} Kapitel 6.1):
   \item viel syntaktischer Zucker u.a. mit impliziten Erweiterungen,
   \item Stärken von objektorientierter- und funktionaler-Programmierung
         geschickt vereint,
-  \item starke statische Typesierung, jedoch ergänzt der Compiler selbstständig
+  \item starke statische Typisierung, jedoch ergänzt der Compiler selbstständig
         sehr viele Typ-Informationen → wirkt fast wie eine dynamisch
-        typesierte Sprache.
+        typisierte Sprache.
 \end{itemize}
 
 Zudem sei erwähnt, dass es für Scala auch eine Bibliothek gibt mit
@@ -506,16 +506,16 @@ Eclipse ist eine mächtige IDE, die auf mittlere bis große Softwareprojekte
 ausgelegt ist, und somit eher unter die schwergewichtigen Entwickler-Werkzeuge
 einzuordnen ist. Aber der Vorteil ist, dass selbst riesengroße Projekte
 damit verwaltbar sind und das Projekt quasi nach belieben wachsen kann und
-durch die Refactoring-Fähigkeiten auch leicht wartbar und erweiterbat ist.
+durch die Refactoring-Fähigkeiten auch leicht wartbar und erweiterbar ist.
 Man könnte also sagen, dass Xtext die Skalierbarkeit von Eclipse erbt.
 
-Das Generat kann je nach eingesetzen Generator (siehe Abschnitt
+Das Generat kann je nach eingesetzten Generator (siehe Abschnitt
 \ref{sec-generator}) skalieren, da Xtext quasi beliebige Generate erstellen
 kann, muss für Einzelfall entschieden werden.
 
 Zur Einbettbarkeit in beliebige Umgebungen, ist der Entwickler bzw.
 Domain-Benutzer sehr gebunden und abhängig. Eclipse läuft für gewöhnlich
-nur auf Desktop-Computern, also mit grafischer Benutzeröberfläche,
+nur auf Desktop-Computern, also mit grafischer Benutzeroberfläche,
 und benötigt relativ vielen Ressourcen, die Eclipse auch
 gerne annimmt.
 Da Eclipse auch die Generatoren anwirft, um aus der DSL
@@ -531,13 +531,13 @@ abhängig, also u.U. sehr gut.
 zu skalieren. Beispiele: Es ist möglich Scala-Programme vom kleinen
 Shell-ähnlichen Skript mit 2 Zeilen, bis hin zur Enterprise Software
 mit hunderttausenden Zeilen Code zu schreiben. Also vom kleinen mini
-Einzelplatzskript bis zu Mainfraimapplikationen mit unzähligen nebenläuftigen
+Einzelplatzskript bis zu Mainfraimapplikationen mit unzähligen nebenläufigen
 Zugriffen.
 
 Scala hat auch keinerlei Bindung zu einer speziellen IDE, aber es gibt
 u.a. ein geeignetes Eclipse Plugin. Durch diese Bindungslosigkeit, kann
-es auch headless oder auf entferten Rechnern laufen und kann somit auf und für
-beliebigen Szenarien entwickelt werden.
+es auch headless oder auf entfernen Rechnern laufen und kann somit auf und für
+beliebigen Szenerien entwickelt werden.
 Die DSL wird in Form einer normalen Scala-Bibliothek ausgeliefert und
 kann quasi in jede Umgebung eingebracht werden, in die auch eine andere
 Scala-Bibliothek eingebracht werden kann.
@@ -564,8 +564,8 @@ Jedoch muss, je nach Generat, es ggf. kompiliert werden. Der
 Domain-Benutzer hat keinen Zugriff auf z.B. Typ-Prüfung der JVM --
 das Eclipse-Plugin überprüft lediglich die DSL auf ihre
 grammatikalische Korrektheit. Man ist also komplett in der DSL eingesperrt.
-Sehr gut also für nicht-JVM-Ziele, die einen striken Geltungsbereich mit
-klar definierten DSL-Vokablen aufweisen. Kurz: Keine Unterstützung für
+Sehr gut also für nicht-JVM-Ziele, die einen strikten Geltungsbereich mit
+klar definierten DSL-Vokabeln aufweisen. Kurz: Keine Unterstützung für
 Expressions.\cite{xtext}
 
 \begin{figure}[h!]
@@ -592,7 +592,7 @@ kompiliert werden.\cite{xtext}
 \paragraph{Scala} hingegen hat die Qual der Wahl was das Templating angeht.
 Scala selbst bietet in der Standard-Bibliothek schon
 eine Reihe an Möglichkeiten an,
-z.B. Multiline-Strings oder XML. Jedoch muss sich der Programmierer ersteinmal
+z.B. Multiline-Strings oder XML. Jedoch muss sich der Programmierer erst einmal
 eine Architektur überlegen, wie er von den DSL-Klassen auf die Template-Engine
 kommt. Weiterhin muss er auch festlegen, wie er das Resultat behandelt,
 z.B. wo es gespeichert wird, welche Dateinamen es bekommt etc.
@@ -611,7 +611,7 @@ des Generators für den Anwendungsfall zu sehen. Wobei der TemplateStock
 lediglich HTML-Snippets für den Builder lagert, der Builder
 kennt die im Dokument vorhandenen Areale und wandelt diese in die HTML-Pendante
 um, sowie die Entitäten und Seiten die in den Arealen vorkommen werden auch
-in ihre JSON-Repräsentaion umgewandelt.
+in ihre JSON-Repräsentation umgewandelt.
 
 \begin{figure}[h!]
   \centering
@@ -636,7 +636,7 @@ spezifischen Anforderungen individuell angepasst werden, falls gewünscht.
 
 Weiterhin gilt zu beachten, dass die Bewertungen ihrer Natur nach sowohl
 \emph{intuitiv} als auch \emph{objektiv} gewichtet sind, da eben vieles vom
-Betracher abhängt und die Fähigkeiten gewisse Überschneidungen haben.
+Betrachter abhängt und die Fähigkeiten gewisse Überschneidungen haben.
 Am Ende steht jedoch ein einigermaßen objektives Maß,
 welche Lösung die meisten Vorteile, mit Blick
 auf das vorliegende Projekt bietet.
@@ -769,7 +769,7 @@ allgemein für das Projekt ungeschickt bedeutet.
 \subsection{Ergebnis}
 
 Wenn man die Werte aus der Tabelle \ref{sec-auswertungstabelle} zusammenrechnet
-kommnt ein Ergebnis zustande, indem sich \textbf{Scala mit 35 zu
+kommt ein Ergebnis zustande, indem sich \textbf{Scala mit 35 zu
 29 Punkten in Vergleich mit Xtext} durchsetzt.
 
 Somit ist für \emph{dieses} Projekt Scala besser geeignet.

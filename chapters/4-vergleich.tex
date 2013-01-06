@@ -15,11 +15,12 @@ und als objekt-orientierte sowohl auch funktionale Sprache sehr
 vielfältige Möglichkeiten für den Benutzer bietet, egal ob er sich
 gerade „innerhalb“ der DSL befindet oder „standard“ Scala schreiben
 möchte. Zudem hat Scala eine sehr aktive Community und wird vom
-Universitätslehrstuhl unter Martin Odersky weiterentwickelt.
+Universitätslehrstuhl unter Prof. Martin
+Odersky\footnote{\url{http://lamp.epfl.ch}} weiterentwickelt.
 Zudem ist Scala ein OpenSource-Projekt.
 Durch die Fähigkeit auf der Java Virtual Machine (JVM) zu laufen,
 hat Scala auch eine sehr gute Integration mit Java und
-Java-Bibliotheken.
+Java-Bibliotheken. (\cite{scala-ref}, Seite 1)
 
 \paragraph{Xtext} ist ein Framework welches auf die Entwicklung externer DSLs
 ausgelegt ist und dabei auf die Eclipse IDE Plattform aufbaut
@@ -31,7 +32,7 @@ Syntax her freundlicher als Java ist, aber sich dennoch nahe an den
 Java-Konzepten aufhält. Diese Sprache heißt Xtend und wird vornehmlich
 intern zur Generator-Programmierung eingesetzt.
 Auch Xtext ist ein OpenSource-Projekt und wird hauptsächlich von der
-deutschen Firma \emph{itemis AG} betreut bzw. weiterentwickelt.
+deutschen Firma \emph{itemis AG} betreut bzw. weiterentwickelt. (\cite{xtext})
 
 \section{Vergleichsmatrix}\label{sec-vergleichsmatrix}
 
@@ -57,144 +58,142 @@ in der ersten Spalte der Tabelle entsprechend referenziert wird.
   1
   & \ref{sec-grammatikGestaltung}
   & Grammatikalische Gestaltung der DSL
-  & Komplett frei und flexibel, da in BNF-Regeln definiert.
-  & Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
-    dennoch sehr ausdrucksstarke Möglichkeiten.
+  & {\small Komplett frei und flexibel, da in BNF-Regeln definiert.}
+  & {\small Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
+    dennoch sehr ausdrucksstarke Möglichkeiten.}
   \\\hline
 
   2
   & \ref{sec-gpl}
   & DSL mit General Purpose mischbar
-  & Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.
-  & Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.
+  & {\small Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.}
+  & {\small Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.}
   \\\hline
 
   3
   & \ref{sec-strukturierungsfaehigkeit}
   & Strukturierungsfähigkeit des Codes
-  & Muss alles selbst gebaut werden. Vorteil: Es muss nur das nötigste
-    umgesetzt werden.
-  & Sämtliche Infrastruktur vorhanden. (Packages, Kontrollstrukturen,
-    Build-Tools, ...)
+  & {\small Muss alles selbst gebaut werden. Vorteil: Es muss nur das nötigste
+    umgesetzt werden.}
+  & {\small Sämtliche Infrastruktur vorhanden. (Packages, Kontrollstrukturen,
+    Build-Tools, ...)}
   \\\hline
 
   4
   & \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
-  & Es würde von dem Domain User verlangt werden BNF-Notation zu können,
-    Xtend und er wäre auf Eclipse gezwungen. % da kann sich fast gar keine Community bilden
-  & Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen,
-    die Bindings zu erstellen.
+  & {\small Es würde von dem Domain User verlangt werden BNF-Notation zu können,
+    Xtend und er wäre auf Eclipse gezwungen.}
+  & {\small Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen,
+    die Bindings zu erstellen.}
   \\\hline
 
   5
   & \ref{sec-erweiterbar}
   & Erweiterbarkeit durch Entwickler
-  & Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
-    Unterstützung durch Eclipse.
-  & Der Aufwand liegt bei der Entwicklung einer Library. Jedoch müssen
-    Testumgebungen etc. selbst eingerichtet werden.
+  & {\small Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
+    Unterstützung durch Eclipse.}
+  & {\small Der Aufwand liegt bei der Entwicklung einer Library. Jedoch müssen
+    Testumgebungen etc. selbst eingerichtet werden.}
   \\\hline
 
   6
   & \ref{sec-erweiterbar}
   & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
-  & Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.
-  & Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach
-    gewohnter Manier kombiniert und erweitert werden.
+  & {\small Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.}
+  & {\small Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach
+    gewohnter Manier kombiniert und erweitert werden.}
   \\\hline
 
   7
   & \ref{sec-infrastruktur}
   & Sprach-Infrastruktur
-  & Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.
-  & Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
-    Breite Unterstützung von vielen Editoren.
+  & {\small Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.}
+  & {\small Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
+    Breite Unterstützung von vielen Editoren.}
   \\\hline
 
   8
   & \ref{sec-scalierEinbett}
   & Einbettbarkeit in beliebige Umgebungen
-  & De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
+  & {\small De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
     welches sich mit dem Projektverlauf automatisch mit anpassen kann.
     Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern
-    Eclipse eingesetzt werden will.
-  & Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
+    Eclipse eingesetzt werden will.}
+  & {\small Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
     innerhalb eines Frameworks möglich, oder Einsatz als Bibliothek,
     Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar.
     Kann also quasi in eine beliebige Umgebung eingebettet werden
-    wo eine JVM läuft oder auch als Service bereitgestellt werden.
-    Allerdings ist Xtext in Eclipse besser eingebunden, da speziell angepasst.
+    wo eine JVM läuft oder auch als Service bereitgestellt werden.}
   \\\hline
 
   9
   & \ref{sec-generator}
   & Generator: Zielplatform
-  & Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell durch eine
+  & {\small Ohne Umwege kann jede Sprache oder Markup aus dem DSL-Modell durch eine
     Template-Engine generiert werden, das Eclipse-Plugin stellt sofort das
     Generat bereit. Jedoch kann nativer Code nicht direkt auf Xtext laufen,
-    es muss also ggf. noch ein externer Build o.ä. angestossen werden.
-  & Die DSL selbst kann direkt ein lauffähiges Programm sein. Andere Ziele,
+    es muss also ggf. noch ein externer Build o.ä. angestossen werden.}
+  & {\small Die DSL selbst kann direkt ein lauffähiges Programm sein. Andere Ziele,
     z.B. andere Programmier-Sprachen oder Markup-Sprachen müssen einen Umweg
-    über eine Template-Engine nehmen, allerdings steht hier ein Eclipse-Plugin
-    bereit, welches direkt nach jeder Änderung das Generat bereitstellt; das
+    über eine Template-Engine nehmen, das
     Verfahren hierzu muss selbst entwickelt werden (das kann ein Vor- oder
-    auch ein Nachteil sein.)
+    auch ein Nachteil sein.)}
   \\\hline
 
   10
   & \ref{sec-generator}
   & Generator: Template-Engine
-  & Xtend eine speziell angepasste DSL-Generator-Template-Engine.
+  & {\small Xtend eine speziell angepasste DSL-Generator-Template-Engine.
     Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt,
-    mit denen das Ziel über das Template generiert werden kann.
-  & 1. Freie Wahl, z.B. einfache Multiline-Strings, Scala XML oder Scalate;
+    mit denen das Ziel über das Template generiert werden kann.}
+  & {\small 1. Freie Wahl, z.B. einfache Multiline-Strings, Scala XML oder Scalate;
     wie aus der internen DSL das Ziel generiert wird, benötigt in der Regel
     einen Zwischenschritt (Bindings), welcher programmiert werden muss.
     Scala kann jedoch ggf. das Generat als Unterprogramm ausführen.
-    2. Die interne DSL ist selbst lauffähig.
+    2. Die interne DSL ist selbst lauffähig.}
   \\\hline
 
   11
   &
   & Entwicklungsaufwand (u.a. Zeit, Einarbeitung)
-  & Wenn BNF-Kenntnisse (theoretische Informatik) vorhanden sind,
+  & {\small Wenn BNF-Kenntnisse (theoretische Informatik) vorhanden sind,
     relativ leichte Einarbeitung.
     Die Tools nehmen die harte Arbeit ab. Es gibt schon standardisierte
-    Vorgehensweisen, z.B. wie der Generator gebaut wird.
-  & Wenn Scala-Kenntnisse vorhanden, ist es mehr oder weniger die Entwicklung
+    Vorgehensweisen, z.B. wie der Generator gebaut wird.}
+  & {\small Wenn Scala-Kenntnisse vorhanden, ist es mehr oder weniger die Entwicklung
     einer Bibliothek.
-    Wie man den Generator baut, muss allerdings überlegt werden.
+    Wie man den Generator baut, muss allerdings überlegt werden.}
   \\\hline
 
   12
   & \ref{sec-erweiterbar}
   & Software-Lebenszyklus und Wartbarkeit
-  & Dank IDE und einer schon eingerichteten Testumgebung, also sehr gut.
-  & Man hat alle Möglichkeiten, die die Scala-Welt bietet, also sehr gut.
-    Jedoch ist Handarbeit nötig.
+  & {\small Dank IDE und einer schon eingerichteten Testumgebung, also sehr gut.}
+  & {\small Man hat alle Möglichkeiten, die die Scala-Welt bietet, also sehr gut.
+    Jedoch ist Handarbeit nötig.}
   \\\hline
 
   13
   &
   & Tooling (für DSL Gestaltung)
-  & Komplette und entsprechend angepasste Eclipse Entwicklungsumgebung.
-  & Die Sprache selbst, sonst keine Hilfen.
+  & {\small Komplette und entsprechend angepasste Eclipse Entwicklungsumgebung.}
+  & {\small Die Sprache selbst, sonst keine Hilfen.}
   \\\hline
 
   14
   & \ref{sec-scalierEinbett}
   & Skalierbarkeit
-  & Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.
-  & Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut
-    skalierbar.
+  & {\small Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.}
+  & {\small Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut
+    skalierbar.}
   \\\hline
 
   15
   &
   & DSL als Library bzw. Bereitstellung
-  & Ist eine in sich mehr oder weniger geschlossene Struktur.
-  & Interne DSL ist eine ganz normale Scala Library.
+  & {\small Ist eine in sich mehr oder weniger geschlossene Struktur.}
+  & {\small Interne DSL ist eine ganz normale Scala Library.}
   \\\hline
 
 \end{longtable}
@@ -205,15 +204,17 @@ in der ersten Spalte der Tabelle entsprechend referenziert wird.
 \subsection{Sprach-Infrastruktur}\label{sec-infrastruktur}
 
 \paragraph{Xtext} wird direkt als fertig eingerichtete Eclipse IDE
-ausgeliefert, die speziell an die Erstellung von externen DSLs angepasst
+ausgeliefert\footnote{\url{http://www.eclipse.org/Xtext/download.html}},
+die speziell an die Erstellung von externen DSLs angepasst
 ist. Es wird also ein DSL-Erstellungsökosystem „out-of-the-box“ geliefert.
 
 Xtext bietet die folgenden Dinge, mit einer exzellenten IDE Unterstützung:
 
 \begin{itemize}
-  \item Grammatik DSL (BNF-ähnlich),
+  \item Grammatik DSL die der erweiterten Backus-Naur Form ähnelt
+        (\cite{xtext}, S. 59f),
   \item unterschiedliche Code-Generatoren (siehe. Abschnitt \ref{sec-generator}),
-  \item an DSL-Entwicklung angepasste Testumgebung (z.B. Unittests.)
+  \item an DSL-Entwicklung angepasste Testumgebung (\cite{xtext}, S. 31.)
 \end{itemize}
 
 Zudem sei erwähnt, dass Xtext aus den Grammatik-Regeln automatisch ein
@@ -222,7 +223,8 @@ unterstützt, wie z.B. Syntax-Hervorhebung, Überprüfung der grammatikalischen
 Korrektheit oder Auto-Vervollständigung.
 
 Weiter werden aus den Grammatik-Regeln Java-Klassen abgeleitet, mit denen
-komfortabel die Code-Generierung vorgenommen werden kann. Der DSL-Programmierer
+komfortabel die Code-Generierung vorgenommen werden kann. (\cite{xtext}, S. 78)
+Der DSL-Programmierer
 muss sich also nicht mit abstrakten Syntaxbäumen oder Ähnlichem herumschlagen.
 
 \paragraph{Scala} bringt als vollwertige \emph{General Purpose Language}
@@ -232,7 +234,8 @@ Hervorzuheben sind:
 
 \begin{itemize}
   \item Linker und Compiler,
-  \item Built-Tools wie \emph{sbt} mit Abhängigkeits-Management,
+  \item Built-Tools wie \emph{sbt}\footnote{\url{http://www.scala-sbt.org}}
+        mit Abhängigkeits-Management,
   \item Read-Evaluate-Print-Loop (REPL), eine interaktive Scala-Sitzung,
   \item Zugriff auf die Java-Standard-Library,
   \item Umfangreiche Scala-Standard-Library.
@@ -261,12 +264,12 @@ z.B. Syntax-Fehler ausfindig machen kann und Scala hat u.a. den Compiler
 und Ausnahmen die zur Laufzeit geworfen werden können.
 
 \paragraph{Xtext} ermöglicht es von Grund auf eine Sprache zu entwickeln,
-die komplett auf das Domänen-Problem zugeschnitten ist -- ohne Kompromisse.
+die komplett auf das Domänen-Problem zugeschnitten ist---ohne Kompromisse.
 Dadurch dass die Sprache von Grund auf erstellt wird, ist der Entwickler
 auch dazu gezwungen sich Gedanken dazu zu machen, wie der DSL-Code
-der vom Domain-Benutzer geschrieben wird strukturiert werden kann,
+der vom Benutzer geschrieben wird strukturiert werden kann,
 was insbesondere bei größeren DSL-Skripten oder
-Projekten günstig sein kann -- falls gewünscht bzw. gebraucht.
+Projekten günstig sein kann---falls gewünscht bzw. gebraucht.
 Jedoch ist Handarbeit erforderlich, um solche Fähigkeiten wie sie o.g.
 sind in der DSL unter zu bekommen.
 
@@ -298,7 +301,7 @@ muss. Es düfen also möglichst keine Implementierungsdetails darin auftauchen.
 Jetzt kann es sein dass, wie in diesem Projekt gewünscht,
 auch die Möglichkeit geboten wird universellen Programmcode zu schreiben,
 um z.B. auf das Dateisystem zuzugreifen oder eine Grafik mit einer
-externen Bibliothek zu erstellen. Der Domain-Benutzer soll also die
+externen Bibliothek zu erstellen. Der Benutzer soll also die
 Möglichkeit haben, die DSL zeitweise zu verlassen um „normalen“ Programmcode
 zu schreiben und danach wieder in die DSL zurückzukehren---ohne große
 Aufwand.
@@ -309,10 +312,11 @@ dem Benutzer zu ermöglichen. Siehe dazu als Beispiele
 die verschiedenen Szenarien aus Kapitel \ref{sec-idee-szenarien}.
 
 \paragraph{Xtext} bietet die Möglichkeit mittels Xbase GPL-Expressions
-auszuführen -- und das obwohl Xtext externe DSLs erstellt, für die es für
+(\cite{xtext}, S. 150)
+auszuführen---und das obwohl Xtext externe DSLs erstellt, für die es für
 gewöhnlich eine sehr harte Arbeit darstellt GPL-Elemente einfließen zu lassen.
 Xtext vereinfacht diese harte Arbeit. Aber auch hier ist die Implementierung
-nicht ganz kostenfrei, da als Generator nur noch der \emph{ModelInferrer}
+nicht ganz kostenfrei, da als Generator nur noch der \emph{JvmModelInferrer}
 (siehe Abschnitt \ref{sec-generator}) zum Einsatz kommen kann.
 Und auch hier hat man nicht die absolute Freiheit, die man sich eventuell
 wünschen würde:
@@ -322,7 +326,8 @@ wünschen würde:
         soll, kann es zu Komplikationen kommen, z.B. wenn der DSL-Code
         auf eine Variable aus dem GPL-Abschnitt zugreifen soll (siehe
         Abschnitt \ref{sec-forwardreference}.)
-  \item Der ModelInferrer kann nur noch Java bzw. die JVM als Ziel haben.
+  \item Der JvmModelInferrer kann nur noch Java bzw. die JVM als Ziel haben.
+        (\cite{xtext}, S. 148)
 \end{itemize}
 
 \paragraph{Scala} ist eine GPL und hier in dem Projekt wird eine interne
@@ -341,8 +346,8 @@ einzelne Teile wiederverwenden zu können.
 
 Warum ist das so wichtig? Weil im späteren Lebenszyklus dieser Software
 verschiedenartige Dokumente generierbar sein sollen, wo im Idealfall
-die Domain-Benutzer selber Änderungen an den Bindungen zwischen
-Dokumenten-Template und der DSL vornehmen können. Die Domain-Benutzer
+die Benutzer selber Änderungen an den Bindungen zwischen
+Dokumenten-Template und der DSL vornehmen können. Die Benutzer
 wollen eventuell das Dokument um neue Arten von Darstellungen (z.B. spezielle
 Tabellen) oder gänzlich neue Möglichkeiten (z.B. ein Chemie-Editor
 innerhalb des resultierenden Dokuments) erweitern.
@@ -355,7 +360,7 @@ möglichst lebendige Umgebung, mit der Fähigkeit leicht erweiterbar zu sein.
 
 \paragraph{Xtext} hat hier den Hauptnachteil, dadurch dass quasi nur
 Entwickler in der Lage sind die Grammatik zu erweitern oder den
-Generator zu pflegen. Aber die Domain-Benutzer sollen in der Lage sein
+Generator zu pflegen. Aber die Benutzer sollen in der Lage sein
 eigene Dokumenten-Templates zu erstellen oder vorhandene zu modifizieren.
 
 \paragraph{Scala} kann hier glänzen dadurch, dass zu jedem Template auch
@@ -370,7 +375,7 @@ auf das Wesentliche konzentriert werden kann.
 
 Die grammatikalische Gestaltung ist eine der wichtigsten Eigenschaften
 für die Ausdrucksstärke einer DSL und die Ausdrucksstärke ist eines
-der wichtigsten Kriterien für die Akzeptanz der Domain-Benutzer.
+der wichtigsten Kriterien für die Akzeptanz der Benutzer.
 
 \paragraph{Xtext} ist ein Framework zur Erstellung von externen DSLs und
 hat somit naturgemäß ausgezeichnete Fähigkeiten zur Gestaltung einer beliebigen
@@ -379,6 +384,7 @@ Grammatik.
 Dabei setzt Xtext auf eine selbst entwickelte externe DSL, die sehr große
 Ähnlichkeit mit der \emph{Backus-Naur-Form} hat, mit der kontextfreie
 Grammatiken bzw. Programmiersprachen entworfen werden können.
+(\cite{xtext}, S. 59f)
 
 \paragraph{Xtext Grammatik-Beispiele}
 
@@ -450,8 +456,8 @@ sehr gute Fähigkeiten zur Erstellung von internen DSLs, dies
 manifestiert sich in folgenden Fähigkeiten (siehe \cite{dsls} Kapitel 6.1):
 
 \begin{itemize}
-  \item Unicode-Zeichen in Identifiern erlaubt,
-  \item Methoden können als Prefix, Infix oder Postfix Operatoren dienen,
+  \item Unicode-Zeichen in Identifiern erlaubt (\cite{scala-ref}, Seite 3f),
+  \item Methoden können als Prefix, Infix oder Postfix Operatoren dienen (\cite{scala-ref}, Kapitel 6.12),
   \item flexible Syntax (z.B. optimale Punkte zum Methodenaufruf),
   \item viel syntaktischer Zucker u.a. mit impliziten Erweiterungen,
   \item Stärken von objektorientierter- und funktionaler-Programmierung
@@ -462,10 +468,20 @@ manifestiert sich in folgenden Fähigkeiten (siehe \cite{dsls} Kapitel 6.1):
 \end{itemize}
 
 Zudem sei erwähnt, dass es für Scala auch eine Bibliothek gibt mit
-der es möglich ist externe DSLs zu entwerfen. Diese basiert der
+der es möglich ist externe DSLs zu entwerfen---diese basiert auf der
 \emph{parser combinator} Technik (siehe \cite{dsls} Kapitel 8.)
 
-\begin{lstlisting}[caption=Scala DSL Syntax (Snippet).]
+Im Listing \ref{scala-syntax} ist die wichtigste Essenz aus dem Code
+aufgeführt, wie prinzipiell die API in diesem Projekt geformt wird.
+Erklärung: Das Objekt O erbt von Areal die Syntax. Bedeutung der Syntax ist
+„plus Überschrift Entität, plus Text Entität”. Der Nachteil dabei ist,
+dass leider ein + nicht allein für sich stehen kann, da der Compiler dies
+als Unäre-Operation zählt und somit nicht wie gewünscht erkennt, ++ jedoch
+zählt als Infix-Operation und funktioniert daher wie gewünscht.\footnote{
+Diese Erkenntis entstammt aus Antworten auf meine Frage auf Stackoverflow:
+\url{http://stackoverflow.com/questions/13367122}.}
+
+\begin{lstlisting}[label=scala-syntax,caption=Scala DSL Syntax (Snippet).]
 class EntityBinding {
   // ...
   def § (heading: String) = println(heading)  // new EntityHeading ...
@@ -485,12 +501,6 @@ object O extends Areal {
   ++ txt "Lorem ipsum ..."
 }
 \end{lstlisting}
-
-Das Objekt O erbt von Areal die Syntax. Bedeutung der Syntax ist
-„plus Überschrift Entität, plus Text Entität”. Der Nachteil dabei ist,
-dass leider ein + nicht allein für sich stehen kann, da der Compiler dies
-als Unäre-Operation zählt und somit nicht wie gewünscht erkennt, ++ jedoch
-zählt als Infix-Operation und funktioniert daher wie gewünscht.
 
 \subsection{Skalierbarkeit und Einbettbarkeit}\label{sec-scalierEinbett}
 
@@ -523,8 +533,10 @@ Benutzeroberfläche nicht so leicht umzusetzen.
 Die Einbettbarkeit des Generats ist wieder von seinen eigenen Fähigkeiten
 abhängig, also u.U. sehr gut.
 
-\paragraph{Scala} trägt die Skalierbarkeit schon im Namen. Als
-„scalable language“ und hat Scala entsprechende Fähigkeiten in alle Richtungen
+\paragraph{Scala} trägt die Skalierbarkeit schon im Namen. 
+Als „scalable language“\footnote{
+\url{http://www.artima.com/scalazine/articles/scalable-language.html}}
+und hat Scala entsprechende Fähigkeiten in alle Richtungen
 zu skalieren. Beispiele: Es ist möglich Scala-Programme vom kleinen
 Shell-ähnlichen Skript mit 2 Zeilen, bis hin zur Enterprise Software
 mit hunderttausenden Zeilen Code zu schreiben. Also vom kleinen mini
@@ -532,7 +544,8 @@ Einzelplatzskript bis zu Mainfraimapplikationen mit unzähligen nebenläufigen
 Zugriffen.
 
 Scala hat auch keinerlei Bindung zu einer speziellen IDE, aber es gibt
-u.a. ein geeignetes Eclipse Plugin. Durch diese Bindungslosigkeit, kann
+u.a. ein geeignetes Eclipse Plugin\footnote{\url{http://scala-ide.org}}.
+Durch diese Bindungslosigkeit, kann
 es auch headless oder auf entfernen Rechnern laufen und kann somit auf und für
 beliebigen Szenerien entwickelt werden.
 Die DSL wird in Form einer normalen Scala-Bibliothek ausgeliefert und
@@ -565,6 +578,9 @@ Sehr gut also für nicht-JVM-Ziele, die einen strikten Geltungsbereich mit
 klar definierten DSL-Vokabeln aufweisen. Kurz: Keine Unterstützung für
 Expressions.\cite{xtext}
 
+In Abbildung \ref{fig-igenerator} ist der Code zu sehen, wie eine
+Scala-Datei aus der Grammatik aus Listing \ref{xtext-gramm} generiert wird.
+
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.9\textwidth]{figures/igenerator.png}
@@ -573,7 +589,8 @@ Expressions.\cite{xtext}
 
 Der ModelInferrer zielt direkt auf die JVM bzw. Java ab und ermöglicht es
 u.a. JVM-Datentypen direkt mit in die DSL einzubetten, mit allen Möglichkeiten
-die Xbase\footnote{Wobei Xbase selbst mit Xtext gebaut wurde.}
+die Xbase\footnote{Wobei Xbase selbst mit Xtext gebaut wurde. Details auf
+\url{http://blog.efftinge.de/2010/09/xbase-new-programming-language.html}}
 bietet. Es können also dynamisch Java-Klassen generiert werden, wobei innerhalb
 der DSL der Fokus auf das Wesentliche gelegt werden kann und nur dort wo es
 wirklich nötig ist können General Purpose Expressions zugelassen werden.

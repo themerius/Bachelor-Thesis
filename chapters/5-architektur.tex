@@ -1,7 +1,5 @@
 \chapter{Architektur}\label{ch-architektur}
 
-Architektureller Aufbau der Softwaresysteme.
-
 \section{Zielarchitektur}
 
 Wie in Kapitel \ref{sec-zielarchitektur} schon beschrieben wurde, ist die
@@ -14,7 +12,7 @@ Hauptaufgaben eine geeignete \emph{Abstraktion für Seiten} zu entwickeln.
 Eine detaillierte Beschreibung ist in Kapitel \ref{sec-abstrationSeiten}.
 
 Weiterhin ist wichtig, wie die einzelnen Entitäten, wie Überschriften,
-Texte, Bilder etc. erstellt werden können -- dies soll in Kapitel
+Texte, Bilder etc. erstellt werden können---dies soll in Kapitel
 \ref{sec-templating} geklärt werden.
 
 Eine Übersicht über die Anforderungen ist in Kapitel
@@ -111,7 +109,7 @@ der Inhalt fortgesetzt werden kann.
 Diese konzentriert sich zunächst darauf die Entitäten, wie Texte, Bilder usw.,
 auf Seiten entsprechend dem Dokumentenfluss zuzuweisen.
 In diesem Fall darf zunächst eine
-einzelne Entität nicht die Größe einer Seite überschreiten -- diese
+einzelne Entität nicht die Größe einer Seite überschreiten---diese
 Problematik soll später näher erläutert werden.
 
 Der prinzipielle Ablauf wird auf Abbildung \ref{fig-aufteilungsstrategie}
@@ -128,7 +126,6 @@ wir eine neue Seite erstellt und die Entität dort platziert.
 Hier kann noch ein Zwischenschritt eingefügt werden, der es ermöglichen
 sollte, gerade Textentitäten, weiter aufteilen zu können, so dass eine
 bessere Auslastung der Seiten erreicht werden kann.
-% TODO Falls umgesetzt, noch ergänzen.
 
 \newpage
 \begin{figure}[h!]
@@ -190,20 +187,10 @@ Die resultierenden Seiten zur Anzeige (View Pages), werden bestimmten
 Arealen zugeordnet, diese dienen insbesondere der logischen Strukturierung
 des Dokuments. Aus Sicht der Seiten sind diese Areale quasi
 Einhängepunkte, wo die fertig gefüllten Seiten angefügt werden.
-Beispiele für Areale sind:
-
-\begin{itemize}
-  \item Titelblätter,
-  \item Inhaltsverzeichnis,
-  \item eigentliches Dokument,
-  \item Literaturverzeichnis,
-  \item \ldots
-\end{itemize}
 
 Innerhalb des HTML-Dokuments können diese Areale in ihrer Reihenfolge
 verändert werden, und ermöglichen so einen recht flexiblen Umgang mit
-den Doku\-men\-ten-Arealen. Diese sind ganz primitiver HTML-Code wie dieser
-z.B.:
+den Doku\-men\-ten-Arealen.
 
 \begin{verbatim}
 <div id="TitlepageAreal"></div>
@@ -321,12 +308,12 @@ kommt das ausgezeichnete
 \begin{itemize}
 \item The Logic trait
 \begin{itemize}
-  \item - is a abstract marker
+  \item is a abstract marker
 \end{itemize}
 \item A FigureNumber
 \begin{itemize}
-  \item - should extend an entity with an figure number variable
-  \item - should count figures and set the appropriate number for the particular figure
+  \item should extend an entity with an figure number variable
+  \item should count figures and set the appropriate number for the particular figure
 \end{itemize}
 \item A SectionNumber
 \begin{itemize}
@@ -474,29 +461,13 @@ Die Abbildung soll also an der Position im Dokument erscheinen, an der sie
 auch im Dokument-Quellcode geschrieben wurde, da es sich hier um eine DSL
 handelt, die sich möglichst nahe am eigentlichen Dokument orientiert.
 
-Vollständig beschrieben wird hier die Lösung mit einem \emph{Closure} in
-Kapitel \ref{sec-closure}, welches zugleich die eleganteste Lösung darstellt
-und auch in der fertigen Implementierung zum Einsatz kommt.
-
-Ein weiterer Ansatz welcher auch probeweisimplementiert wurde ist die Lösung
-mit \emph{Eval}, welche aber unpraktischer und auch unsicherer einzustufen
-ist als die Lösung mit einem Closure. Die in Kapitel \ref{sec-eval}
-beschriebene Lösung kommt in der fertigen Implementierung jedoch nicht
-zum Einsatz.
-
-Zudem gibt es noch weitere Überlegungen die während der Lösungsfindung
-aufgekommen sind, welche aber nicht weiter verfolgt werden, da die Lösung
-mit dem Closure überlegen ist durch höhere Eleganz, Flexibilität und
-Sicherheit. Daher wird nur kurz auf die anderen Überlegungen in
-Kapitel \ref{sec-datenstrukturbasierend} eingegangen.
-
 \subsubsection{Closure}\label{sec-closure}
 
 Insbesondere funktionale Programmiersprachen wie Scala haben die
-Möglichkeit Closures zu bilden, d.h. Teile des Geltungsbereichs (Scope)
+Möglichkeit Closures (\cite{scala-ref} Kapitel 6.23) zu bilden,
+d.h. Teile des Geltungsbereichs (Scope)
 der äußeren Funktion kann von der inneren Funktion beibehalten werden,
 auch wenn der Geltungsbereich der äußeren Funktion bereits verwirkt ist.
-% TODO(oder in appendix?)
 
 \begin{lstlisting}
 def outer_func = {
@@ -531,7 +502,7 @@ der eigentlichen Instanziierung nicht verändert wird. Durch das
 und ist dadurch nicht praktikabel.
 
 Nachteil hier ist, dass der Domänen-Benutzer innerhalb der DSL diese
-\lstinline|() => s""| Magie schreiben müsste -- was zu Verwirrung und
+\lstinline|() => s""| Magie schreiben müsste---was zu Verwirrung und
 Unverständnis führen würde.
 
 
@@ -540,14 +511,16 @@ Unverständnis führen würde.
 Ideal wäre also nun eine Lösung inder der Domänen-Benutzer keine
 Aufmerksamkeit auf die Closure-Magie verschwenden muss.
 
-Hierbei wird auf den ab Scala 2.10 verfügbaren
+In Listing \ref{stringcontext} wird auf den ab Scala 2.10 verfügbaren
 \lstinline|StringContext| (\lstinline|s"…"|)
 gesetzt. \cite{scala-stringInterpolation}
 Dieser lässt sich so erweitern, dass
-sich die Closure-Magie verstecken lässt und somit in die API
+sich die Closure-Magie verstecken\footnote{Entstammt meinen
+Stackoverflow-Fragen: \url{http://stackoverflow.com/questions/13307418} und
+\url{http://stackoverflow.com/questions/13270906}.} lässt und somit in die API
 gezogen wird und der Domänen-Benutzer davon gar nichts mitbekommt.
 
-\begin{lstlisting}
+\begin{lstlisting}[label=stringcontext,caption=Erweiterter StringContext]
 implicit def byname_to_noarg[A](a: => A) = () => a
 
 case class StringContext(parts: String*) {
@@ -566,8 +539,9 @@ O.text()  // wenn reference vorhanden
 \end{lstlisting}
 
 \lstinline|byname_to_noarg| ist eine implizite Konvertierung von einem
-beliebigen Typ \lstinline|A| mit Call-by-Name
-% TODO(fußzeile, appendix "benutzte scala technologien"?)
+beliebigen Typ \lstinline|A| mit Call-by-Name\footnote{Ein Call-by-Name
+Parameter wird bei jedem Funktionsaufruf erneut evaluiert.
+(\cite{scala-ref} Kapitel 4.6.1)}
 \lstinline|a: => A| in eine Lambda-Funktion \lstinline|() => a|.
 
 \lstinline|def $| fügt die Möglichkeit hinzu \lstinline|$"…"| als individuell angepassten \lstinline|StringContext| zu verwenden. Es wird eine variable 
@@ -575,10 +549,3 @@ Argumentenliste mit den implizit zu Call-by-Name konvertierten Argumenten
 aus einem beliebigen \lstinline|$"…"|-String übergeben und in ein Closure gepackt,
 welches erst dann ausgeführt wird, wenn die Referenzen auch tatsächlich
 vorhanden sind.
-
-% ---> ermöglicht es, in einem Rutsch die Referenzen aufzulösen,
-% anders als TeX, welches Zwischenkontexte erstellen muss.
-
-% http://stackoverflow.com/questions/13307418/scala-variable-argument-list-with-call-by-name-possible
-
-% http://stackoverflow.com/questions/13270906/cast-scala-string-to-stringcontext-and-virtually-forward-references

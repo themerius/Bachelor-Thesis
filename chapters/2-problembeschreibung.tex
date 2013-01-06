@@ -21,7 +21,7 @@ geben, welche in Abschnitt \ref{sec-verbindung} näher beschrieben wird.
 
 Vor allem akademische Dokumente wie z.B. Bücher, Patente oder Bachelorarbeiten
 haben alle im Groben einen ähnlichen Aufbau. Daher ist es sinnvoll erst einmal
-allgemeine Ableitung über die Struktur solcher Dokumente zu machen, so dass
+eine allgemeine Ableitung über die Struktur solcher Dokumente zu machen, so dass
 später daraus eine Architektur für nachfolgende Implementierungen entstehen kann.
 
 Die wichtigsten Unterteilungen,
@@ -35,7 +35,8 @@ werden hier grob definiert als
         Literaturverzeichnis auf.
   \item Seiten.
         Jedes Dokument kann eventuell verschiedenartige Seiten haben, aber zumindest
-        eine Standardseite, wie z.B. vertikales DIN A4, muss vorhanden sein.
+        eine Standardseite, wie z.B. eine vertikale DIN A4 Seite,
+        muss vorhanden sein.
         Aber auch innerhalb des Dokuments kann es verschiedenartige Seiten
         geben, wie z.B. horizontale Seiten für extra bereite Tabellen oder
         Titelblätter mit speziellem Layout.
@@ -56,7 +57,7 @@ Die primäre Aufgabe der Zielarchitektur ist es ein Dokument in
 einem Webbrowser darzustellen. Das Dokument ist aber keine gewöhnliche
 Webseite, sondern orientiert sich hautsächlich an akademischen
 Dokumenten wie z.B. Fachbüchern. Bücher bestehen aus einzelnen Seiten,
-welche in Webseiten in ihrer Ursprünglichen Form nicht vorgesehen sind.
+welche in Webseiten in ihrer ursprünglichen Form nicht vorgesehen sind.
 Lange Dokumente werden mit Webtechnologie für gewöhnlich stufenlos
 dargestellt, also alles auf einer einzelnen „Seite.“
 Daher ist die Hauptaufgabe der Zielarchitektur eine \emph{Abstraktion
@@ -85,20 +86,14 @@ große Tabellen oder Abbildungen. Oder auch dass verschiedene Papierformate
 wie DIN-A4 oder US-Letter zur Auswahl stehen.
 
 Die Einführung von \emph{Dokumenten-Arealen} als eine weitere hilfreiche
-Abstraktion die zur Gliederung eines -- insbesondere
-akademischen -- Dokuments dient, ist mit Sicherheit wünschenswert.
-Damit soll es möglich sein, Dinge wie beispielsweise
+Abstraktion die zur Gliederung eines Dokuments dient,.
+Damit soll es möglich sein beispielsweise
 Deckblatt, Inhaltsverzeichnis, eigentliches Dokument
 und Literaturverzeichnis etc. von einander zu separieren, um für eine
 flexiblere Konfiguration zu bieten. Beispielsweise um Areale in der Anordnung zu
-verändern, oder Dinge wie Nummerierungen zu modifizieren, es wird z.B.
+verändern, oder Nummerierungen zu modifizieren---z.B. wird
 gerne der Anfang eines Dokuments mit römischen Ziffern durchnummeriert
 und das eigentliche Dokument jedoch mit arabischen Ziffern.
-
-% Seitennummerierung
-% Inhaltsverzeichnis, Seite zuordnen
-% Dokumentenareale
-% Vorteile die sich durch die HTML-Nutzung ergeben? Welches Kapitel?
 
 \paragraph{Aufgaben} auf einen Blick zusammengefasst:
 

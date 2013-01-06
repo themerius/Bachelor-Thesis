@@ -133,24 +133,26 @@
 % Definition von globalen Konstanten
 % ----------------------------------
 \newcommand{\thema}{
-	Vergleich von interner und externer DSL-Technologie zur Entwicklung
-	eines Textsatzsystems zur automatischen Dokumentengenerierung.}
-\newcommand{\schlagworte}{DSL, Dokumentengenerierung}
+  Vergleich von interner und externer DSL-Technologie zur Entwicklung
+  eines Textsatzsystems zur automatischen Dokumentengenerierung.}
+\newcommand{\schlagworte}{DSL, domain-specific language, Xtext, Scala,
+  Dokumentengenerierung, Textsatz, Webtechnologie}
 \newcommand{\zusammenfassung}{
-	Im Zuge dieser Bachelor-Thesis wird ein zeitgemäßer Ansatz für ein
-Texsatzsystem entwickelt und auf die Probe gestellt, als Vorbild dient \TeX.
+  In dieser Arbeit wird ein neuartiges Textsatzsystem entwickelt, welches
+als Ziel Webtechnologie generiert und sehr gute Automatisierungsfähigkeiten
+besitzen soll. Ein Benutzer soll ein solches Dokument mit einem
+Skript, welches auf DSL-Technologie baisert, erstellen können, wobei \TeX~
+als Inspirationsquelle dient.
 
-	Kerntechnologien sind HTML5, CSS3 und Javascript zur Gestaltung und
-Darstellung eines Dokuments, das dabei entstehende Framework ermöglicht
-semi-automatische Dokumentengenerierung. Zur Generierung der eigentlichen
-Dokumenteninhalte werden zwei verschiedene DSL Ansätze Verglichen, zum einen
-eine interne Scala-DSL, zum anderen eine externe DSL mit dem Xtext-Framework.
+  Dazu wird die externe DSL-Technologie (\emph{Xtext Framework})
+mit der internen DSL-Technologie (\emph{Scala Programmiersprache})
+verglichen, um herauszufinden welche Technologie am besten zum
+Anwendungsfall passt. Die Entscheidung ist auf Scala als interne DSL gefallen.
 
-	Vorteile gegenüber \TeX sollen sein: Flexibles Dokument-Templating und
-interaktive Dokument-Elemente, ermöglicht durch die ubiquitäre
-HTML-Technologie. Ein moderneres und mächtigeres Sprachkonzept als es
-\LaTeX bietet, mit allen Finessen einer kompletten und verbreiteten
-Programmiersprache.}
+  Webtechnologie unterstützt von Haus aus \emph{keine} Abstraktion für Seiten,
+wie sie insbesondere aus Printdokumenten bekannt ist,
+daher ist via JavaScript eine solche Abstraktion implementiert worden.
+}
 \newcommand{\ausgabedatum}{16.10.2012}
 \newcommand{\abgabedatum}{16.01.2013}
 \newcommand{\autor}{Sven Hodapp}

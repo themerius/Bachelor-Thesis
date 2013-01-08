@@ -2,7 +2,9 @@
 
 In diesem Kapitel soll eine umfassende Beschreibung des Problems erfolgen,
 aus welcher sich wiederum die Aufgabenstellung ergibt. Diese dann im
-späteren Verlauf umgesetzt wird.
+späteren Verlauf umgesetzt wird. Als Resultat entsteht das in Kapitel
+\ref{sec-idee} beschriebene Textsatzsystem zur
+automatischen Dokumentengenerierung.
 
 Den Anfang macht die Zielachitektur, welche primär aus Webtechnologien
 besteht und somit zur Darstellung des Dokumentes dient. Siehe
@@ -33,13 +35,13 @@ werden hier grob definiert als
         Beispielsweise gliedert sich diese Bachelorarbeit in die
         Areale Titelseiten, Inhaltsverzeichnis, Hauptdokument, Anhang und
         Literaturverzeichnis auf.
-  \item Seiten.
-        Jedes Dokument kann eventuell verschiedenartige Seiten haben, aber zumindest
-        eine Standardseite, wie z.B. eine vertikale DIN A4 Seite,
-        muss vorhanden sein.
-        Aber auch innerhalb des Dokuments kann es verschiedenartige Seiten
+  \item Seitenlayouts.
+        Jedes Dokument kann eventuell verschiedenartige Seitenlayouts haben,
+        aber zumindest ein Standardseitenlayout, wie z.B. eine vertikale
+        DIN A4 Seite muss vorhanden sein.
+        Aber auch innerhalb des Dokuments kann es verschiedenartige Seitenlayouts
         geben, wie z.B. horizontale Seiten für extra bereite Tabellen oder
-        Titelblätter mit speziellem Layout.
+        Titelblätter mit ihrem speziellen Layout.
   \item Entitäten.
         Das sind die einzelnen Einheiten wie Überschriften, Texte, Tabellen
         oder Bilder woraus sich schlussendlich das Dokument zusammensetzt.
@@ -55,7 +57,7 @@ werden hier grob definiert als
 
 Die primäre Aufgabe der Zielarchitektur ist es ein Dokument in
 einem Webbrowser darzustellen. Das Dokument ist aber keine gewöhnliche
-Webseite, sondern orientiert sich hautsächlich an akademischen
+Webseite, sondern orientiert sich hauptsächlich an akademischen
 Dokumenten wie z.B. Fachbüchern. Bücher bestehen aus einzelnen Seiten,
 welche in Webseiten in ihrer ursprünglichen Form nicht vorgesehen sind.
 Lange Dokumente werden mit Webtechnologie für gewöhnlich stufenlos
@@ -86,11 +88,11 @@ große Tabellen oder Abbildungen. Oder auch dass verschiedene Papierformate
 wie DIN-A4 oder US-Letter zur Auswahl stehen.
 
 Die Einführung von \emph{Dokumenten-Arealen} als eine weitere hilfreiche
-Abstraktion die zur Gliederung eines Dokuments dient,.
+Abstraktion die zur Gliederung eines Dokuments dient.
 Damit soll es möglich sein beispielsweise
 Deckblatt, Inhaltsverzeichnis, eigentliches Dokument
 und Literaturverzeichnis etc. von einander zu separieren, um für eine
-flexiblere Konfiguration zu bieten. Beispielsweise um Areale in der Anordnung zu
+flexiblere Konfiguration zu sorgen. Beispielsweise um Areale in der Anordnung zu
 verändern, oder Nummerierungen zu modifizieren---z.B. wird
 gerne der Anfang eines Dokuments mit römischen Ziffern durchnummeriert
 und das eigentliche Dokument jedoch mit arabischen Ziffern.
@@ -154,7 +156,7 @@ wird in Kapitel \ref{sec-warumAusgewaehlt} beschrieben.
 \subsection{Das DSL Idealbild}
 
 Wie schon erwähnt, dient die DSL als Schnittstelle für den Benutzer,
-und sollte möglicht leicht für diesen zu verstehen sein, so dass
+und sollte möglichst leicht für diesen zu verstehen sein, so dass
 auch ein Benutzer ohne große Programmierkenntnisse zumindest die
 DSL verstehen und schreiben kann. Dies erfordert intuitive Konzepte,
 klare Strukturen und übersichtliche bzw. leichtgewichtige Syntax, welche
@@ -226,5 +228,5 @@ DSL-Code vornehmen zu müssen, z.B. wird im
 DSL-Skript nur die Programmzeile \verb|Bericht| durch \verb|Patent| geändert und
 das Dokument bekommt ein völlig anderes Erscheinungsbild---die eines Patents.
 Wobei natürlich diese beiden Ausprägungen Spezialisierungen des Typs
-\verb|AkedemischesDokument| sein müssen, damit die Migration funktionieren kann.
+\verb|AkademischesDokument| sein müssen, damit die Migration funktionieren kann.
 

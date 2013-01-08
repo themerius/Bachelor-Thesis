@@ -1,4 +1,4 @@
-\chapter{Vergleich und Auswahl}
+\chapter{Vergleich und Auswahl der DSL-Technologien}
 % ehemals Lösungsweg
 
 In diesen Kapitel wird erörtert, welche Technologie (Xtext oder Scala) für
@@ -416,7 +416,7 @@ terminal TEXT  :
     !('\\'|'{'|'}'|'\n') )*;
 \end{lstlisting}
 
-\begin{lstlisting}[label=xtext-gramm,caption=An Scala-DSL angelente Xtext-Grammatik.]
+\begin{lstlisting}[label=xtext-gramm,caption=An Scala-DSL angelehnte Xtext-Grammatik.]
 grammar de.htwg.scaltex.dsl.ScalTeX with org.eclipse.xtext.common.Terminals
 
 generate scalTeX "http://www.htwg.de/scaltex/dsl/ScalTeX"
@@ -523,7 +523,7 @@ kann, muss für Einzelfall entschieden werden.
 Zur Einbettbarkeit in beliebige Umgebungen, ist der Entwickler bzw.
 Domain-Benutzer sehr gebunden und abhängig. Eclipse läuft für gewöhnlich
 nur auf Desktop-Computern, also mit grafischer Benutzeroberfläche,
-und benötigt relativ vielen Ressourcen, die Eclipse auch
+und benötigt relativ viele Ressourcen, die Eclipse auch
 gerne annimmt.
 Da Eclipse auch die Generatoren anwirft, um aus der DSL
 die Zielarchitektur zu erstellen, ist auch dieser Prozess an Eclipse gebunden.
@@ -540,11 +540,11 @@ und hat Scala entsprechende Fähigkeiten in alle Richtungen
 zu skalieren. Beispiele: Es ist möglich Scala-Programme vom kleinen
 Shell-ähnlichen Skript mit 2 Zeilen, bis hin zur Enterprise Software
 mit hunderttausenden Zeilen Code zu schreiben. Also vom kleinen mini
-Einzelplatzskript bis zu Mainfraimapplikationen mit unzähligen nebenläufigen
+Einzelplatzskript bis zu Mainframeapplikationen mit unzähligen nebenläufigen
 Zugriffen.
 
 Scala hat auch keinerlei Bindung zu einer speziellen IDE, aber es gibt
-u.a. ein geeignetes Eclipse Plugin\footnote{\url{http://scala-ide.org}}.
+u.a. ein geeignetes Eclipse Plugin\footnote{ \url{http://scala-ide.org}}.
 Durch diese Bindungslosigkeit, kann
 es auch headless oder auf entfernen Rechnern laufen und kann somit auf und für
 beliebigen Szenerien entwickelt werden.
@@ -566,8 +566,8 @@ zum anderen den \emph{ModelInferrer mit Xbase}.
 
 Der Code Generator stellt eine Template-Engine bereit, mit der
 ein beliebiges Ziel erstellt werden kann, also z.B. C++, XML oder Java.
-Dies wird dadurch erreicht, dass via Xtend aus Java-Klassen die aus der
-Grammatik von Xtext automatisch generiert wurden ein Template zusammengebaut
+Dies wird dadurch erreicht, dass via Xtend aus Java-Klassen, die aus der
+Grammatik von Xtext automatisch generiert wurden, ein Template zusammengebaut
 werden kann. Man kann also förmlich die DSL entpacken und in ein Template
 gießen.
 Jedoch muss, je nach Generat, es ggf. kompiliert werden. Der
@@ -598,7 +598,7 @@ Wobei es anzumerken gilt, dass das nicht ganz transparent geschieht,
 es muss ein ModelInferrer geschrieben werden, welcher eben die Java-Klassen
 dynamisch generiert.
 Dies ist also sehr gut, wenn das Ziel auf Java abgebildet werden soll
-und gewollt wird dass auf andere Java-Klassen (wie z.B. java.io.File)
+und gewollt wird, dass auf andere Java-Klassen (wie z.B. java.io.File)
 aus der DSL heraus benutzt werden können. Kurz: Unterstützung für Expressions.
 Die so entstehenden Java-Dateien müssen aber auch noch vom Domain-Benutzer
 kompiliert werden.\cite{xtext}
@@ -623,7 +623,7 @@ wobei u.U. viel Handarbeit nötig ist.
 Auf Abbildung \ref{fig-uml_generator} ist der architekturelle Aufbau
 des Generators für den Anwendungsfall zu sehen. Wobei der TemplateStock
 lediglich HTML-Snippets für den Builder lagert, der Builder
-kennt die im Dokument vorhandenen Areale und wandelt diese in die HTML-Pendante
+kennt die im Dokument vorhandenen Areale und wandelt diese in die HTML-Gegenstücke
 um, sowie die Entitäten und Seiten die in den Arealen vorkommen werden auch
 in ihre JSON-Repräsentation umgewandelt.
 

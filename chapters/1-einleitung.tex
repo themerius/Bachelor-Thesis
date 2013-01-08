@@ -1,6 +1,6 @@
 \chapter{Einleitung}
 
-Sprache formt die Realität. Programmschöfper können diese Tatsache unmittelbar
+Sprache formt die Realität. Programmschöpfer können diese Tatsache unmittelbar
 in Aktion erleben, wie die Sprache die Realität des Computersystems verändert.
 Wenn eine Sprache auf ein speziellen Aktionsraum definiert wird, kann die
 Sprache für diesen Aktionsraum soweit abstrahiert werden, dass sie sehr
@@ -51,14 +51,13 @@ Der Anwendungsfall bzw. Aktionsraum dieser so entstehenden Sprache ist ein
 neuartiges Textsatzsystem, welches von \TeX~ inspiriert ist, jedoch auf
 Webtechnologie zur Darstellung setzt.
 
-\paragraph{Geplante Zeitaufwendung}
+\paragraph{Kernthemen dieser Arbeit}
 
 \begin{itemize}
-  \item ca. die Hälfte der Zeit für den Vergleich der Technologien,
-  \item ca. die Hälfte der Zeit für die Implementierung der DSL, sowie
-        der Webtechnologie zur Darstellung.
-        Wobei ein nicht unerheblicher Teil der Code-Snippets vom Technologievergleich
-        auch in die eigentliche Implementierung einfließt.
+  \item Vergleich von DSL-Technologien,
+  \item Implementierung der Webtechnologie zur Darstellung, sowie einer DSL,
+        wobei ein nicht unerheblicher Teil der Code-Snippets vom Technologievergleich
+        auch in die eigentliche DSL-Implementierung einfließt.
 \end{itemize}
 
 \section{Vorgeschichte}
@@ -71,7 +70,7 @@ für deren Jahresbericht, weniger zufrieden. Die gewünschten
 Fähigkeiten müssen über mehrere Tools zusammenlaufen, welche nicht immer
 ideal zusammenarbeiten; z.B. LaTeX plus Microsoft Word plus Python-Skripte.
 Da mich diese Thematik interessiert, beschäftigte ich mich in meiner Freizeit
-etwas damit und überlegte mir, wie ich diesem Umstand verbessern kann.
+etwas damit und überlegte mir, wie ich diesen Umstand verbessern kann.
 
 Es soll also ein Werkzeug entstehen, welches automatische
 Dokumentengenerierung ermöglichen soll. Solche Aufgaben,
@@ -237,13 +236,16 @@ rechnen, sie weiterverarbeiten oder anreichern und falls benötigt auch
 mehrfach verwenden bzw. darstellen lassen.
 
 Auf diese Art kann man verschiedenste Technologien kooperieren lassen und
-auf einen Nennen bringen -- ohne dass die Qualität des Dokuments darunter
-leider muss, da eine einheitliche Formatierung bzw. Layout vorliegt,
+auf einen Nenner bringen---ohne dass die Qualität des Dokuments darunter
+leiden muss, da eine einheitliche Formatierung bzw. Layout vorliegt,
 ähnlich wie es bei \LaTeX~ der Fall ist.
 
 \paragraph{Szenario 2:} Immer wenn das Dokument „gebaut“ wird, kann z.B.
 automatisch ein Skript angeworfen werden, welches einen Plot als Bild
-anfertigt. Dieses Bild kann dann direkt in das resultierende Dokument ohne
+anfertigt; falls sich die Daten für den Plot, bzw. der Quellcode
+des Plots sich verändern, wird auch automatisch die neue Plotabbildung
+beim nächsten „bauen“ generiert.
+Dieses Bild kann dann direkt in das resultierende Dokument ohne
 Umwege eingebaut werden. Vorteil: Der Dokumenten-Ersteller muss also nicht jedes
 mal wenn er den Plot modifiziert, ihn nochmals manuell anfertigen und
 die Bilddatei erneut in das Dokument einpflegen. → Weniger Handarbeit,
@@ -293,7 +295,7 @@ Also ist der Code, der im Dokument beschrieben ist auch quasi gleichzeitig
 der funktionsfähige und ausführbare Algorithmus, der Ergebnisse liefern kann.
 
 \paragraph{Szenario 6:} Man könnte sogar so weit gehen, und statt eine einfache
-zu HTML-Seite zu generieren einen kleinen Webserver über die
+HTML-Seite zu generieren einen kleinen Webserver über die
 Programmierschnittstelle starten, welcher dem Dokument noch
 mehr dynamische Fähigkeiten ermöglicht, z.B. durch bidirektionale
 Kommunikation zwischen Webbrowser-Client (Dokumentenbetrachter) und

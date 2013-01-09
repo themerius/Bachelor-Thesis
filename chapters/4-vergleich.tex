@@ -1,12 +1,22 @@
 \chapter{Vergleich und Auswahl der DSL-Technologien}
-% ehemals Lösungsweg
 
-In diesen Kapitel wird erörtert, welche Technologie (Xtext oder Scala) für
-dieses Projekt am praktikabelsten ist und sich somit schlussendlich durchsetzt.
-Kern hierfür ist die Übersicht in Form einer Vergleichsmatrix in Abschnitt
-\ref{sec-vergleichsmatrix}.
+Mit der Scala-Programmiersprache und dem Xtext-Framework stehen zwei
+ausgezeichnete Technologien zur Verfügung, um DSLs zu realisieren, siehe
+Abschnitt \ref{sec-warumAusgewaehlt}.
+
+Jedoch muss erörtert werden, welche dieser Technologien für
+dieses Projekt am praktikabelsten ist und sich somit schlussendlich durchsetzt,
+so dass auf dieser Basis das Textsatzsystem entwickelt werden kann.
+Kern für den Vergleich ist die Vergleichsmatrix in Abschnitt
+\ref{sec-vergleichsmatrix} und schlussendliche Auswahl der Technologie zur
+Implementierung in Kapitel \ref{sec-auswertung}.
 
 \section{Warum Scala bzw. Xtext?}\label{sec-warumAusgewaehlt}
+
+In der Software-Engineering Vorlesung von Prof. Boger wurden beide
+Technologien vorgestellt. Da von Anfang an das Textsatzsystem mit einer
+DSL-Technologie konzipiert werden sollte, lang es nahe, eine dieser
+beiden Technologien zu verwenden.
 
 \paragraph{Scala}
 hat ausgezeichnete Fähigkeiten zur Gestaltung einer
@@ -22,7 +32,8 @@ Durch die Fähigkeit auf der Java Virtual Machine (JVM) zu laufen,
 hat Scala auch eine sehr gute Integration mit Java und
 Java-Bibliotheken. (\cite{scala-ref}, Seite 1)
 
-\paragraph{Xtext} ist ein Framework welches auf die Entwicklung externer DSLs
+\paragraph{Xtext}
+ist ein Framework welches auf die Entwicklung externer DSLs
 ausgelegt ist und dabei auf die Eclipse IDE Plattform aufbaut
 und sehr viel der harten Arbeit abnimmt, was die Entwicklung
 externer DSLs nachhaltig vereinfacht.
@@ -32,17 +43,47 @@ Syntax her freundlicher als Java ist, aber sich dennoch nahe an den
 Java-Konzepten aufhält. Diese Sprache heißt Xtend und wird vornehmlich
 intern zur Generator-Programmierung eingesetzt.
 Auch Xtext ist ein OpenSource-Projekt und wird hauptsächlich von der
-deutschen Firma \emph{itemis AG} betreut bzw. weiterentwickelt. (\cite{xtext})
+deutschen Firma \emph{itemis AG} betreut bzw. weiterentwickelt. \cite{xtext}
 
 \section{Vergleichsmatrix}\label{sec-vergleichsmatrix}
 
-In dieser Tabelle ist eine Übersicht über den Vergleich gegeben, indem
-die Fähigkeiten bzw. die Möglichkeiten von Xtext als externe DSL und
-Scala als interne DSL gegenübergestellt werden.
+% Motivation warum Tabelle erfunden. Nach welchem Motto. Reihenfolge, warum? Wie macht man einen DSL-Vergelich? Tabelle beschreiben. Methodik des Vergleiches. Warum haben welche keinen extra Abschnitt… Tabelle zusammenfassend, Diskussion kommt in den Kapiteln! --> Auch in den Abstract (dass Tabelle).
 
-Für \emph{einige} der gelisteten Fähigkeiten gibt es
+Wie kann man möglichst objektiv zwei unterschiedliche DSL-Technologien
+vergleichen? Es kann nichts ausgerechnet oder mathematisch bewiesen werden,
+jedoch aber können die verschiedenen Fähigkeiten einer jeden Technologie
+herausgearbeitet und empirisch miteinander verglichen werden.
+Daher habe ich aus meiner Sicht und nach der Lektüre von
+\cite{dsls} die wichtigsten Kriteren herausgesucht, die eine gute DSL
+bzw. DSL-Entwicklung ausmachen.
+
+Diese Gegenüberstellung beschränkt sich auf das Xtext-Framework, womit
+externe DSLs erstellt werden können und die Scala-Programmiersprache,
+welche sich außerordentlich gut für die Erstellung interner DSLs eignet.
+Dieser Vergleich auch kann, in beschränktem Umfang, also abzüglich
+Xtext- bzw. Scala-spezifischer Besonderheiten, als allgemeingültiger
+Vergleich zwischen interner und externer DSL-Technologie herangezogen werden.
+
+In dieser Tabelle ist also eine Übersicht über den Vergleich gegeben, indem
+die Fähigkeiten aufgelistet sind und jeweils eine Kurzbeschreibung
+zusammenfassend Xtext und Scala gegenüberstellt.
+
+Für die gelisteten Fähigkeiten gibt es
 tiefergehende Beschreibungen, auf diese
-in der ersten Spalte der Tabelle entsprechend referenziert wird.
+in der zweiten Spalte der Tabelle entsprechend referenziert wird, darin
+ist auch jeweils eine ausführlichere Diskussion zum jeweiligen Thema zu finden.
+Manche Fähigkeiten teilen sich eine ausführliche Beschreibung, da darin
+alles was die einzelnen Posten tangiert, erklärt bzw. diskutiert wird, jedoch
+nochmals einzeln herausgearbeitet sind für die spätere Bewertung in
+Kapitel \ref{sec-auswertungstabelle}.
+Lediglich für die Fähigkeiten Nummer 11, 13 und 15 gibt es keine
+tiefergehende Beschreibung---Grund hierfür ist, dass
+die Kurzbeschreibungen schon prägnante Erklärungen liefern bzw. in den
+Kapiteln davor schon ausführlich erklärt werden.
+
+Die Anordnung der Tabelle ist nicht ganz zufällig, die für den in diesem
+Dokument beschriebenen Anwendungsfall wichtigeren Aspekte stehen weiter oben
+in der Tabelle.
 
 \begin{landscape}
 \begin{longtable}{|p{0.5cm}|p{0.8cm}|p{4.3cm}|p{6.3cm}|p{6.3cm}|}
@@ -633,7 +674,7 @@ in ihre JSON-Repräsentation umgewandelt.
   \caption{Aufbau des Generators des Anwendungsfalls in Scala.}\label{fig-uml_generator}
 \end{figure}
 
-\section{Auswertung und Ergebnis}
+\section{Auswertung und Ergebnis}\label{sec-auswertung}
 
 Wie schon in Kapitel \ref{par-ablauf} erwähnt,
   fällt hier die Entscheidung welche der beiden

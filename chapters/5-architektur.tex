@@ -1,6 +1,6 @@
 \chapter{Architektur und Implementierung des Textsatzsystems}\label{ch-architektur}
 
-\section{Zielarchitektur}
+\section{Zielarchitektur}\label{sec-zielarchitektur}
 
 Wie in Kapitel \ref{sec-zielarchitektur} schon beschrieben wurde, ist die
 Zielarchitektur für die Darstellung des Dokuments verantwortlich, welche
@@ -348,96 +348,140 @@ kommt das ausgezeichnete
 \end{itemize}
 \end{itemize}
 
-\subsection{API Design Resultat}\label{sec-api-resultat}
+\subsection{API Design}
 
-\begin{lstlisting}[caption=Ausführliches Scala DSL Dokument-Skript.]
-import scaltex.template.fraunhofer._
+Wie in Kapitel \ref{sec-dsl} definiert, entspricht eine interne DSL einer sehr
+ausdrucksstarken Softwarebibliothek---sprich eine Bibliothek
+mit einer intuitiven API, welche die Abstraktionen
+des Aktionsraumes besonders herausarbeitet.
+In diesem Fall ist der Aktionsraum ein Textsatzsystem. Der Benutzer will
+also mit seinem DSL-Skript ein Dokument herstellen, welches als Produkt die
+Zeilarchitektur aus Kapitel \ref{sec-zielarchitektur} produziert.
+Ein Dokument setzt sich aus folgenden Bestandteilen
+zusammen, siehe Kapitel \ref{sec-aufbauDokumente}:
 
-object Doc extends FraunhoferReportBuilder {
+\begin{itemize}
+  \item Areal,
+  \item Seitenlayout,
+  \item Entitäten.
+\end{itemize}
 
-  (new Document)
+Zudem gibt es verschiedene Templates die austauschbar sein können, sofern
+sie zum selbigen Dokumententypus, wie z.B. akademische Dokumente, gehören.
+Ein ausführliches und zusammenhängendes Beispiel für ein DSL-Skript
+ist im Anhang \ref{sec-api-resultat} zu finden.
 
-  Kapitel_X
-  Kapitel_Y
+\paragraph{Entitäten hinzufügen.} Mit Befehlen wie in Listing
+\ref{api-entity} gezeigt, können Entitäten hinzugefügt werden.
+Zeile 1 kann man so verstehen: „plus Abschnitt-Entität Überschrift.”
+Zeile 3 „plus Unterabschnitt-Entität Unterüberschrift.”
+In Zeile 5--7 wird eine mehrzeilige Text-Entität hinzugefügt.
+In Zeile 9--12 wird ein Bild mit einer Internetbildquelle und einer
+Beschreibung hinzugefügt.
 
-  def main(args: Array[String]) {
-    write("_output/output.html")
-  }
-}
+\begin{lstlisting}[label=api-entity,caption=Entitäten hinzufügen.]
+++ § "Ueberschrift"
 
-object Kapitel_X extends Document {
+++ §§ "Unterueberschrift"
 
-  ++ § "Überschrift"
+++ txt """
+  Lorem ipsum ...
+"""
 
-  ++ §§ "Unterüberschrift"
+++ figure (
+  src="http://domain.tld/pic.png",
+  desc="Beschreibung fuer das Bild."
+)
+\end{lstlisting}
 
-  ++ txt """
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.
-  """
+Zudem können flexibel verschiedene Entitäten zur API bei Bedarf
+hinzugefügt werden, dies wird in Listing \ref{scala-syntax} bereits gezeigt.
 
-  ++ txt $"""
-    Lorem ipsum Abb. ${Chapter_1.figname.figureNumber} dolor sit amet, consetetur
-    sadipscing elitr, sed diam
-    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.
-  """
+\paragraph{Areale.}
 
+Entitäten müssen einem Areal zugeordnet werden---dazu
+melden diese sich implizit beim Areal an---wo
+sie schlussendlich gesetzt werden sollen, siehe
+Listing \ref{api-areal}. Jedes Areal
+hat ein voreingestelltes Seitenlayout, welches aber auch bei Bedarf
+geändert werden kann.
 
-  ++ § "Beispiel"
+Ein odinäres Scalaobjekt, welches vom gewünschten Areal dessen Eigenschaften
+erbt, dient als Container. In diesem Fall handelt es sich um das
+Areal \emph{Document}, also das Areal welches das Hauptdokument beherbergt.
+Es können mehrere Objekte vom gleichen Areal erben, diese sind aber logisch
+dem gleichen Areal zugeordnet---so kann der Dokumentenquellcode besser
+strukturiert werden.
 
-  ++ §§ "Konkretes Beispiel"
-
-  ++ §§ "Fazit"
-
-  ++ §§§ "Überschrift 3. Ordnung"   $ "ueb"
-
-  ++ txt """
-    <em>Lorem ipsum</em> dolor sit amet, consetetur sadipscing elitr, sed diam
-    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.
-  """
-
-  ++ $ "figname" figure(
-    src="https://raw.github.com/themerius/ScalTeX/play/public/images/plot.png",
-    desc="Matplotlib example histogramm"
-  )
-
-  ++ txt $"""
-    Lorem ipsum Abb. ${Chapter_2.otherfig.figureNumber} dolor sit amet, consetetur
-    sadipscing elitr, sed diam
-    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.
-  """
-}
-
-object Kapitel_Y extends Document {
-  ++ § "Other"
-
-  ++ $ "otherfig" figure(
-    src="https://raw.github.com/themerius/ScalTeX/play/public/images/plot.png",
-    desc="Matplotlib example histogramm"
-  )
-
-  ++ txt $"""
-    Paragraph within Other.
-    Reference on Fig ${Chapter_1.figname.figureNumber} in
-    chapter ${Chapter_1.ueb.sectionNumber}.
-  """
+\begin{lstlisting}[label=api-areal,caption=Areale bilden.]
+object MeinAreal extends Document {
+  // Entitaeten koennen hier eingefuegt werden.
+  // Aenderung des Seitenlayouts:
+  change page_to pageInstance
+  // weitere Entitaeten, auf neuem Seitenlayout.
+  // Expliziter Seitenumbruch funktioniert mit:
+  newpage
+  // weitere Entitaeten; jetzt auf neuer Seite.
 }
 \end{lstlisting}
 
-Im Objekt Doc wird das Dokument konfiguriert, also u.a. welche Areale aktiviert
-sind und in welcher Reihenfolge die einzelnen Dokumentobjekte strukturiert
-werden sollen.
+\paragraph{Dokument erstellen.} Zunächst müssen die Areale in der gewünschten
+Reihenfolge instanziiert werden, dazu melden sie sich implizit beim
+\emph{Builder} an, um insbesondere ihre Reihenfolge innerhalb des Dokuments zu
+definieren; wie in Listing \ref{api-builder} dargestellt.
+Danach werden die verschiedenen Arealobjekte
+aufgerufen, was auch die Reihenfolge der Entitäten innerhalb des Dokuments
+definiert.
+Auch der Builder bedient sich wieder eines normales Scalaobjets als Container.
 
-Jedes Dokumentobjekt wird einen Areal zugeordnet indem es via extends
-von der Arealklasse erbt. Die Arealklasse bringt dann Dinge wie die DSL-Syntax
-mit, und wenn es gelungen ist, sollte intuitiv klar sein, dass man mit
-++ Entitäten wie Überschriften, Bilder und Texte hinzufügen kann. Mit \$
-kann ein Referenzname der Entität zugewiesen werden, mit dem man u.a. in
-den speziellen Strings die mit \lstinline|$""" ... ${Referenzname} ... """|.
+\begin{lstlisting}[label=api-builder,caption=Dokument erstellen.]
+object MeinDokument extends FraunhoferReportBuilder {
+  new Document  // das Hauptdokument-Areal.
+
+  MeinAreal
+  // weitere Areal-Container aufrufen
+
+  def main(args: Array[String]) {  // Programmeinstiegspunkt.
+    write("_output/output.html")   // Dokument als html speichern.
+  }
+}
+\end{lstlisting}
+
+\paragraph{Referenzierungen.} Referenzierungen sind ein
+integraler Bestandteil von Dokumenten,
+mit einer erschwerenden Anforderung: Referenzierungen auf eine Entität kann
+in einem Dokument schon \emph{vor} dessen eigentlichen Deklaration vorkommen.
+Wie dieser Umstand mit einem Trick gelöst werden kann, ist in Kapitel
+\ref{sec-forwardreference} aufgeführt.
+
+In Listing \ref{api-refs} wird ein solcher Verweis im DSL-Skript gezeigt.
+Man beachte das \$ am Stringliteral in Zeile 6, welches dem Stringliteral
+die Fähigkeit gibt, Referenzierungen anzunehmen. Innerhalb des
+Stringliterals in Zeile 9 steht die eigentliche, beginnend mit \$\{
+und endend mit \}, Referenz zur Bildentität aus Zeile 13.
+Die Bildentität wird mit einem \$ entsprechend benannt und
+referenzierungsfähig gemacht, wobei auch eine \emph{gewöhnliche}
+Scalavariable verwendet werden könnte, statt der \$-Notation.
+
+\begin{lstlisting}[label=api-refs,caption=Referenzierungen im DSL-Skript.]
+object MeinAreal extends Document {
+  ++ § "Ueberschrift"
+
+  ++ §§ "Unterueberschrift"
+
+  ++ txt $"""
+    Lorem ipsum ...
+    Die Referenz auf Abbildung
+    ${MeinAreal.bildname.figureNumber}.
+    ... lorem ipsum.
+  """
+
+  ++ $ "bildname" figure (
+    src="http://domain.tld/pic.png",
+    desc="Beschreibung fuer das Bild."
+  )
+}
+\end{lstlisting}
 
 
 \subsection{Vorwärtsverweis Muster}\label{sec-forwardreference}

@@ -683,18 +683,14 @@ Wie schon in Kapitel \ref{par-ablauf} erwähnt,
 In der Tabelle aus Kapitel \ref{sec-vergleichsmatrix} werden Xtext und
 Scala gegenübergestellt und bewertet.
 Dabei wird bei jeder Fähigkeit bewertet,
-  ob Xtext oder Scala die besseren Argumente liefert,
-  jedoch beziehen sich die Bewertungen auf das hier vorliegende Projekt
-angepasst sind und sich somit nicht 1:1 auf beliebige Projekte anwenden lassen.
-Die Bewertungen bzw. Gewichtungen müssen also ggf. für jedes Projekt und dessen
-spezifischen Anforderungen individuell angepasst werden, falls gewünscht.
+  ob Xtext oder Scala die besseren Argumente liefert.
 
-Weiterhin gilt zu beachten, dass die Bewertungen ihrer Natur nach sowohl
+Es gilt zu beachten, dass die Bewertungen ihrer Natur nach sowohl
 \emph{intuitiv} als auch \emph{objektiv} gewichtet sind, da eben vieles vom
 Betrachter abhängt und die Fähigkeiten gewisse Überschneidungen haben.
 Am Ende steht jedoch ein einigermaßen objektives Maß,
 welche Lösung die meisten Vorteile, mit Blick
-auf das vorliegende Projekt bietet.
+auf das vorliegende Projekt, bietet.
 
 Ich habe mich dazu entschieden eine Skala zwischen \emph{0 und 3} zu verwenden,
 wobei 0 schlechte Unterstützung/Möglichkeit/Funktion bzw.
@@ -765,7 +761,7 @@ allgemein für das Projekt ungeschickt bedeutet.
   8
   & \ref{sec-scalierEinbett}
   & Einbettbarkeit in beliebige Umgebungen
-  & 2
+  & 1
   & 3
   \\\hline
 
@@ -807,7 +803,7 @@ allgemein für das Projekt ungeschickt bedeutet.
   14
   & \ref{sec-scalierEinbett}
   & Skalierbarkeit
-  & 1
+  & 2
   & 3
   \\\hline
 
@@ -830,3 +826,41 @@ kommt ein Ergebnis zustande, indem sich \textbf{Scala mit 35 zu
 Somit ist für \emph{dieses} Projekt Scala besser geeignet.
 Und wird als eigentliche Implementierungsbasis für den Prototyp verwendet.
 
+\paragraph{Anmerkung:} Wie schon in Abschnitt \ref{sec-vergleichsmatrix}
+erwähnt, kann dieser Vergleich auch im Allgemeinen für \emph{externe versus
+interne DSLs} gelten. Jedoch ist dieses Ergebnis \emph{ausschließlich}
+auf den Anwendungsfall „Textsatzsystem“ und die zwei
+behandelten DSL-Technologien getrimmt. Falls dieser Vergleich
+auf ein anderes Projekt adaptiert werden soll, muss eine Anpassung der
+Bewertungen an die entsprechenden Anforderungen und Vorlieben vorgenommen werden.
+
+\subsubsection{Begründung}
+
+Teilweise gibt es starke Differenzen, mit zwei oder mehr Punkten Unterschied.
+In diesem Abschnitt wird dies kurz begründet.
+
+\paragraph{(1)} Xtext hat hier eine \emph{fast} grenzenlose
+Flexibilität---aber Scala steht dennoch ganz gut da.
+
+\paragraph{(2)} Da Scala eine interne DSL ist, ist die DSL auch gleichzeitig
+eine vollwertige GPL---bei Xtext gibt es eine relativ hohe Schwelle bis zur GPL.
+
+\paragraph{(3)} Scala liefert schon die gesamte Infrastruktur zur
+Code-Strukturierung mit---bei Xtext muss diese selbst implementiert werden.
+
+\paragraph{(4)} Ein DSL-Benutzer hat keine Chance selbstständig
+z.B. ein Template an die DSL anzubinden, er müsste sich erst umfassend
+in das Xtext-Framework einarbeiten---bei Scala kann eine kurze Anleitung
+schon helfen z.B. durch weitere Abstraktion mit einem „Template-Baukasten.“
+
+\paragraph{(8)} Xtext ist durch die Eclipseabhängigkeit nur sehr schwer
+einbettbar, lediglich das \emph{fertig erstelle} Generat kann u.U. in eine andere
+Umgebung eingebettet werden---Scala hat hier quasi keine Grenzen.
+
+\paragraph{(13)} Xtext hat Werkzeuge spezialisiert zur Erstellung von
+DSLs---Scala hat nur sich selbst als Programmiersprache, also keine speziellen
+DSL-Werkzeuge.
+
+\paragraph{(15)} Es ist eine Kerneigenschaft einer internen DSL, quasi
+eine Bibliothek der Wirtssprache (Scala) zu sein---bei Xtext entscheidet
+das Generat entsprechende Eigenschaften.

@@ -664,6 +664,7 @@ vorhanden sind.
 
 \section{Ergebnis}
 
+\paragraph{Zielarchitektur.}
 In Kapitel \ref{sec-zielarchitektur} ist ein JavaScript-Framework entstanden,
 welches die Darstellung eines „klassischen“ Dokuments mit Webtechnologie
 ermöglicht.
@@ -683,6 +684,13 @@ entstanden:
   \item Adaption der \emph{EPO Patentschrift} des europäischen Patentregisters.
 \end{enumerate}
 
+Es konnte jedoch nicht alles umgesetzt werden, z.B. insbesondere fehlt
+der Zielarchitektur noch die Unterstützung für Fußnoten, aber auch die
+Fähigkeit übergroße Entitäten auf mehere Seiten aufzuteilen. Natürlich gibt
+es noch wesentlich mehr Dinge die umgesetzt werden könnten, um über den Status
+eines Prototypes hinauszugehen.
+
+\paragraph{DSL und Logik.}
 Die DSL mit der Generatorlogik ist in Kapitel \ref{sec-scalaDSL} erklärt.
 Die interne Scala-DSL gibt dem Benutzer ein intuitives Werkzeug zur Hand,
 mit dessen Hilfe er ein textuelles Dokumentenerstellungsskript erstellen kann,
@@ -697,3 +705,17 @@ Ein Webbrowser der die HTML-Datei öffnet, setzt\footnote{
 Ein Begriff aus dem Handwerk des Buchdrucks.
 \url{http://de.wikipedia.org/wiki/Schriftsetzer}.}
 dann mithilfe des JavaScript-Frameworks das Dokument.
+
+Ähnlich ist es auch bei der DSL, dort wurden auch nur die wichtigsten Funktionen
+implementiert, um zu zeigen, dass die Umsetzung in einem überschaubaren
+Rahmen möglich ist.
+
+\subsection{Kleine Statistik}
+
+Die Zielarchitektur hat leicht über 300 Zeilen JavaScript-Code und
+fast 500 Zeilen Testcode. (Ohne HTML/CSS der Templates.)
+
+Die DSL und Logik haben knapp 400 Zeilen Scala-Code und leicht über 700 Zeilen
+Testcode. Wobei ein Template, wie der Fraunhofer Bericht, alleine nochmals
+ca. 350 Zeilen Code umfasst, jedoch sind davon ca. 100 Zeilen HTML-Template-Code
+der Zielarchitektur. (Ohne DSL-Skript Beispiele.)

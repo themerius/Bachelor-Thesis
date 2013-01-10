@@ -397,8 +397,8 @@ ist im Anhang \ref{sec-api-resultat} zu finden.
 
 \paragraph{Entitäten hinzufügen.} Mit Befehlen wie in Listing
 \ref{api-entity} gezeigt, können Entitäten hinzugefügt werden.
-Zeile 1 kann man so verstehen: „plus Abschnitt-Entität Überschrift.”
-Zeile 3 „plus Unterabschnitt-Entität Unterüberschrift.”
+Zeile 1 kann man so verstehen: „plus Abschnitt-Entität Überschrift.“
+Zeile 3 „plus Unterabschnitt-Entität Unterüberschrift.“
 In Zeile 5--7 wird eine mehrzeilige Text-Entität hinzugefügt.
 In Zeile 9--12 wird ein Bild mit einer Internetbildquelle und einer
 Beschreibung hinzugefügt.
@@ -512,7 +512,7 @@ object MeinDokument extends FraunhoferReportBuilder {
 
 Auf Abbildung \ref{fig-uml_generator} ist der architekturelle Aufbau
 des Generators zu sehen. Wobei der \emph{TemplateStock (Mixin\footnote{
-Eine „wiederverwendbare Sammlung von Methoden und Attributen.”
+Eine „wiederverwendbare Sammlung von Methoden und Attributen.“
 \url{http://de.wikipedia.org/wiki/Trait_(Programmierung)}.
 })}
 HTML-Snippets lagert, woraus sich der \emph{Builder} bedienen kann.
@@ -529,6 +529,7 @@ Zielarchitektur her, wie in Kapitel \ref{sec-html-datei} erklärt.
   \caption{Aufbau des Generators des Anwendungsfalls in Scala.}\label{fig-uml_generator}
 \end{figure}
 
+
 \subsection{Vorwärtsverweis Muster}\label{sec-forwardreference}
 
 Das Problem des
@@ -543,7 +544,7 @@ wird. Beispiel:
 Reference = new Figure(...)
 \end{lstlisting}
 
-Hier wird also auf \lstinline|Reference| bereits zugegriffen,
+Hier wird also auf \verb|Reference| bereits zugegriffen,
 bevor sie überhaupt existiert. Erschwerend kommt hinzu, dass die
 Reihenfolge der Entitäten (Texte, Bilder, etc.) nicht verändert werden darf.
 Die Abbildung soll also an der Position im Dokument erscheinen, an der sie
@@ -565,9 +566,9 @@ def outer_func = {
 }
 \end{lstlisting}
 
-Auf \lstinline|v| kann noch über die Lambda-Funktion zugegriffen werden,
-selbst wenn \lstinline|outer_func| nicht mehr existiert. Teile des
-\lstinline|outer_func|-Geltungsbereiches werden quasi mitgezogen.
+Auf \verb|v| kann noch über die Lambda-Funktion zugegriffen werden,
+selbst wenn \verb|outer_func| nicht mehr existiert. Teile des
+\verb|outer_func|-Geltungsbereiches werden quasi mitgezogen.
 
 Genau mit dieser Technik kann man den Vorwärtsverweis in den Griff bekommen.
 Es wird der äußere Geltungsbereich eines Objekts nach innen gezogen,
@@ -583,15 +584,15 @@ object O {
 O.text()  // wenn reference vorhanden
 \end{lstlisting}
 
-Hier wird zudem die Eigenschaft des \lstinline|object| ausgenutzt,
-dass die im \lstinline|object| genannten Variablen immer schon vom Compiler
-zumindest mit einer \lstinline|null|-Referenz exisieren, aber die Reihenfolge
+Hier wird zudem die Eigenschaft des \verb|object| ausgenutzt,
+dass die im \verb|object| genannten Variablen immer schon vom Compiler
+zumindest mit einer \verb|null|-Referenz exisieren, aber die Reihenfolge
 der eigentlichen Instanziierung nicht verändert wird. Durch das
-\lstinline|lazy|-Keyword von Scala, würde die Reihenfolge modifiziert werden
+\verb|lazy|-Keyword von Scala, würde die Reihenfolge modifiziert werden
 und ist dadurch nicht praktikabel.
 
 Nachteil hier ist, dass der Domänen-Benutzer innerhalb der DSL diese
-\lstinline|() => s""| Magie schreiben müsste---was zu Verwirrung und
+\verb|() => s""| Magie schreiben müsste---was zu Verwirrung und
 Unverständnis führen würde.
 
 
@@ -601,7 +602,7 @@ Ideal wäre also nun eine Lösung inder der Domänen-Benutzer keine
 Aufmerksamkeit auf die Closure-Magie verschwenden muss.
 
 In Listing \ref{stringcontext} wird auf den ab Scala 2.10 verfügbaren
-\lstinline|StringContext| (\lstinline|s"…"|)
+\verb|StringContext| (\verb|s"…"|)
 gesetzt. \cite{scala-stringInterpolation}
 Dieser lässt sich so erweitern, dass
 sich die Closure-Magie verstecken\footnote{Entstammt meinen
@@ -627,14 +628,43 @@ object O {
 O.text()  // wenn reference vorhanden
 \end{lstlisting}
 
-\lstinline|byname_to_noarg| ist eine implizite Konvertierung von einem
-beliebigen Typ \lstinline|A| mit Call-by-Name\footnote{Ein Call-by-Name
+\verb|byname_to_noarg| ist eine implizite Konvertierung von einem
+beliebigen Typ \verb|A| mit Call-by-Name\footnote{Ein Call-by-Name
 Parameter wird bei jedem Funktionsaufruf erneut evaluiert.
 (\cite{scala-ref} Kapitel 4.6.1)}
-\lstinline|a: => A| in eine Lambda-Funktion \lstinline|() => a|.
+\verb|a: => A| in eine Lambda-Funktion \verb|() => a|.
 
-\lstinline|def $| fügt die Möglichkeit hinzu \lstinline|$"…"| als individuell angepassten \lstinline|StringContext| zu verwenden. Es wird eine variable 
+\verb|def $| fügt die Möglichkeit hinzu \verb|$"…"| als individuell
+angepassten \verb|StringContext| zu verwenden. Es wird eine variable 
 Argumentenliste mit den implizit zu Call-by-Name konvertierten Argumenten
-aus einem beliebigen \lstinline|$"…"|-String übergeben und in ein Closure gepackt,
+aus einem beliebigen \verb|$"…"|-String übergeben und in ein Closure gepackt,
 welches erst dann ausgeführt wird, wenn die Referenzen auch tatsächlich
 vorhanden sind.
+
+
+\section{Ergebnis}
+
+In Kapitel \ref{sec-zielarchitektur} ist ein JavaScript-Framework entstanden,
+welches die Darstellung eines „klassischen“ Dokuments mit Webtechnologie
+ermöglicht.
+Es gliedert ein Dokument in seine Areale, Seitenlayouts und Entitäten auf
+und stellt diese als entsprechende Templates bereit, so dass die DSL sich
+nicht um die Darstellung kömmern muss, sondern lediglich das
+JavaScript-Framework konfigurieren muss.
+Jedoch wohl das wichtigste Merkmal ist die Fähigkeit ein Webdokument wie
+ein Printdokument aussehen zu lassen.
+
+Die DSL mit der Generatorlogik ist in Kapitel \ref{sec-scalaDSL} erklärt.
+Die interne Scala-DSL gibt dem Benutzer ein intuitives Werkzeug zur Hand,
+mit dessen Hilfe er ein textuelles Dokumentenerstellungsskript erstellen kann,
+ohne wirklich zu merken, dass er eigentlich reinen Scala-Code schreibt.
+Durch diverse Abstraktionen die mit Scala ermöglicht werden, gelingt es
+sehr viele Implementierungsdetails in tiefere Ebenen zu verstecken, so
+dass ein neues Template sogar von einem DSL-Benutzer, mit einer kurzen
+Anleitung, seblst erstellt oder ein vorhandenes erweitert werden kann.
+Schlussendlich generiert die DSL eine HTML-Datei die das in der DSL
+beschriebene Dokument enthält, die das o.g. JavaScript-Framework verwendet.
+Ein Webbrowser der die HTML-Datei öffnet, setzt\footnote{
+Ein Begriff aus dem Handwerk des Buchdrucks.
+\url{http://de.wikipedia.org/wiki/Schriftsetzer}.}
+dann mithilfe des JavaScript-Frameworks das Dokument.

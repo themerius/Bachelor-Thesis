@@ -514,12 +514,13 @@ der es möglich ist externe DSLs zu entwerfen---diese basiert auf der
 
 Im Listing \ref{scala-syntax} ist die wichtigste Essenz aus dem Code
 aufgeführt, wie prinzipiell die API in diesem Projekt geformt wird.
-Erklärung: Das Objekt O erbt von Areal die Syntax. Bedeutung der Syntax ist
-„plus Überschrift Entität, plus Text Entität”. Der Nachteil dabei ist,
+Erklärung: Das Objekt O erbt von Areal die Syntax.
+Mehr zum Sprachdesign in Kapitel \ref{sec-api-design}.
+Der Nachteil dabei ist,
 dass leider ein + nicht allein für sich stehen kann, da der Compiler dies
-als Unäre-Operation zählt und somit nicht wie gewünscht erkennt, ++ jedoch
-zählt als Infix-Operation und funktioniert daher wie gewünscht.\footnote{
-Diese Erkenntis entstammt aus Antworten auf meine Frage auf Stackoverflow:
+als Unäre-Operation zählt und somit nicht wie gewünscht erkennt. ++ zählt jedoch
+als Infix-Operation und funktioniert daher wie gewünscht.\footnote{
+Diese Erkenntis entstammt aus der Diskussion auf meine Frage im Stackoverflow-Forum:
 \url{http://stackoverflow.com/questions/13367122}.}
 
 \begin{lstlisting}[label=scala-syntax,caption=Scala DSL Syntax und Bindung an API.]
@@ -657,22 +658,12 @@ nach dem generieren direkt einen Kompelierungsschritt anzuschließen und
 danach das Kompilat auszuführen.
 
 Der große Vorteil einer internen DSL ist jedoch, dass der DSL-Code auch
-direkt als Programm laufen kann -- also komplett ohne Umwege, ohne Generierung.
+direkt als Programm laufen kann---also komplett ohne Umwege, ohne Generierung.
 Zudem kann man von der sehr hohen Freiheit und Flexibilität profitieren,
 wobei u.U. viel Handarbeit nötig ist.
 
-Auf Abbildung \ref{fig-uml_generator} ist der architekturelle Aufbau
-des Generators für den Anwendungsfall zu sehen. Wobei der TemplateStock
-lediglich HTML-Snippets für den Builder lagert, der Builder
-kennt die im Dokument vorhandenen Areale und wandelt diese in die HTML-Gegenstücke
-um, sowie die Entitäten und Seiten die in den Arealen vorkommen werden auch
-in ihre JSON-Repräsentation umgewandelt.
-
-\begin{figure}[h!]
-  \centering
-    \includegraphics[height=0.8\textheight]{figures/uml_generator.pdf}
-  \caption{Aufbau des Generators des Anwendungsfalls in Scala.}\label{fig-uml_generator}
-\end{figure}
+Wie der Generator schlussendlich für den Anwendungsfall umgesetzt ist,
+wird in Kapitel \ref{sec-archi-generator} beschrieben.
 
 \section{Auswertung und Ergebnis}\label{sec-auswertung}
 

@@ -171,7 +171,8 @@ angepasst ist. Beispielsweise eine Überschrift, könnte so aussehen:
 Diese muss dann nur noch von der DSL entsprechend mit einer
 JSON-Daten\-struktur\footnote{JSON ist die \emph{JavaScript Object Notation},
 und bildet die zentrale Datenstruktur von JavaScript.
-Mehr Informationen unter \url{http://json.org}.} gefüttert werden, wie z.B.:
+Mehr Informationen unter \url{http://json.org}.} gefüttert werden bzw.
+instanziiert werden, wie z.B.:
 
 \begin{verbatim}
 {
@@ -202,6 +203,29 @@ Es muss nur dem JavaScript-Framework welches die Abstraktion für die
 Seiten vornimmt mitgeteilt werden, für welche IDs, welche Areale definiert
 sind.
 
+\subsection{Aufbau HTML-Datei}\label{sec-html-datei}
+
+Der prinzipielle Aufbau bzw. Reihenfolge einer fertigen HTML-Datei
+mit allen benötigen Elementen der Zielarchitektur ist in Abbildung
+\ref{fig-zielarchitektur_aufbau} illustriert. Komplette Beispiele
+sind im git-Repositorum zu finden. Im \emph{Header} sind die üblichen
+HTML-Header-Deklarationen, wie z.B. die Einbindung von CSS-Dateien. Mit den
+\emph{Areal Append Points} sind jene aus Kapitel \ref{sec-areal}
+gemeint. Gefolgt von \emph{Entity Templates} und deren \emph{Instanzen},
+in Form von JSON-Repräsentationen, wie in Kapitel \ref{sec-templating}
+beschrieben. Danach werden die \emph{Special Entities} erzeugt, was z.B.
+eine Fußzeile sein kann, welche nur einmal konfiguriert werden muss,
+da sie auf jeder Seite quasi gleich ist, bis auf bsplw. die Seitennummer.
+Die \emph{Page Factory}, welche neue Seiten produzieren kann, muss noch
+konfiguriert werden, danach folgt das \emph{Areal Setup} wo alle Informationen
+zusammenlaufen und wo auch das entgültige Dokument gesetzt wird.
+Der \emph{Footer} schließt lediglich alle HTML-Tags.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.45\textwidth]{figures/zielarchitektur_aufbau.pdf}
+  \caption{Aufbau einer Datei der Zielarchitektur.}\label{fig-zielarchitektur_aufbau}
+\end{figure}
 
 \section{Scala DSL}\label{sec-scalaDSL}
 
@@ -348,7 +372,7 @@ kommt das ausgezeichnete
 \end{itemize}
 \end{itemize}
 
-\subsection{API Design}
+\subsection{API Design}\label{sec-api-design}
 
 Wie in Kapitel \ref{sec-dsl} definiert, entspricht eine interne DSL einer sehr
 ausdrucksstarken Softwarebibliothek---sprich eine Bibliothek
@@ -425,28 +449,6 @@ object MeinAreal extends Document {
 }
 \end{lstlisting}
 
-\paragraph{Dokument erstellen.} Zunächst müssen die Areale in der gewünschten
-Reihenfolge instanziiert werden, dazu melden sie sich implizit beim
-\emph{Builder} an, um insbesondere ihre Reihenfolge innerhalb des Dokuments zu
-definieren; wie in Listing \ref{api-builder} dargestellt.
-Danach werden die verschiedenen Arealobjekte
-aufgerufen, was auch die Reihenfolge der Entitäten innerhalb des Dokuments
-definiert.
-Auch der Builder bedient sich wieder eines normales Scalaobjets als Container.
-
-\begin{lstlisting}[label=api-builder,caption=Dokument erstellen.]
-object MeinDokument extends FraunhoferReportBuilder {
-  new Document  // das Hauptdokument-Areal.
-
-  MeinAreal
-  // weitere Areal-Container aufrufen
-
-  def main(args: Array[String]) {  // Programmeinstiegspunkt.
-    write("_output/output.html")   // Dokument als html speichern.
-  }
-}
-\end{lstlisting}
-
 \paragraph{Referenzierungen.} Referenzierungen sind ein
 integraler Bestandteil von Dokumenten,
 mit einer erschwerenden Anforderung: Referenzierungen auf eine Entität kann
@@ -483,6 +485,49 @@ object MeinAreal extends Document {
 }
 \end{lstlisting}
 
+\paragraph{Dokument erstellen.} Zunächst müssen die Areale in der gewünschten
+Reihenfolge instanziiert werden, dazu melden sie sich implizit beim
+\emph{Builder} an, um insbesondere ihre Reihenfolge innerhalb des Dokuments zu
+definieren; wie in Listing \ref{api-builder} dargestellt.
+Danach werden die verschiedenen Arealobjekte
+aufgerufen, was auch die Reihenfolge der Entitäten innerhalb des Dokuments
+definiert.
+Auch der Builder bedient sich wieder eines normales Scalaobjets als Container.
+
+\begin{lstlisting}[label=api-builder,caption=Dokument erstellen.]
+object MeinDokument extends FraunhoferReportBuilder {
+  new Document  // das Hauptdokument-Areal.
+
+  MeinAreal
+  // weitere Areal-Container aufrufen
+
+  def main(args: Array[String]) {  // Programmeinstiegspunkt.
+    write("_output/output.html")   // Dokument als html speichern.
+  }
+}
+\end{lstlisting}
+
+
+\subsection{Generator}\label{sec-archi-generator}
+
+Auf Abbildung \ref{fig-uml_generator} ist der architekturelle Aufbau
+des Generators zu sehen. Wobei der \emph{TemplateStock (Mixin\footnote{
+Eine „wiederverwendbare Sammlung von Methoden und Attributen.”
+\url{http://de.wikipedia.org/wiki/Trait_(Programmierung)}.
+})}
+HTML-Snippets lagert, woraus sich der \emph{Builder} bedienen kann.
+Der Builder kennt die im Dokument vorhandenen Areale und damit auch dessen
+Entitäten. Der Builder produziert aus jeder Entität das HTML-Gegenstück
+und ordnet sie dem entsprechenden Areal zu, wobei auch entsprechende
+Areale auf der JavaScript-Seite vom Builder konfiguriert werden.
+Kurz gesagt, der Builder stellt eine komplette HTML-Datei passend für die
+Zielarchitektur her, wie in Kapitel \ref{sec-html-datei} erklärt.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.6\textwidth]{figures/uml_generator.pdf}
+  \caption{Aufbau des Generators des Anwendungsfalls in Scala.}\label{fig-uml_generator}
+\end{figure}
 
 \subsection{Vorwärtsverweis Muster}\label{sec-forwardreference}
 

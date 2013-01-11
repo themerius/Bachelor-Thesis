@@ -1,37 +1,89 @@
 \chapter{Zusammenfassung}
 
-Im Verlaufe dieses Dokuments konnte gezeigt werden, dass DSLs eine sehr
-spannende Technologie sind um das Problemfeld der automatischen
-Dokumentengenerierung bzw. Textsatz anzugehen.
+Im Verlaufe dieser Arbeit konnte gezeigt werden, dass DSLs eine sehr
+spannende Technologie sind, um das Problemfeld der automatischen
+Dokumentengenerierung bzw. Textsatz anzugehen. % Der Klassiker TeX...
 
-Die externe DSL-Technologie, die das Xtext-Framework bietet,
-wurde den Fähigkeiten der Scala-Programmiersprache als interne DSL-Technologie gegenübergestellt und verglichen,
-mit dem Ergebnis, dass Scala für den in diesem Dokument ausgesuchten
-Anwendungsfall, der Erstellung eines Textsatzsystems,
-leicht besser geeignet ist.
+Dazu wurden zwei DSL-Technologien in Kapitel \ref{sec-vergleich} verglichen:
+Das Xtext-Framework zur Erstellung \emph{externer DSLs} und
+die Scala-Programmiersprache zur Erstellung \emph{interner DSLs}.
 
-Die dabei entstandene interne Scala DSL erlaubt es einem Benutzer ohne große Programmierfähigkeiten, ein Dokumentenskript zu verstehen, erweitern
-bzw. zu erstellen.
+Erstellung qualitativ hochwertiger Dokumente war,
+ist und bleibt eine Herausforderung.
+Das hier erforschte Textsatzsystem versucht die ubiquitäre und hoch entwickelte
+Webtechnologie für die Darstellung klassischer Dokumente bzw. Printdokumente
+zu verwenden.
+Mit Vorteilen ausgerüstet wie hoher gestalterischer Freiheit,
+interaktiven Inhalten und aktuellster Technik ist Webtechnologie
+mittlerweile\footnote{
+HTML5-Technologien haben eine immense Qualitätssteigerung einher gebracht.}
+eine sehr gute Basis zur Darstellung von hochwertigen Dokumenten.
 
-Dadurch dass es als interne Scala DSL gelöst ist, entsteht der Vorteil,
-dass die DSL quasi einer ordinären Scala Bibliothek entspricht und
-somit innerhalb des Dokumentenskripts, bei Bedarf,
-auf die komplette Mächtigkeit von Scala
-zurückgegriffen werden kann---also u.a. eine riesige Auswahl an verschiedenen
-Softwarebibliotheken und eine erwachsene Scala-Infrastruktur.
+Mithilfe der internen Scala-DSL wird dem Dokumentenersteller eine intuitive
+Methode bereitgestellt, Dokumente auf Basis der Webtechnologie zu generieren
+und dabei die Möglichkeit zu haben, innerhalb seines Dokumenten-DSL-Skripts
+die Mächtigkeit von Scala zu nutzen---was wiederum ausschweifende
+Automatisierungsfähigkeiten ermöglicht.
 
-Zudem konnte gezeigt werden, dass Webtechnologie durchaus tauglich ist, um
-„klassische“ Dokumente darzustellen. Auch wenn dafür etwas
-JavaScript-Programmierarbeit von Nöten ist. Der Vorteil den man sich mit
-Webtechnologie einkauft, ist u.a. eine sehr hohe Flexibilität bei der
-Gestaltung der Layouts und Inhalte, interaktive Elemente sind naturgegeben
-und wenn das Web-Template sich an die W3C-Empfehlungen hält, ist es
-standardisiert, was eine Langlebigkeit der entstandenen Dokumente garantiert.
+Dieses Projekt wird bereits vom Fraunhofer SCAI für die Aufbereitung von
+chemischen Patentschriften eingesetzt.
+
+\section{Fazit über die Ergebnisse}
+
+\paragraph{Vergleich.}
+Der Vergleich der zwei DSL-Technologien ist
+in der Vergleichsmatrix in Kapitel \ref{sec-vergleichsmatrix} aufgeführt,
+darin werden 15 Fähigkeiten beschrieben und jeweils Xtext mit Scala
+gegenübergestellt.
+
+Mit Scala als Gewinner des Vergleichs wird der DSL-Teil Textsatzsystems, als
+interne DSL, implementiert. Da eine interne Scala-DSL einer Softwarebibliothek
+entspricht, sind somit alle Scala-Programmierfähigkeiten im DSL-Skript nutzbar;
+Scala eine starke Sprachinfrastruktur hat und z.B. eine
+ausgereifte Code-Strukturierung
+mitliefert; Scala kann es einem DSL-Benutzer ermöglichen, selbst Dokumententemplates
+zu schreiben; die Scala-DSL ist sehr gut in andere Kontexte einbettbar und ist
+dank Scalas Skalierbarkeit auch für die Zukunft gut gerüstet; Elegante Lösung
+des Vorwärtsverweisproblems---siehe Kapitel \ref{sec-forwardreference}.
+Mehr dazu in Kapitel \ref{sec-auswertung}.
+
+Dieser Vergleich auch allgemeinen für \emph{externe versus
+interne DSLs} gelten, wenn die Xtext- bzw. Scala-spezifischer Besonderheiten
+abgezogen werden. Da das Ergebnis
+auf den Anwendungsfall „Textsatzsystem“ getrimmt ist muss ggf. eine Anpassung
+vorgenommen werden, falls die Ergebnisse für andere Projekte adaptiert werden sollen.
+
+\paragraph{Implementierung: Zielarchitektur (Darstellung).}
+Normalerweise trennen Webseiten den Inhalt nicht noch in weitere Seiten auf,
+wie es bei z.B. Printdokumenten der Fall ist.
+Ein solches Verhalten wurde mittels JavaScript innerhalb dieser Arbeit
+ermöglicht.
+Die Zielarchitektur kann also eine Webseite wie ein Printdokument aussehen
+lassen und bietet mittels Webtechnologie ein reichhaltiges Angebot an
+Templating und Gestaltungsfähigkeiten.
+
+Während der Entwicklung entstanden u.a. diese Dokumententemplates: (1)
+der Fraunhofer Bericht und (2) die Patentschrift des europäischen
+Patentregisters. Erreicht wurde zudem:
+
+\erreichtZielarchi
+
+\paragraph{Implementierung: DSL und Generator.} Es konnte gezeigt werden,
+dass eine intuitive DSL zur Dokumentengenerierung, inspiriert von \TeX,
+auch mit Scala vernünftig umsetzbar ist---ein ausführliches Beispiel
+für ein DSL-Skript ist im Anhang \ref{sec-api-resultat} und
+nähere Erläuterungen dazu in Kapitel \ref{sec-api-design}.
+
+Das Problem des Vorwärtsverweises, welcher in Dokumenten oft auftritt,
+konnte zudem elegant mit Scala-Abstraktionen und eines Closures gelöst werden.
+Erklärung in Kapitel \ref{sec-forwardreference}. Erreicht wurde:
+
+\erreichtDSL
 
 \section{Ausblick}
 
-An diesem Projekt kann noch sehr viel Weiterentwickelt werden, in alle
-möglichen Richtungen:
+Dieses Projekt in viele Richtungen weiterentwickelt werden werden,
+wie in Abschnitt \ref{sec-idee} erläutert---hier einige Beispiele:
 
 \begin{itemize}
   \item Die DSL kann erweitert werden,

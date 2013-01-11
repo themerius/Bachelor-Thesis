@@ -664,7 +664,8 @@ vorhanden sind.
 
 \section{Ergebnis}
 
-\paragraph{Zielarchitektur.}
+\subsection{Zielarchitektur}
+
 In Kapitel \ref{sec-zielarchitektur} ist ein JavaScript-Framework entstanden,
 welches die Darstellung eines „klassischen“ Dokuments mit Webtechnologie
 ermöglicht.
@@ -675,6 +676,7 @@ JavaScript-Framework konfigurieren muss.
 Jedoch wohl das wichtigste Merkmal ist die Fähigkeit ein Webdokument wie
 ein Printdokument aussehen zu lassen.
 
+\paragraph{Templates.}
 Im Zuge der Entwicklung des JavaScript-Frameworks sind zwei Dokumententemplates
 entstanden:
 
@@ -684,13 +686,23 @@ entstanden:
   \item Adaption der \emph{EPO Patentschrift} des europäischen Patentregisters.
 \end{enumerate}
 
-Es konnte jedoch nicht alles umgesetzt werden, z.B. insbesondere fehlt
-der Zielarchitektur noch die Unterstützung für Fußnoten, aber auch die
-Fähigkeit übergroße Entitäten auf mehere Seiten aufzuteilen. Natürlich gibt
-es noch wesentlich mehr Dinge die umgesetzt werden könnten, um über den Status
-eines Prototypes hinauszugehen.
+\paragraph{Erreichter Funktionsumfang.}
 
-\paragraph{DSL und Logik.}
+\def\erreichtZielarchi{
+\begin{enumerate}
+  \item Abstraktion über Seiten,
+  \item Gliederung des Dokuments (Areale, Seitenlayouts, Entitäten),
+  \item Seitendurchnummerierung,
+  \item (steht aus) Seitenüberlappende Entitäten,
+  \item (steht aus) Inhaltsverzeichnis mit Seitennummer,
+  \item (steht aus) Fußnoten,
+  \item (steht aus) Seitendurchnummerierung in römischen Ziffern.
+\end{enumerate}
+}
+\erreichtZielarchi
+
+\subsection{DSL und Logik}
+
 Die DSL mit der Generatorlogik ist in Kapitel \ref{sec-scalaDSL} erklärt.
 Die interne Scala-DSL gibt dem Benutzer ein intuitives Werkzeug zur Hand,
 mit dessen Hilfe er ein textuelles Dokumentenerstellungsskript erstellen kann,
@@ -706,10 +718,21 @@ Ein Begriff aus dem Handwerk des Buchdrucks.
 \url{http://de.wikipedia.org/wiki/Schriftsetzer}.}
 dann mithilfe des JavaScript-Frameworks das Dokument.
 
-Bei der DSL wurden auch nur die wichtigsten Funktionen
-implementiert, um zu zeigen, dass die Umsetzung in einem überschaubaren
-Rahmen möglich ist. Wobei die größte Schwierigkeit eine Lösung für den
-Vorwärtsverweis zu finden war.
+\paragraph{Erreichter Funktionsumfang.}
+
+\def\erreichtDSL{
+\begin{enumerate}
+  \item Übersichtliche und ausdrucksstarke Syntax,
+  \item Referenzierungen auf Entitäten im Text, insbesondere mit
+        Vorwärtsverweisen,
+  \item Logik für Kapitelnummerierung und Inhaltsverzeichnis,
+  \item Austauschbare Templates, vereinfachte Erstellung von Templates,
+  \item DSL-Skript strukturierbar, z.B. Aufteilung in mehrere Objekte,
+  \item Generierung der Zielarchitektur als HTML-Datei,
+  \item mini-API zum Aufruf externer Python-Skripte.
+\end{enumerate}
+}
+\erreichtDSL
 
 \subsection{Kleine Statistik}
 

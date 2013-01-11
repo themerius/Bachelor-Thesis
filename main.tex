@@ -139,20 +139,38 @@
 \newcommand{\schlagworte}{DSL, domain-specific language, Xtext, Scala,
   Dokumentengenerierung, Textsatz, Webtechnologie}
 \newcommand{\zusammenfassung}{
-  In dieser Arbeit wird ein neuartiges Textsatzsystem entwickelt, welches
-als Ziel Webtechnologie generiert und sehr gute Automatisierungsfähigkeiten
-besitzen soll. Ein Benutzer soll ein solches Dokument mit einem
-Skript, welches auf DSL-Technologie baisert, erstellen können, wobei \TeX~
-als Inspirationsquelle dient.
+{\small
+Erstellung qualitativ hochwertiger Dokumente war,
+ist und bleibt eine Herausforderung.
+Da Webtechnologie in den letzten Jahren große Sprünge,
+was typographische Qualität, Gestaltung von Layouts und
+interaktive Inhalte gemacht hat, liegt es nahe damit auch hochwertige
+klassische Printdokumente zu erstellen.
 
-  Dazu wird die externe DSL-Technologie (\emph{Xtext Framework})
-mit der internen DSL-Technologie (\emph{Scala Programmiersprache})
-verglichen, um herauszufinden welche Technologie am besten zum
-Anwendungsfall passt. Die Entscheidung ist auf Scala als interne DSL gefallen.
+In dieser Thesis wird ein Textsatzsystem entwickelt, welches Webtechnologie
+als Darstellungsbasis verwendet und eine Programmierschnittstelle auf Basis
+von DSL-Technologie zu erstellen, um Automatisierungsfähigkeiten in Verbindung
+mit einer ausgewachsenen Programmiersprache zu ermöglichen.
+Hierbei dient \TeX~als Inspiration.
 
-  Webtechnologie unterstützt von Haus aus \emph{keine} Abstraktion für Seiten,
-wie sie insbesondere aus Printdokumenten bekannt ist,
-daher ist via JavaScript eine solche Abstraktion implementiert worden.
+Es wird ein Vergleich zwischen zwei DSL-Technologien vorgenommen, um
+die Frage zu klären welche der Technologien die praktikablere Lösung für
+den gestellten Anwendungsfall darstellt.
+Verglichen werden das Xtext-Framework zur Erstellung \emph{externer DSLs} und
+die Scala-Programmiersprache zur Erstellung \emph{interner DSLs}.
+
+Die so entstehenden Sprache ist eine interne Scala-DSL, mit einer
+übersichtlichen und ausdrucksstarken Syntax, die u.a. automatische
+Kapitelnummerierungen vornehmen kann, austauschbare Templates bietet und
+Vorwärtsverweise, z.B. auf Abbildungen, innerhalb des Dokuments erlaubt.
+
+Resultat ist ein Dokument als HTML-Datei, indem das selbst entwickelte
+JavaScript-Framework einer Webseite Eigenschaften und Aussehen
+eines Printdokument verpasst.
+
+Dieses System wird vom Fraunhofer SCAI für die Aufbereitung von
+chemischen Patentschriften eingesetzt.
+}
 }
 \newcommand{\ausgabedatum}{16.10.2012}
 \newcommand{\abgabedatum}{16.01.2013}

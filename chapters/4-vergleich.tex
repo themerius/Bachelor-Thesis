@@ -546,10 +546,12 @@ object O extends Areal {
 
 \subsection{Skalierbarkeit und Einbettbarkeit}\label{sec-scalierEinbett}
 
-\paragraph{Xtext} hat eine vollständige und absolute Abhängigkeit
-zur Eclipse IDE und kann folglich nicht ohne Eclipse auskommen bzw.
-funktionieren. Daher ist man in Sachen Skalierbarkeit bzw. Einbettbarkeit
-an die Einschränkungen bzw. auch Vorteile von Eclipse gebunden.
+\paragraph{Xtext} hat eine starke Abhängigkeit
+zur Eclipse IDE und kann folglich nur mit entsprechendem Aufwand
+ohne\footnote{ Backend kann auch ohne Eclipse laufen.
+\url{http://stackoverflow.com/questions/7840685}.}
+Eclipse auskommen. Daher ist man in Sachen Skalierbarkeit bzw. Einbettbarkeit
+mehr oder weniger an die Einschränkungen bzw. auch Vorteile von Eclipse gebunden.
 
 Eclipse ist eine mächtige IDE, die auf mittlere bis große Softwareprojekte
 ausgelegt ist, und somit eher unter die schwergewichtigen Entwickler-Werkzeuge
@@ -562,14 +564,10 @@ Das Generat kann je nach eingesetzten Generator (siehe Abschnitt
 \ref{sec-generator}) skalieren, da Xtext quasi beliebige Generate erstellen
 kann, muss für Einzelfall entschieden werden.
 
-Zur Einbettbarkeit in beliebige Umgebungen, ist der Entwickler bzw.
-Domain-Benutzer sehr gebunden und abhängig. Eclipse läuft für gewöhnlich
-nur auf Desktop-Computern, also mit grafischer Benutzeroberfläche,
-und benötigt relativ viele Ressourcen, die Eclipse auch
-gerne annimmt.
-Da Eclipse auch die Generatoren anwirft, um aus der DSL
-die Zielarchitektur zu erstellen, ist auch dieser Prozess an Eclipse gebunden.
-Daher ist der Einsatz auf z.B. einem dedizierten Server ohne grafische
+Zur Einbettbarkeit:
+Da Eclipse für gewöhnlich auch die Generatoren anwirft, um aus der DSL
+die Zielarchitektur zu erstellen,
+ist daher der Einsatz auf z.B. einem dedizierten Server ohne grafische
 Benutzeroberfläche nicht so leicht umzusetzen.
 
 Die Einbettbarkeit des Generats ist wieder von seinen eigenen Fähigkeiten
@@ -642,7 +640,8 @@ entstand.
 
 Der ModelInferrer zielt direkt auf die JVM bzw. Java ab und ermöglicht es
 u.a. JVM-Datentypen direkt mit in die DSL einzubetten, mit allen Möglichkeiten
-die Xbase\footnote{Wobei Xbase selbst mit Xtext gebaut wurde. Details auf
+die Xbase\footnote{ Wobei Xbase selbst mit Xtext gebaut wurde.
+Details auf
 \url{http://blog.efftinge.de/2010/09/xbase-new-programming-language.html}}
 bietet. Es können also dynamisch Java-Klassen generiert werden, wobei innerhalb
 der DSL der Fokus auf das Wesentliche gelegt werden kann und nur dort wo es
@@ -763,7 +762,7 @@ allgemein für das Projekt ungeschickt bedeutet.
   8
   & \ref{sec-scalierEinbett}
   & Einbettbarkeit in beliebige Umgebungen
-  & 1
+  & 2
   & 3
   \\\hline
 
@@ -823,7 +822,7 @@ allgemein für das Projekt ungeschickt bedeutet.
 
 Wenn man die Werte aus der Tabelle \ref{sec-auswertungstabelle} zusammenrechnet
 kommt ein Ergebnis zustande, indem sich \textbf{Scala mit 35 zu
-29 Punkten in Vergleich mit Xtext} durchsetzt.
+30 Punkten in Vergleich mit Xtext} durchsetzt.
 
 Somit ist für \emph{dieses} Projekt Scala besser geeignet.
 Und wird als eigentliche Implementierungsbasis für den Prototyp verwendet.
@@ -854,10 +853,6 @@ Code-Strukturierung mit---bei Xtext muss diese selbst implementiert werden.
 z.B. ein Template an die DSL anzubinden, er müsste sich erst umfassend
 in das Xtext-Framework einarbeiten---bei Scala kann eine kurze Anleitung
 schon helfen z.B. durch weitere Abstraktion mit einem „Template-Baukasten.“
-
-\paragraph{(8)} Xtext ist durch die Eclipseabhängigkeit nur sehr schwer
-einbettbar, lediglich das \emph{fertig erstelle} Generat kann u.U. in eine andere
-Umgebung eingebettet werden---Scala hat hier quasi keine Grenzen.
 
 \paragraph{(13)} Xtext hat Werkzeuge spezialisiert zur Erstellung von
 DSLs---Scala hat nur sich selbst als Programmiersprache, also keine speziellen

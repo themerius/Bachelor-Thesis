@@ -47,11 +47,9 @@ deutschen Firma \emph{itemis AG} betreut bzw. weiterentwickelt. \cite{xtext}
 
 \section{Vergleichsmatrix}\label{sec-vergleichsmatrix}
 
-% Motivation warum Tabelle erfunden. Nach welchem Motto. Reihenfolge, warum? Wie macht man einen DSL-Vergelich? Tabelle beschreiben. Methodik des Vergleiches. Warum haben welche keinen extra Abschnitt… Tabelle zusammenfassend, Diskussion kommt in den Kapiteln! --> Auch in den Abstract (dass Tabelle).
-
 Wie kann man möglichst objektiv zwei unterschiedliche DSL-Technologien
 vergleichen? Es kann nichts ausgerechnet oder mathematisch bewiesen werden,
-jedoch aber können die verschiedenen Fähigkeiten einer jeden Technologie
+jedoch können die verschiedenen Fähigkeiten einer jeden Technologie
 herausgearbeitet und empirisch miteinander verglichen werden.
 Daher habe ich aus meiner Sicht und nach der Lektüre von
 \cite{dsls} die wichtigsten Kriteren herausgesucht, die eine gute DSL
@@ -60,7 +58,7 @@ bzw. DSL-Entwicklung ausmachen.
 Diese Gegenüberstellung beschränkt sich auf das Xtext-Framework, womit
 externe DSLs erstellt werden können und die Scala-Programmiersprache,
 welche sich außerordentlich gut für die Erstellung interner DSLs eignet.
-Dieser Vergleich auch kann, in beschränktem Umfang, also abzüglich
+Dieser Vergleich kann auch, in beschränktem Umfang, also abzüglich
 Xtext- bzw. Scala-spezifischer Besonderheiten, als allgemeingültiger
 Vergleich zwischen interner und externer DSL-Technologie herangezogen werden.
 
@@ -100,15 +98,15 @@ in der Tabelle.
   & \ref{sec-grammatikGestaltung}
   & Grammatikalische Gestaltung der DSL
   & {\small Komplett frei und flexibel, da in BNF-Regeln definiert.}
-  & {\small Eingeschränkt, man bleibt an Scala's Beschränkungen gebunden, aber
+  & {\small Eingeschränkt, man ist an Scalas Beschränkungen gebunden, aber
     dennoch sehr ausdrucksstarke Möglichkeiten.}
   \\\hline
 
   2
   & \ref{sec-gpl}
   & DSL mit General Purpose mischbar
-  & {\small Hat viele Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.}
-  & {\small Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Library ist.}
+  & {\small Hat Hürden, um eine DSL mehr Allgemeingültigkeit zu verpassen.}
+  & {\small Alle Scala-Fähigkeiten nativ nutzbar, da die DSL eine normale Bibliothek ist.}
   \\\hline
 
   3
@@ -117,16 +115,14 @@ in der Tabelle.
   & {\small Muss alles selbst gebaut werden. Vorteil: Es muss nur das nötigste
     umgesetzt werden.}
   & {\small Sämtliche Infrastruktur vorhanden. (Packages, Kontrollstrukturen,
-    Build-Tools, ...)}
+    Build-Tools, etc.)}
   \\\hline
 
   4
   & \ref{sec-erweiterbar}
-  & Erweiterbarkeit durch Domain User/Community (z.B. für eigene Templates)
-  & {\small Es würde von dem Domain User verlangt werden BNF-Notation zu können,
-    Xtend und er wäre auf Eclipse gezwungen.}
-  & {\small Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen,
-    die Bindings zu erstellen.}
+  & Erweiterbarkeit durch Benutzer (z.B. für eigene Templates)
+  & {\small Es würde von dem Benutzer verlangt werden BNF-Notation bzw. Xtend zu kennen, er wäre zudem auf Eclipse bebunden.}
+  & {\small Einfache Scala Kenntnisse plus eine kleine Anleitung sollten ausreichen.}
   \\\hline
 
   5
@@ -134,38 +130,35 @@ in der Tabelle.
   & Erweiterbarkeit durch Entwickler
   & {\small Grammatik, Tests und Generator kann nach belieben wachsen, u.a.
     Unterstützung durch Eclipse.}
-  & {\small Der Aufwand liegt bei der Entwicklung einer Library. Jedoch müssen
+  & {\small Der Aufwand liegt bei der Entwicklung einer Bibliothek. Jedoch müssen
     Testumgebungen etc. selbst eingerichtet werden.}
   \\\hline
 
   6
   & \ref{sec-erweiterbar}
   & Wiederverwendbarkeit bzw. Kombination mit Vorhandenem
-  & {\small Nur eingeschränkt, jedoch sind Grammatik Mixins möglich.}
-  & {\small Sehr gut, da Library und mit Scalas Typ- und Vererbungssystem kann nach
-    gewohnter Manier kombiniert und erweitert werden.}
+  & {\small Eingeschränkt, jedoch sind Grammatik Mixins möglich.}
+  & {\small Sehr gut, da Bibliothek und mit Scalas Typ- und Vererbungssystem
+      kann nach gewohnter Manier kombiniert oder erweitert werden.}
   \\\hline
 
   7
   & \ref{sec-infrastruktur}
   & Sprach-Infrastruktur
-  & {\small Xtext generiert automatisch ein speziell angepasstes Eclipse Plugin.}
+  & {\small Xtext generiert u.a. automatisch ein speziell angepasstes Eclipse Plugin.}
   & {\small Alles wird mitgeliefert, wie z.B. Compiler, Built-Tools, REPL.
-    Breite Unterstützung von vielen Editoren.}
+    Breite Unterstützung von vielen Editoren, aber keine speziellen Tools.}
   \\\hline
 
   8
   & \ref{sec-scalierEinbett}
   & Einbettbarkeit in beliebige Umgebungen
-  & {\small De facto Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
-    welches sich mit dem Projektverlauf automatisch mit anpassen kann.
-    Wenn das Ziel ein Arbeitsplatz-Front-End ist, sehr vorteilhaft -- sofern
-    Eclipse eingesetzt werden will.}
+  & {\small Relativ starke Eclipse-Bindung, aber mit individuell angepasstem Eclipse-Plugin,
+    welches sich mit dem Projektverlauf automatisch mit anpassen kann.}
   & {\small Kann gut in alle möglichen Szenarien eingebettet werden, Benutzung
     innerhalb eines Frameworks möglich, oder Einsatz als Bibliothek,
     Stand-Alone oder in einer Entwicklungsumgebung wie Eclipse denkbar.
-    Kann also quasi in eine beliebige Umgebung eingebettet werden
-    wo eine JVM läuft oder auch als Service bereitgestellt werden.}
+    Kann also quasi in eine beliebige Umgebung eingebettet werden.}
   \\\hline
 
   9
@@ -178,21 +171,20 @@ in der Tabelle.
   & {\small Die DSL selbst kann direkt ein lauffähiges Programm sein. Andere Ziele,
     z.B. andere Programmier-Sprachen oder Markup-Sprachen müssen einen Umweg
     über eine Template-Engine nehmen, das
-    Verfahren hierzu muss selbst entwickelt werden (das kann ein Vor- oder
-    auch ein Nachteil sein.)}
+    Verfahren hierzu muss selbst entwickelt werden.}
   \\\hline
 
   10
   & \ref{sec-generator}
   & Generator: Template-Engine
-  & {\small Xtend eine speziell angepasste DSL-Generator-Template-Engine.
+  & {\small Xtend, eine speziell angepasste DSL-Generator-Template-Engine.
     Die BNF-Grammatik wird transparent in Java- bzw. Xtend-Klassen übersetzt,
     mit denen das Ziel über das Template generiert werden kann.}
-  & {\small 1. Freie Wahl, z.B. einfache Multiline-Strings, Scala XML oder Scalate;
+  & {\small 1. freie Wahl, z.B. einfache Multiline-Strings, Scala XML oder Scalate;
     wie aus der internen DSL das Ziel generiert wird, benötigt in der Regel
     einen Zwischenschritt (Bindings), welcher programmiert werden muss.
     Scala kann jedoch ggf. das Generat als Unterprogramm ausführen.
-    2. Die interne DSL ist selbst lauffähig.}
+    2. die interne DSL ist selbst lauffähig.}
   \\\hline
 
   11
@@ -204,13 +196,13 @@ in der Tabelle.
     Vorgehensweisen, z.B. wie der Generator gebaut wird.}
   & {\small Wenn Scala-Kenntnisse vorhanden, ist es mehr oder weniger die Entwicklung
     einer Bibliothek.
-    Wie man den Generator baut, muss allerdings überlegt werden.}
+    Wie der Generator gebaut wird, muss allerdings überlegt werden.}
   \\\hline
 
   12
   & \ref{sec-erweiterbar}
   & Software-Lebenszyklus und Wartbarkeit
-  & {\small Dank IDE und einer schon eingerichteten Testumgebung, also sehr gut.}
+  & {\small Sehr gut, dank IDE und einer schon eingerichteten Testumgebung.}
   & {\small Man hat alle Möglichkeiten, die die Scala-Welt bietet, also sehr gut.
     Jedoch ist Handarbeit nötig.}
   \\\hline
@@ -225,16 +217,16 @@ in der Tabelle.
   14
   & \ref{sec-scalierEinbett}
   & Skalierbarkeit
-  & {\small Kommt auf das Generat an. Man ist und bleibt an Eclipse gebunden.}
-  & {\small Scala selbst ist in alle Richtungen (Größe, Nebenläufigkeit) sehr gut
+  & {\small Kommt auf das Generat an. Man ist u.a. an Eclipse gebunden.}
+  & {\small Scala selbst ist in alle Richtungen (z.B. Größe, Nebenläufigkeit) sehr gut
     skalierbar.}
   \\\hline
 
   15
   &
-  & DSL als Library bzw. Bereitstellung
+  & DSL als Bibliothek bzw. Bereitstellung
   & {\small Ist eine in sich mehr oder weniger geschlossene Struktur.}
-  & {\small Interne DSL ist eine ganz normale Scala Library.}
+  & {\small Interne DSL ist eine ganz normale Scala Bibliothek.}
   \\\hline
 
 \end{longtable}

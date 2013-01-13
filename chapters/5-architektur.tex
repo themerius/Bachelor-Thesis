@@ -379,16 +379,17 @@ Als Testframework kommt das ausgezeichnete
   \begin{itemize}
     \item should count in it's subsection all subsubsections
   \end{itemize}
-  \item   A TableOfContents 
-  \begin{itemize}
-    \item should filter all instances of SectionNumber returned as List (pending)
-    \item extends an areal class (pending)
-  \end{itemize}
 \end{itemize}
+\end{itemize}
+
+\paragraph{AddonSpec}
+
+\begin{itemize}
 \item A PythonScript
 \begin{itemize}
-  \item should construct a py-file out of a string (pending)
-  \item should be able to execute the py file and its catch the std:out (pending)
+  \item should be able to trim unnecessary whitespace at the beginning
+  \item should construct a py-file out of a string
+  \item should be able to execute the py file and its catch the std:out
 \end{itemize}
 \end{itemize}
 
@@ -512,7 +513,7 @@ definieren; wie in Listing \ref{api-builder} dargestellt.
 Danach werden die verschiedenen Arealobjekte
 aufgerufen, was auch die Reihenfolge der Entitäten innerhalb des Dokuments
 definiert.
-Auch der Builder bedient sich wieder eines normales Scalaobjets als Container.
+Auch der Builder bedient sich wieder eines normalen Scalaobjets als Container.
 
 \begin{lstlisting}[label=api-builder,caption=Dokument erstellen.]
 object MeinDokument extends FraunhoferReportBuilder {
@@ -693,8 +694,10 @@ entstanden:
   \item Abstraktion über Seiten,
   \item Gliederung des Dokuments (Areale, Seitenlayouts, Entitäten),
   \item Seitendurchnummerierung,
+  \item Inhaltsverzeichnis (im Fraunhofer Bericht Template),
+  \item Zeilennummern (in Patentschrift Template),
   \item (steht aus) Seitenüberlappende Entitäten,
-  \item (steht aus) Inhaltsverzeichnis mit Seitennummer,
+  \item (steht aus) Inhaltsverzeichnis referenziert auf entsprechende Seitenzahlen,
   \item (steht aus) Fußnoten,
   \item (steht aus) Seitendurchnummerierung in römischen Ziffern.
 \end{enumerate}

@@ -1,11 +1,32 @@
 \chapter{Einrichtung und Betrieb}
 
-GitHub Repositoria:
+GitHub Repositorium:
 
 \begin{itemize}
-  \item Zielarchitetkur: \url{https://github.com/themerius/ScalTeX-templates}
-  \item DSL: \url{https://github.com/themerius/ScalTeX-DSL}
+  \item Dieses Dokument:\\
+        \url{https://github.com/themerius/Bachelor-Thesis}
+  \item DSL:\\
+        \url{https://github.com/themerius/ScalTeX-DSL}
+  \item Zielarchitetkur:\\
+        \url{https://github.com/themerius/ScalTeX-templates}
 \end{itemize}
+
+Die einzelnen Versionsstände die von der Scala-DSL entstandenen sind,
+sind auf meinem Google Drive gespeichert und können dort als ZIP
+geladen werden:
+
+\begin{enumerate}
+  \item R1\\
+        \url{http://goo.gl/hKjxu}
+  \item R2\\
+        \url{http://goo.gl/rQ7un}
+  \item R3\\
+        \url{http://goo.gl/k1bZm}
+  \item R4\\
+        \url{http://goo.gl/2QwWE}
+  \item R5\\
+        \url{http://goo.gl/CqFZP}
+\end{enumerate}
 
 \section{Voraussetzungen}
 
@@ -19,7 +40,7 @@ GitHub Repositoria:
 \section{Ausführen}
 
 \begin{enumerate}
-  \item Mit git das Repositorium herunterladen:\\
+  \item Mit git das Repositorium herunterladen (oder die o.g. ZIPs nehmen):\\
         \verb+git clone https://github.com/themerius/ScalTeX-DSL+
   \item In das \verb+ScalTeX-DSL/Scala-NextGen+ Verzeichnis wechseln,
   \item \verb+sbt+ ausführen,
@@ -31,14 +52,14 @@ Nach dem \verb+run+ Befehl werden von sbt automatisch die benötigten
 Bibliothektsabhänigkeiten und korrekte Scala Version heruntergeladen.
 Danach werden die Quellen kompiliert und ausgeführt---es sollte dann eine
 \verb+_output/output.html+ Datei entstehen, mit dem Dokument als HTML-Datei,
-welche das kleine hier im Dokument entstandene JavaScript-Framework verwendet.
+welche die, hier im Dokument entstandene, Zielarchitektur verwendet.
 
 In \verb+src/main/scala/main.scala+ liegt das
 beispielhafte Dokumentenskript.
 
 Im Repositorium der der Zielarchitektur sind die Tests für diese.
-In \verb+scaltex/TestSuite.html+ liegt eine durch ein Webbrowsers
-ausführbare Testsuite.
+Dafür wird \verb+scaltex/TestSuite.html+ in einem Webbrowser
+geöffnet. Der Webbrowser führt dann die JavaScript-Testsuite aus.
 
 
 \chapter{Codebeispiele}
@@ -98,7 +119,8 @@ object KapitelTextsatz extends Document {
   """
 
   ++ $ "tex_logo" figure(
-    src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/68/TeX_logo.svg/500px-TeX_logo.svg.png",
+    src="http://upload.wikimedia.org/wikipedia/commons/" +
+        "thumb/6/68/TeX_logo.svg/500px-TeX_logo.svg.png",
     desc="TeX Logo."
   )
 

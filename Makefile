@@ -4,7 +4,7 @@ MAINTEX = main
 CHAPTER = chapters/
 TITLEPAGES = titlepages/
 BUILDPATH = _build/
-BUILDNAME = Thesis
+BUILDNAME = Bachelor-Thesis_S.Hodapp_2013
 
 pdf:
 	pdflatex $(MAINTEX).tex

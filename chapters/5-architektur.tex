@@ -9,7 +9,7 @@ Kapitel \ref{sec-zielarchitektur}.
 
 Zum anderen wird in Kapitel \ref{sec-scalaDSL} die DSL beschrieben,
 welche eine wohlgeformte Schnittstelle für den Benutzer darstellt,
-sowie diverse Automatisierungsfähigkeiten übernimmt, wie z.B.
+sowie diverse Automatisierungs\-fähig\-keit\-en übernimmt, wie z.B.
 die Durchnummerierung von Kapiteln.
 
 \section{Zielarchitektur}\label{sec-zielarchitektur}
@@ -441,6 +441,12 @@ Beschreibung hinzugefügt.
 
 Zudem können flexibel verschiedene Entitäten zur API bei Bedarf
 hinzugefügt werden, dies wird in Listing \ref{scala-syntax} bereits gezeigt.
+
+Um die Stringliterale kommt man leider nicht herum, das ist der Tatsache
+geschuldet, dass es sich um eine interne DSL handelt und diese nicht aus
+den Paradigmen der Wirtssprache ausbrechen kann. Zudem verliert das Sprachdesign
+an Eleganz, wenn Stringliterale ohne \verb+""+ auskommen sollen, siehe
+Kapitel \ref{sec-tex-sprachdesign}.
 
 \paragraph{Areale.}
 
